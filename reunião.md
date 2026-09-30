@@ -1,4 +1,4 @@
-# Registo do Projeto — DEISI2257
+# Registo do Projeto — DEISI2256
 
 Planeamento, registo de atividades e notas das reuniões do TFC.
 
@@ -8,7 +8,7 @@ Planeamento, registo de atividades e notas das reuniões do TFC.
 
 | Período | Tarefa | Estado |
 |---|---|---|
-| 30/09 – 04/10 | Criar o repositório e coordenar com os grupos DEISI2256 e DEISI2258 | Em curso |
+| 30/09 – 04/10 | Criar o repositório e coordenar com os grupos DEISI2257 e DEISI2258 | Em curso |
 | 05/10 – 16/10 | Finalizar o inquérito e validá-lo com o orientador | Por iniciar |
 | 19/10 – 06/11 | Divulgar o inquérito e recolher respostas | Por iniciar |
 | 09/11 – 22/11 | Análise dos resultados e levantamento de requisitos | Por iniciar |
@@ -33,14 +33,14 @@ Planeamento, registo de atividades e notas das reuniões do TFC.
 
 ### Reunião 1 — 30/09/2026
 
-**Com:** Prof. Luís Gomes (orientador) e os grupos DEISI2256, DEISI2257 e DEISI2258
+**Com:** Prof. Luís Gomes (orientador) e os grupos DEISI2257 e DEISI2258
 
 **O que foi falado**
 - Antes do levantamento de requisitos, fazer um inquérito aos utilizadores da plataforma atual, para saber o que mudar e melhorar.
 - Dividir os inquiridos em três perfis: alunos que iniciaram o TFC, alunos que já o concluíram e docentes.
 - Separar os perfis evita que a média de grupos com experiências diferentes não represente nenhum deles.
 - Cada grupo cria o seu repositório na organização ULHT-TFC-new.
-- Criar o repositório do DEISI2257.
+- Criar o repositório.
 - Próximos passos: coordenar com os outros grupos a estrutura dos repositórios, a base de dados e o backend, e finalizar o inquérito e validá-lo com o orientador.
 
 **Decisões iniciais**
