@@ -23,7 +23,7 @@ Planeamento, registo de atividades e notas das reuniões do TFC.
 
 | Data | Atividade |
 |---|---|
-| 28/09/2026 | Análise da plataforma atual e primeiro rascunho das perguntas do inquérito |
+| 30/09/2026 | Exploração da plataforma de TFCs e primeiro esboço do questionário |
 | 30/09/2026 | Reunião com o orientador (ver Reunião 1) |
 | 30/09/2026 | Criação do repositório na organização ULHT-TFC-new |
 
