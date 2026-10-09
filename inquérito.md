@@ -172,9 +172,3 @@ Cada pergunta alimenta processos (P-xx) e melhorias (M-xx) do [documento de proc
 - Não se recolhe nome, e-mail nem número de aluno.
 - Atenção a perguntas que, em grupos pequenos, podem identificar alguém (por exemplo, a opção «Coordenação de TFC» em P5). Os resultados devem ser reportados de forma agregada.
 
-## 6. Uso dos resultados
-
-1. Tratar as respostas fechadas (escalas e escolhas) com estatística descritiva, por perfil.
-2. Codificar as respostas abertas (P4, P11, P23, P33–P35) por tema.
-3. Cruzar os resultados com as melhorias M-01 a M-18 e as questões em aberto.
-4. Atualizar as [fases de desenvolvimento](./processos_plataforma_tfc_final.md#8-fases-de-desenvolvimento) e os requisitos de cada TFC.
