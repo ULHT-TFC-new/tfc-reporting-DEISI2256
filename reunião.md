@@ -43,5 +43,17 @@ Planeamento, registo de atividades e notas das reuniões do TFC.
 - Criar o repositório.
 - Próximos passos: coordenar com os outros grupos a estrutura dos repositórios, a base de dados e o backend, e finalizar o inquérito e validá-lo com o orientador.
 
+### Reunião 2 — 07/10/2026
+
+**Com:** Prof. Luís Gomes (orientador) e os grupos DEISI2257
+
+**O que foi falado**
+- O orientador indicou o que corrigir, alterar e acrescentar ao inquérito.
+- Os processos não foram discutidos nesta reunião, mas já estavam elaborados.
+
+**Próximos passos**
+- Aplicar ao inquérito as correções, alterações e adições indicadas pelo orientador.
+- Discutir os processos e a versão final do inquérito com o orientador na próxima reunião, para definir o que fazer a seguir.
+
 **Decisões iniciais**
 - Inquérito com ramificação por perfil (cada perfil responde apenas aos blocos que lhe dizem respeito).
