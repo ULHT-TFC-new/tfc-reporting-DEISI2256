@@ -9,7 +9,7 @@ Planeamento, registo de atividades e notas das reuniões do TFC.
 | Período | Tarefa | Estado |
 |---|---|---|
 | 30/09 – 04/10 | Criar o repositório e coordenar com os grupos DEISI2257 e DEISI2258 | Em curso |
-| 05/10 – 16/10 | Finalizar o inquérito e validá-lo com o orientador | Por iniciar |
+| 05/10 – 16/10 | Finalizar o inquérito e validá-lo com o orientador | Em curso |
 | 19/10 – 06/11 | Divulgar o inquérito e recolher respostas | Por iniciar |
 | 09/11 – 22/11 | Análise dos resultados e levantamento de requisitos | Por iniciar |
 | 16/11 – 29/11 | Arquitetura, mockups e ambiente Docker | Por iniciar |
