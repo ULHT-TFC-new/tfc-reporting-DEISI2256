@@ -51,9 +51,17 @@ Planeamento, registo de atividades e notas das reuniões do TFC.
 - O orientador indicou o que corrigir, alterar e acrescentar ao inquérito.
 - Os processos não foram discutidos nesta reunião, mas já estavam elaborados.
 
+### Reunião 3 — 14/10/2026
+
+**Com:** Prof. Luís Gomes (orientador) e os grupos DEISI2258
+
+**O que foi falado**
+- O orientador indicou o que corrigir, alterar e acrescentar aos processos.
+- Aconselhou a criar um fluxo e uma sequência tendo em conta o tipo de trabalho que está a ser feito.
+- O inquérito vai ser disponibilizado na aula do seminário do TFC da próxima semana para os alunos presentes em sala responderem.
+  
 **Próximos passos**
-- Aplicar ao inquérito as correções, alterações e adições indicadas pelo orientador.
-- Discutir os processos e a versão final do inquérito com o orientador na próxima reunião, para definir o que fazer a seguir.
+- Disponibilizar o inquérito na próxima semana e terminar os processos.
 
 **Decisões iniciais**
 - Inquérito com ramificação por perfil (cada perfil responde apenas aos blocos que lhe dizem respeito).
