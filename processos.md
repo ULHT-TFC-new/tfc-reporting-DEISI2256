@@ -1,6 +1,6 @@
-# Macro-processos e processos
+# 02 — Macro-processos e processos
 
-Estrutura do método de ERT: **macro-processos** (grandes áreas e objetivo) → **processos** (mezzo) → **descrição detalhada** (micro). Os macro-processos seguem a ordem do ano letivo e, dentro de cada um, os processos seguem a ordem de execução. A descrição detalhada cobre registo de temas, candidatura, atribuição e submissão de entregáveis; os restantes processos estão descritos em linhas gerais.
+Estrutura do método de ERT: **macro-processos** (grandes áreas e objetivo) → **processos** (mezzo) → **descrição detalhada** (micro). Os macro-processos seguem a ordem do ano letivo e, dentro de cada um, os processos seguem a ordem de execução. A descrição detalhada cobre a configuração do ano letivo (calendário e modelo de avaliação), o registo de temas, a candidatura, a atribuição e a submissão de entregáveis; os restantes processos estão descritos em linhas gerais.
 
 ## 1. Atores
 
@@ -22,7 +22,7 @@ O acesso depende do **perfil da conta** e do **papel no TFC** (um docente pode s
 
 | ID | Macro-processo | Objetivo | Atores principais |
 |---|---|---|---|
-| MP-01 | Configuração do ano letivo | Definir prazos e utilizadores sem alterar a plataforma | Coordenação |
+| MP-01 | Configuração do ano letivo | Definir prazos, utilizadores e modelo de avaliação sem alterar a plataforma | Coordenação |
 | MP-02 | Gestão de propostas (registo de temas) | Só publicar temas validados e com esforço adequado | Docente, Aluno, Proponente externo, Coordenação |
 | MP-03 | Candidatura e atribuição | Atribuir os TFC aos alunos de forma justa, transparente e dentro dos prazos | Aluno, Proponente, Coordenação |
 | MP-04 | Acompanhamento do TFC | Registar a evolução e as alterações ao longo do ano | Aluno, Orientador |
@@ -40,6 +40,7 @@ O acesso depende do **perfil da conta** e do **papel no TFC** (um docente pode s
 |---|---|---|---|
 | P-01.1 | Definir calendário e épocas de avaliação | Coordenação | Registar as fases do ano (propostas, candidaturas, publicação, entregas, defesas) com início e fim; o sistema abre e fecha as funcionalidades. |
 | P-01.2 | Gerir utilizadores e perfis | Coordenação, Administrador | Registar alunos inscritos na UC (número, curso, ECTS, UCs concluídas), docentes e entidades externas e atribuir perfis. |
+| P-01.3 | Configurar modelo de avaliação | Coordenação | Definir os momentos de avaliação e os seus pesos, os critérios e pesos de cada momento, a escala de classificação e as regras de apuramento de resultados. |
 
 ### MP-02 — Gestão de propostas (registo de temas)
 
@@ -62,7 +63,7 @@ O acesso depende do **perfil da conta** e do **papel no TFC** (um docente pode s
 | P-03.6 | Atribuir TFC e orientador | Sistema, Coordenação | Atribuir o TFC ao aluno ou grupo e nomear orientador e coorientador. |
 | P-03.7 | Atualizar listas de candidaturas após atribuição | Sistema | Retirar o TFC atribuído das listas dos outros candidatos e subir as prioridades seguintes. |
 | P-03.8 | Publicar atribuições | Coordenação | Publicar a lista final de TFC atribuídos e orientadores. |
-| P-03.9 | Registar desistência e libertar TFC | Aluno, Orientador, Coordenação | Registar a desistência de um aluno e devolver o TFC à lista de TFC disponíveis. |
+| P-03.9 | Registar desistência e libertar TFC | Aluno, Orientador, Coordenação | Registar a desistência de um aluno e libertar o TFC: volta à lista de inscrições se o período de candidaturas estiver aberto; caso contrário, fica disponível para atribuição pela coordenação. |
 
 ### MP-04 — Acompanhamento do TFC
 
@@ -85,7 +86,7 @@ O acesso depende do **perfil da conta** e do **papel no TFC** (um docente pode s
 | ID | Processo | Ator | Descrição |
 |---|---|---|---|
 | P-06.1 | Constituir júri | Coordenação | Definir o júri de cada TFC e momento (júri cego nas intercalares). |
-| P-06.2 | Agendar defesas | Coordenação | Marcar e publicar as defesas finais com pelo menos 48 h de antecedência. |
+| P-06.2 | Agendar defesas | Coordenação | Marcar e publicar as defesas finais com pelo menos 48 h de antecedência; TFC com AND não são gravados nem divulgados. |
 | P-06.3 | Preencher formulário de avaliação | Jurado | Classificar cada critério (Likert 1–10) e escrever a apreciação; justificação obrigatória se a discrepância entre jurados for superior a 2 níveis. |
 | P-06.4 | Publicar resultados | Coordenação | Disponibilizar notas e apreciações aos alunos (intercalares até 10 dias úteis após o prazo). |
 
@@ -93,7 +94,7 @@ O acesso depende do **perfil da conta** e do **papel no TFC** (um docente pode s
 
 | ID | Processo | Ator | Descrição |
 |---|---|---|---|
-| P-07.1 | Calcular nota final e situação | Sistema, Coordenação | Aplicar AI1 20%, AI2 20%, AF 55%, DF 5%, arredondar à unidade e determinar aprovado, reprovado ou excluído. |
+| P-07.1 | Calcular nota final e situação | Sistema, Coordenação | Aplicar as regras do modelo de avaliação (P-01.3; em 2026/27: AI1 20%, AI2 20%, AF 55%, DF 5%), arredondar à unidade e determinar aprovado, reprovado ou excluído, tendo também em conta o cumprimento dos seminários (P-08.1). |
 
 ### MP-08 — Seminários e DEISIFest
 
@@ -124,11 +125,21 @@ Cada ficha indica pré-condições, fluxo, exceções e regras. `[UI]` indica co
   3. a coordenação publica o calendário;
   4. o sistema abre e fecha as funcionalidades de acordo com as datas.
 - **Exceções:** alterar uma data com submissões já feitas pede confirmação e fica registado; sem época de avaliação ativa, a entrega mostra "Não existe nenhuma época de avaliação disponível" `[UI]`.
-- **Regras:** o servidor valida sempre a janela; as datas são as do regulamento (secção 5) e podem ser alteradas.
+- **Regras:** o servidor valida sempre a janela; as datas do ano letivo são as da secção 5 deste documento (regulamento, "Datas importantes") e podem ser alteradas.
+
+**P-01.3 Configurar modelo de avaliação** — *Coordenação*
+- **Pré-condições:** perfil Coordenação; ano letivo criado (P-01.1).
+- **Fluxo:**
+  1. a coordenação define os momentos de avaliação e o peso de cada um na nota final;
+  2. para cada momento com júri, define os critérios e o peso de cada critério;
+  3. define a escala de classificação, o limiar de discrepância entre jurados que obriga a justificação e as regras de arredondamento;
+  4. o sistema valida as somas dos pesos e ativa o modelo para o ano letivo.
+- **Exceções:** soma dos pesos diferente de 100% → bloquear a ativação; alterar um momento que já tem avaliações registadas → criar uma nova versão do modelo, sem alterar as avaliações já feitas.
+- **Regras (cap. 5 e 6):** em 2026/27: AI1 20%, AI2 20%, AF 55%, DF 5%; critérios e pesos das intercalares e da final do cap. 5; escala Likert de 10 níveis; justificação obrigatória com discrepância superior a 2 níveis; notas parciais arredondadas a 2 casas decimais e nota final à unidade; aprovação com nota final ≥ 10. O modelo tem versões e cada avaliação fica associada à versão usada. A conversão da escala de 10 níveis para 0–20 está *por confirmar*.
 
 ### 4.2 MP-02 — Gestão de propostas (registo de temas)
 
-**Estados da proposta:** `SUBMETIDA` → `EM_VALIDAÇÃO` ↔ `ALTERAÇÕES_SOLICITADAS` → `ACEITE` ou `RECUSADA`; `ACEITE` → `PUBLICADA` (disponível, "A Aguardar Atribuição" `[UI]`) ou `PRÉ_ATRIBUÍDA` (tem aluno indicado); `PUBLICADA` → `ATRIBUÍDA` → `PUBLICADA` (se houver desistência).
+**Estados da proposta:** `SUBMETIDA` → `EM_VALIDAÇÃO` ↔ `ALTERAÇÕES_SOLICITADAS` → `ACEITE` ou `RECUSADA`; `ACEITE` → `PUBLICADA` (disponível, "A Aguardar Atribuição" `[UI]`) ou `PRÉ_ATRIBUÍDA` (tem aluno indicado); `PRÉ_ATRIBUÍDA` → `ATRIBUÍDA` (depois da candidatura do(s) aluno(s) pré-selecionado(s)); `PUBLICADA` → `ATRIBUÍDA` → `PUBLICADA` (se houver desistência com o período de candidaturas aberto).
 
 **P-02.1 Submeter proposta** — *Docente, Aluno, Proponente externo*
 - **Pré-condições:** autenticado; janela do seu tipo de proponente aberta; aluno inscrito na UC.
@@ -142,9 +153,9 @@ Cada ficha indica pré-condições, fluxo, exceções e regras. `[UI]` indica co
 - **Regras (regulamento, cap. 3):** o aluno pode submeter várias propostas; a proposta de grupo é submetida por um só elemento; o orientador preferencial indicado pelo aluno exige aprovação prévia dele (senão a proposta pode ser excluída); empresas e outros departamentos podem ser coorientadores.
 
 **P-02.2 Validar proposta** — *Coordenação*
-- **Pré-condições:** proposta `SUBMETIDA`.
+- **Pré-condições:** proposta `SUBMETIDA` ou `EM_VALIDAÇÃO`.
 - **Fluxo:**
-  1. a coordenação abre a lista de propostas por validar;
+  1. a coordenação abre a lista de propostas por validar; ao abrir uma proposta `SUBMETIDA`, esta passa a `EM_VALIDAÇÃO`;
   2. analisa tema, esforço, enquadramento e disponibilidade do orientador;
   3. **aceita**, **pede alterações** (com mensagem) ou **recusa** (justificação obrigatória);
   4. se aceitar, pode acrescentar tarefas ou requisitos e nomear orientador e coorientador;
@@ -161,7 +172,7 @@ Cada ficha indica pré-condições, fluxo, exceções e regras. `[UI]` indica co
   2. a listagem mostra ID, título e orientador/coorientador, com pesquisa por orientador `[UI]`;
   3. o detalhe mostra empresa, orientador, título, descrição, estado, curso, disciplinas e tecnologias `[UI]`;
   4. o proponente vê as suas propostas e o estado de cada uma; sem propostas aparece "Ainda não submeteu nenhum tema para TFC" `[UI]`.
-- **Regras:** um TFC pré-atribuído não aparece aos restantes alunos.
+- **Regras:** um TFC pré-atribuído só aparece ao(s) aluno(s) pré-selecionado(s), para fazerem a candidatura formal (P-03.2); não aparece aos restantes alunos.
 
 ### 4.3 MP-03 — Candidatura e atribuição
 
@@ -183,7 +194,7 @@ Os processos estão descritos **pela ordem de execução**: formar grupo → can
 - **Pré-condições:** os dois alunos inscritos na UC, elegíveis (≥ 90 ECTS, referência 04.10.2026) e sem grupo ativo; janela de candidaturas aberta.
 - **Fluxo:**
   1. o aluno indica o número do 2.º aluno;
-  2. o sistema valida (inscrito, elegível, sem grupo, UCs do perfil);
+  2. o sistema valida (inscrito, elegível, sem grupo);
   3. o sistema avisa que formar o grupo **anula as candidaturas anteriores** de ambos e pede confirmação;
   4. o sistema envia o convite ao colega;
   5. o colega **confirma**;
@@ -192,7 +203,7 @@ Os processos estão descritos **pela ordem de execução**: formar grupo → can
 - **Regras (cap. 4):** cada aluno só pode estar num grupo; só o submissor cria e altera candidaturas do grupo.
 
 **P-03.2 Submeter candidatura** — *Aluno (individual ou submissor do grupo)*
-- **Pré-condições:** aluno elegível; janela aberta; TFC `PUBLICADA` e sem pré-seleção; limite de candidaturas não atingido.
+- **Pré-condições:** aluno elegível; janela aberta; TFC `PUBLICADA`, ou `PRÉ_ATRIBUÍDA` quando o aluno é o pré-selecionado; limite de candidaturas não atingido.
 - **Fluxo:**
   1. o aluno abre o detalhe do TFC, que mostra o número de inscrições atuais;
   2. carrega em **Inscrever**;
@@ -200,7 +211,7 @@ Os processos estão descritos **pela ordem de execução**: formar grupo → can
   4. o sistema regista a candidatura na última posição da lista, com **data e hora**;
   5. **individual** → `ATIVA`; **grupo** → `PENDENTE_CONFIRMAÇÃO` e o colega é notificado (P-03.3).
 - **Exceções:** limite atingido → botão desativado e mensagem "retire uma inscrição de outro TFC" `[UI]`; requisito em falta → mensagem a indicar qual; TFC atribuído entretanto → bloquear.
-- **Regras (cap. 4):** 3 a 6 TFC por ordem de preferência (a plataforma atual bloqueia aos 5; o limite é parametrizável).
+- **Regras (cap. 3 e 4):** 3 a 6 TFC por ordem de preferência (a plataforma atual bloqueia aos 5; o limite é parametrizável); mesmo com pré-seleção, a candidatura na plataforma é obrigatória, porque a atribuição formal é necessária para a avaliação.
 
 **P-03.3 Confirmar candidatura de grupo** — *Colega de grupo*
 - **Pré-condições:** grupo ativo; candidatura `PENDENTE_CONFIRMAÇÃO`; janela aberta.
@@ -223,7 +234,7 @@ Os processos estão descritos **pela ordem de execução**: formar grupo → can
 - **Regras:** em grupo só o submissor altera e o colega consulta.
 
 **P-03.5 Selecionar candidatos** — *Proponente, Coordenação, Sistema*
-- **Pré-condições:** fim das candidaturas; TFC com dois ou mais candidatos `ATIVA` (as pendentes não entram).
+- **Pré-condições:** fim das candidaturas; TFC com um ou mais candidatos `ATIVA` (as pendentes não entram).
 - **Fluxo:**
   1. o sistema lista os candidatos de cada TFC com média, notas nas UCs do perfil, prioridade dada ao TFC e data de inscrição;
   2. **com proponente**, este escolhe (pode entrevistar os candidatos fora da plataforma); **sem proponente**, o sistema ordena por (1) resultados nas UCs do perfil e (2) cronologia da inscrição;
@@ -234,14 +245,14 @@ Os processos estão descritos **pela ordem de execução**: formar grupo → can
 
 **P-03.6 Atribuir TFC e orientador** — *Sistema, Coordenação*
 - **Fluxo:**
-  1. a atribuição é **automática** quando há pré-seleção de alunos elegíveis ou quando o aluno só tem tema próprio aceite; caso contrário vem da seleção confirmada (P-03.5);
+  1. a atribuição é **automática** quando há pré-seleção de alunos elegíveis que fizeram a candidatura (P-03.2), ou quando o aluno só tem tema próprio aceite; caso contrário vem da seleção confirmada (P-03.5);
   2. a coordenação nomeia orientador e coorientador (o sugerido na proposta aparece por defeito);
   3. o TFC passa a `ATRIBUÍDA` e a candidatura do aluno a `CONTEMPLADA`;
   4. as restantes candidaturas do aluno contemplado ficam `ENCERRADA` (aluno já contemplado);
   5. o sistema executa P-03.7;
   6. o sistema notifica aluno(s), orientador e coorientador.
 - **Exceções:** pré-selecionado sem elegibilidade → alerta; aluno pré-selecionado em dois TFC → decide a coordenação; orientador acima do limite sugerido de 5 → aviso, não bloqueio.
-- **Regras (cap. 2 e 4):** cada aluno só pode ter um TFC; o aluno começa o trabalho logo que lhe é atribuído tema, mesmo antes da lista final.
+- **Regras (cap. 2, 4 e 5):** cada aluno só pode ter um TFC; o aluno começa o trabalho logo que lhe é atribuído tema, mesmo antes da lista final.
 
 **P-03.7 Atualizar listas de candidaturas após atribuição** — *Sistema*
 - **Pré-condições:** um TFC passou a `ATRIBUÍDA` e existem candidaturas de outros alunos a esse TFC (ativas ou pendentes).
@@ -257,7 +268,7 @@ Os processos estão descritos **pela ordem de execução**: formar grupo → can
 - **Regras:** mantém-se a ordem relativa das restantes candidaturas; a data/hora de inscrição não muda.
 
 **P-03.8 Publicar atribuições** — *Coordenação*
-- **Fluxo:** a coordenação revê e publica a lista final (TFC, aluno(s), orientador); o sistema notifica os atribuídos e encerra o período de candidaturas. Quando há protocolo com entidade externa ou AND, o TFC fica sinalizado (sem gravação nem divulgação).
+- **Fluxo:** a coordenação revê e publica a lista final (TFC, aluno(s), orientador); o sistema notifica os atribuídos e encerra o período de candidaturas.
 - **Exceções:** correções posteriores ficam registadas e notificadas.
 
 **P-03.9 Registar desistência e libertar TFC** — *Aluno, Orientador, Coordenação*
@@ -268,7 +279,7 @@ Os processos estão descritos **pela ordem de execução**: formar grupo → can
   3. o orientador regista o seu parecer;
   4. a coordenação valida;
   5. o sistema cancela a atribuição e guarda o histórico;
-  6. o TFC passa a `PUBLICADA` e **volta à lista de TFC disponíveis para inscrição**;
+  6. com o período de candidaturas **aberto**, o TFC passa a `PUBLICADA` e **volta à lista de TFC disponíveis para inscrição**; com o período **fechado**, o TFC fica disponível apenas para atribuição pela coordenação (não são admitidos novos trabalhos depois da data-limite de candidaturas, regulamento cap. 1);
   7. o sistema notifica orientador, coorientador, proponente e coordenação.
 - **Alternativas (grupo):** se um elemento desiste e o outro quer continuar a título individual, o TFC mantém-se atribuído ao remanescente com o âmbito ajustado pelo orientador; se nenhum continuar, aplica-se o passo 6.
 - **Regras:** as candidaturas antigas do aluno não são repostas.
@@ -277,7 +288,7 @@ Os processos estão descritos **pela ordem de execução**: formar grupo → can
 
 **P-05.1 Enviar relatório ao orientador** — *Aluno*
 - **Fluxo:** o aluno carrega a versão em PDF; o sistema verifica a antecedência mínima face ao prazo e notifica o orientador.
-- **Regras:** antecedência parametrizável (a lista de trabalho anterior indicava 1 semana); fora da antecedência há aviso e o relatório pode ser recusado.
+- **Regras:** antecedência parametrizável, por defeito 1 semana (regulamento, cap. 1, ponto 13); fora da antecedência há aviso e o relatório pode ser recusado.
 
 **P-05.2 Validar relatório** — *Orientador*
 - **Fluxo:** o orientador **valida** ou **devolve com comentários**; ao validar, a coordenação é informada e a entrega fica desbloqueada.
