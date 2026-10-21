@@ -59,9 +59,14 @@ Planeamento, registo de atividades e notas das reuniões do TFC.
 - O orientador indicou o que corrigir, alterar e acrescentar aos processos.
 - Aconselhou a criar um fluxo e uma sequência tendo em conta o tipo de trabalho que está a ser feito.
 - O inquérito vai ser disponibilizado na aula do seminário do TFC da próxima semana para os alunos presentes em sala responderem.
-  
-**Próximos passos**
-- Disponibilizar o inquérito na próxima semana e terminar os processos.
+
+### Reunião 4 — 21/10/2026
+
+**Com:** Prof. Luís Gomes (orientador) e os grupos DEISI2257
+
+**O que foi falado**
+- O orientador disse-nos o que fazer a seguir às respostas do inquérito. Desenhar e planear a arquitetura, base de dados, classes, etc...
+- O inquérito foi disponibilizado aos alunos na aula do seminário TFC.
 
 **Decisões iniciais**
 - Inquérito com ramificação por perfil (cada perfil responde apenas aos blocos que lhe dizem respeito).
