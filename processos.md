@@ -411,7 +411,7 @@ sequenceDiagram
     actor A as Aluno contemplado
     actor O as Outros candidatos
     Co->>P: Confirmar atribuição e orientador
-    P->>P: TFC passa a ATRIBUÍDA; candidatura contemplada
+    P->>P: TFC passa a ATRIBUÍDA e a candidatura a contemplada
     P-->>A: Notificação de atribuição
     P->>P: Retirar o TFC das listas dos outros candidatos
     P->>P: Subir as prioridades seguintes
