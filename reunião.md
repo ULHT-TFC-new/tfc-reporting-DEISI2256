@@ -10,7 +10,7 @@ Planeamento, registo de atividades e notas das reuniões do TFC.
 |---|---|---|
 | 30/09 – 04/10 | Criar o repositório e coordenar com os grupos DEISI2257 e DEISI2258 | Em curso |
 | 05/10 – 16/10 | Finalizar o inquérito e validá-lo com o orientador | Em curso |
-| 19/10 – 06/11 | Divulgar o inquérito e recolher respostas | Por iniciar |
+| 19/10 – 06/11 | Divulgar o inquérito e recolher respostas | Em curso |
 | 09/11 – 22/11 | Análise dos resultados e levantamento de requisitos | Por iniciar |
 | 16/11 – 29/11 | Arquitetura, mockups e ambiente Docker | Por iniciar |
 | 23/11 – 06/12 | Relatório e vídeo (máx. 2 min) | Por iniciar |
@@ -67,6 +67,43 @@ Planeamento, registo de atividades e notas das reuniões do TFC.
 **O que foi falado**
 - O orientador disse-nos o que fazer a seguir às respostas do inquérito. Desenhar e planear a arquitetura, base de dados, classes, etc...
 - O inquérito foi disponibilizado aos alunos na aula do seminário TFC.
+
+### Reunião 5 — 28/10/2026
+
+**Com:** Prof. Luís Gomes (orientador) e o colega do TFC DEISI2257
+
+**O que foi falado**
+
+O orientador reviu o documento de processos e indicou o que alterar e melhorar.
+
+*Atores*
+- O docente, o orientador e o jurado são o mesmo ator, com funções diferentes.
+- O sistema não é um ator.
+
+*Propostas*
+- Separar «publicar» e «consultar» proposta em dois processos.
+- No estado da proposta, trocar «publicada» por «disponível», por legibilidade.
+- A proposta deve indicar se o TFC é individual ou em grupo, e esta caracterização deve poder ser filtrada: os trabalhos individuais não aceitam grupos.
+- Os cursos devem vir de uma tabela de grupos de cursos (por exemplo LEI, LIG), escolhidos por checkbox.
+- Na base de dados, os docentes têm de estar ativos ou inativos, para se saber se estão a trabalhar com TFC.
+
+*Candidatura e atribuição*
+- Separar «alterar» e «cancelar» candidatura em dois processos.
+- Prever a candidatura recusada por falta de créditos, ao registar o TFC.
+- Descrever o processo de submeter candidatura em grupo.
+- Criar um processo para alterar o trabalho (de A para B).
+- Prever a possibilidade de os docentes juntarem alunos para fazerem um TFC.
+
+*Avaliação e apuramento de resultados*
+- Definir os critérios e os momentos de avaliação.
+- Prever uma avaliação adicional (quase certa).
+- Dividir o apuramento em dois processos: o cálculo da nota de cada avaliação, incluindo a nota intercalar, e o cálculo da nota final.
+
+*Documentação*
+- Acrescentar diagramas de sequência e de workflow aos processos.
+
+**Próximos passos**
+- Atualizar o documento de processos com estas alterações.
 
 **Decisões iniciais**
 - Inquérito com ramificação por perfil (cada perfil responde apenas aos blocos que lhe dizem respeito).
