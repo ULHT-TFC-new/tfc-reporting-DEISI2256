@@ -1,4 +1,3 @@
- **Aviso:** documento redigido com apoio de IA generativa (Claude, Anthropic). A discriminação da utilização, dos prompts, das fontes e da revisão está em [04_utilizacao_de_ia.md](04_utilizacao_de_ia.md).
 # 02 — Macro-processos e processos
 Estrutura do método de ERT: **macro-processos** (grandes áreas e objetivo) → **processos** (mezzo) → **descrição detalhada** (micro). Os macro-processos seguem a ordem do ano letivo e, dentro de cada um, os processos seguem a ordem de execução. A descrição detalhada cobre a configuração do ano letivo (calendário, utilizadores e cursos), o registo de temas, a candidatura, a atribuição, a submissão de entregáveis, o modelo de avaliação e o apuramento de resultados; os restantes processos estão descritos em linhas gerais.
 ## 1. Atores
