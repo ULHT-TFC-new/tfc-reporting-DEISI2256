@@ -102,9 +102,6 @@ O orientador reviu o documento de processos e indicou o que alterar e melhorar.
 *Documentação*
 - Acrescentar diagramas de sequência e de workflow aos processos.
 
-**Próximos passos**
-- Atualizar o documento de processos com estas alterações.
-
   
 ### Reunião 6 — Feedback e Revisão do Documento de Processos
 
@@ -113,7 +110,7 @@ O orientador reviu o documento de processos e indicou o que alterar e melhorar.
 **O que foi falado**
 
 * **Análise dos Resultados do Inquérito**
-  * Registaram-se 60 respostas no total (48 de alunos e 8 de docentes), o que representa uma amostra muito significativa (cerca de dois terços dos alunos inscritos nos últimos 2 anos).
+  * Registaram-se 60 respostas no total (48 de alunos , 4 ex alunos e 8 de docentes), o que representa uma amostra muito significativa (cerca de dois terços dos alunos inscritos nos últimos 2 anos).
 
 * **Atores e Proponentes Externos**
   * O proponente externo deve manter a flexibilidade para abranger tanto empresas/instituições parceiras como docentes de outros departamentos da faculdade.
