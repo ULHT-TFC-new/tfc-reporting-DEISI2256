@@ -74,62 +74,33 @@ Planeamento, registo de atividades e notas das reuniões do TFC.
 
 **O que foi falado**
 
-O orientador reviu o documento de processos e indicou o que alterar e melhorar. Foi também feito o ponto de situação do inquérito: as respostas começaram a chegar há 4 ou 5 dias e alguns alunos ainda não tinham respondido.
+O orientador reviu o documento de processos e indicou o que alterar e melhorar.
 
 *Atores*
-- O docente, o orientador e o jurado são o mesmo ator, com funções diferentes em cada TFC (proponente, orientador, coorientador ou jurado).
+- O docente, o orientador e o jurado são o mesmo ator, com funções diferentes.
 - O sistema não é um ator.
-- Só os docentes ativos podem aparecer nas listas de seleção (orientador preferencial, orientador sugerido, nomeação pela coordenação e júri). Os inativos servem apenas para preservar e consultar o histórico.
 
-*Propostas (MP-02)*
+*Propostas*
 - Separar «publicar» e «consultar» proposta em dois processos.
 - No estado da proposta, trocar «publicada» por «disponível», por legibilidade.
-- A proposta tem uma de três modalidades, vinculativas: *Individual* (só aceita candidaturas individuais), *Em grupo* (só aceita candidaturas em grupo) e *Individual ou em grupo* (aceita ambas). Esta caracterização deve poder ser filtrada.
-- O docente proponente pode alterar os dados de um TFC ainda não atribuído, desde que a alteração seja compatível com as candidaturas existentes. Mudar a modalidade para «em grupo» quando já há candidaturas individuais (ou o inverso) deve ser bloqueado ou condicionado.
-- As propostas de docentes do DEISI sem aluno indicado ficam com o estado ACEITE e passam de imediato a DISPONÍVEL, sendo publicadas automaticamente na submissão.
+- A proposta deve indicar se o TFC é individual ou em grupo, e esta caracterização deve poder ser filtrada: os trabalhos individuais não aceitam grupos.
 - Os cursos devem vir de uma tabela de grupos de cursos (por exemplo LEI, LIG), escolhidos por checkbox.
 - Na base de dados, os docentes têm de estar ativos ou inativos, para se saber se estão a trabalhar com TFC.
 
-*Candidatura e atribuição (MP-03)*
+*Candidatura e atribuição*
 - Separar «alterar» e «cancelar» candidatura em dois processos.
+- Prever a candidatura recusada por falta de créditos, ao registar o TFC.
 - Descrever o processo de submeter candidatura em grupo.
-- Quando um aluno convida um colega para formar grupo, ou quando o docente junta dois alunos num TFC (P-03.9), ambos têm de aceitar. Não há submissões nem junções unilaterais válidas.
 - Criar um processo para alterar o trabalho (de A para B).
 - Prever a possibilidade de os docentes juntarem alunos para fazerem um TFC.
-- Candidatura recusada por falta de créditos: se o aluno não tiver os créditos mínimos (≥ 90 ECTS à data de referência de 4 de outubro), o sistema recusa a submissão, regista-a com o estado RECUSADA (aluno, TFC, data e motivo) e mostra uma mensagem a explicar que não reúne os créditos exigidos. Estes registos podem ser consultados.
-- Quando um TFC é atribuído a um aluno, desaparece das listas de inscrições dos outros candidatos e as prioridades seguintes sobem, sem lacunas. Se um aluno ficar com menos de 3 candidaturas ativas, o sistema mostra um aviso.
-- Desistência (P-03.13): iniciada pelo aluno, com pedido fundamentado, parecer do orientador e validação da coordenação. Se o período de candidaturas estiver aberto, o TFC volta a DISPONÍVEL na lista geral. Se estiver fechado, o TFC só pode ser atribuído manualmente pela coordenação, porque não se admitem novos trabalhos depois do fecho.
-- Desatribuição (P-03.14): iniciada obrigatoriamente pelo orientador e validada pela coordenação. Serve para corrigir atribuições e, se o período de candidaturas estiver aberto, o aluno pode voltar a alterar as suas candidaturas.
 
-*Relatório e entregas (MP-05)*
-- Antes de submeter formalmente um momento (AI1, AI2 ou Final), o aluno envia o relatório em PDF ao orientador com uma antecedência mínima, por omissão de 1 semana. O orientador valida-o ou devolve-o com comentários.
-- Em trabalhos de grupo, qualquer elemento pode submeter os artefactos e o relatório já validado, sem validação adicional do colega no momento do envio.
-
-*Avaliação e apuramento de resultados (MP-06 e MP-07)*
-- Definir os critérios e os momentos de avaliação. Os momentos globais (AI1, AI2, Final, Defesa e Avaliação Adicional) devem estar separados dos critérios internos de cada momento.
-- Prever uma avaliação adicional (quase certa). Se existir, o seu peso é fixo e definido na criação, e os pesos dos restantes momentos são recalculados automaticamente, de forma proporcional.
+*Avaliação e apuramento de resultados*
+- Definir os critérios e os momentos de avaliação.
+- Prever uma avaliação adicional (quase certa).
 - Dividir o apuramento em dois processos: o cálculo da nota de cada avaliação, incluindo a nota intercalar, e o cálculo da nota final.
-- Os jurados avaliam por níveis (escala de 1 a 10), convertidos para a escala de 0 a 20 por regra de três: nota = nível × 20 / 10.
-- A nota de cada momento é a média aritmética das avaliações submetidas pelos jurados (2 a 4 jurados).
-- A majoração do orientador é um parâmetro do modelo, com valor inicial 0.
-- Se as notas de dois jurados diferirem em mais de 2 níveis, o jurado tem de justificar a sua avaliação.
-- A nota final é arredondada às unidades. Para aprovar, o aluno precisa de nota final ≥ 10 valores e de pelo menos 70% de assiduidade nos seminários.
-
-*Seminários e DEISIFest (MP-08)*
-- O controlo dos seminários é feito pela Organização de Seminários e pela Coordenação, com registo individual de presenças para verificar o mínimo de 70% de assiduidade.
-- No DEISIFest, a média das votações obtidas pelos trabalhos conta 5% da nota final do TFC e tem de entrar no apuramento de resultados.
-
-*Mensagens da interface*
-
-A plataforma atual mostra mensagens que devem ser previstas nos processos:
-- «Não existe nenhuma época de avaliação disponível» (ao tentar submeter fora de época).
-- «Ainda não submeteu nenhum tema para TFC» (no painel do proponente sem propostas).
-- «A Aguardar Atribuição» (para propostas aceites sem aluno pré-selecionado).
 
 *Documentação*
 - Acrescentar diagramas de sequência e de workflow aos processos.
-- Rigor na separação de conceitos, na nomenclatura e na clareza dos estados.
-- Os diagramas têm de refletir a realidade operacional: nas candidaturas de grupo e nas junções de alunos, mostrar a comunicação mútua (ambos aceitam). Na desistência e na desatribuição, mostrar o comportamento com o período de candidaturas aberto e fechado.
 
 ### Reunião 6 — 04/11/2026
 
