@@ -115,16 +115,16 @@ O orientador reviu o documento de processos e indicou o que alterar e melhorar.
   * **Alunos de anos anteriores:** as 4 respostas (cerca de 5% de um ano) não têm significado estatístico e não serão tratadas.
 * **Atores e Proponentes Externos**
   * O proponente externo deve manter a flexibilidade para abranger tanto empresas/instituições parceiras como docentes de outros departamentos da faculdade.
-* **MP-01 — Configuração do Ano Letivo e Histórico**
+* **Configuração do Ano Letivo e Histórico**
   * Adicionar o processo de **fecho do ano anterior**: o fecho passa os dados do ano letivo anterior para histórico (consultável em base de dados, mas não ativo no momento).
   * O sistema deve guardar o histórico de todos os anos letivos, apresentando por defeito o ano atual com opção de retroceder para anos anteriores.
-* **MP-03 — Candidatura e Atribuição**
+* **Candidatura e Atribuição**
   * **Candidaturas de Grupo (P-03.1, P-03.3, P-03.4):** Clarificar a mecânica de validação/confirmação. O fluxo deve prever que o segundo elemento do grupo confirma a candidatura submetida pelo submissor.
   * **Substituição de TFC (P-03.6 vs. P-03.7 + P-03.2):** Avaliar a pertinência técnica e operacional de manter o processo explícito de "substituir TFC da candidatura" na mesma prioridade em alternativa ao fluxo de cancelar e voltar a inscrever no fim da lista.
-* **MP-06 — Avaliação e Critérios**
+* **Avaliação e Critérios**
   * **Desdobrar o P-06.1:** Separar em dois processos distintos: *Definição de momentos de avaliação* e *Definição de critérios de avaliação* (pois um mesmo momento de avaliação contém múltiplos critérios ponderados, como originalidade, relatório, etc.).
   * **Momentos adicionais de avaliação:** Definir de forma abstrata como contam outros momentos (ex.: seminários ou apresentações parcelares), cuja ponderação pode ser global para o apuramento final ou direcionada a um momento específico.
-* **MP-09 — Consultas, Notificações e Acessos**
+* **Consultas, Notificações e Acessos**
   * **Notificações:** Não podem ser apenas uma linha estática; devem ser especificadas como um subsistema completo a integrar na arquitetura técnica.
   * **Consulta de resultados:** Adicionar explicitamente o processo de *Consultar Resultados* (separando a publicação de resultados parciais/intercalares dos finais).
   * **Acesso do Orientador às Avaliações:** O orientador deve ter acesso permanente e histórico a todas as avaliações e notas dos trabalhos que orienta, impedindo que perca o acesso às avaliações antigas após uma nova entrega.
