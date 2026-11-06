@@ -155,3 +155,4 @@ O orientador reviu o documento de processos e indicou o que alterar e melhorar.
 - Na candidatura em grupo, o segundo elemento confirma cada uma das candidaturas do grupo, aceitando-a ou recusando-a.
 - Avançar para os casos de uso e as user stories a partir da descrição detalhada dos processos.
 - Inquérito com ramificação por perfil (cada perfil responde apenas aos blocos que lhe dizem respeito).
+ 
