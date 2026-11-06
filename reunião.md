@@ -69,32 +69,36 @@ Planeamento, registo de atividades e notas das reuniões do TFC.
 - O inquérito foi disponibilizado aos alunos na aula do seminário TFC.
 
 ### Reunião 5 — 28/10/2026
- 
+
 **Com:** Prof. Luís Gomes (orientador) e o colega do TFC DEISI2257
- 
+
 **O que foi falado**
- 
+
 O orientador reviu o documento de processos e indicou o que alterar e melhorar.
- 
+
 *Atores*
 - O docente, o orientador e o jurado são o mesmo ator, com funções diferentes.
 - O sistema não é um ator.
+
 *Propostas*
 - Separar «publicar» e «consultar» proposta em dois processos.
 - No estado da proposta, trocar «publicada» por «disponível», por legibilidade.
 - A proposta deve indicar se o TFC é individual ou em grupo, e esta caracterização deve poder ser filtrada: os trabalhos individuais não aceitam grupos.
 - Os cursos devem vir de uma tabela de grupos de cursos (por exemplo LEI, LIG), escolhidos por checkbox.
 - Na base de dados, os docentes têm de estar ativos ou inativos, para se saber se estão a trabalhar com TFC.
+
 *Candidatura e atribuição*
 - Separar «alterar» e «cancelar» candidatura em dois processos.
 - Prever a candidatura recusada por falta de créditos, ao registar o TFC.
 - Descrever o processo de submeter candidatura em grupo.
 - Criar um processo para alterar o trabalho (de A para B).
 - Prever a possibilidade de os docentes juntarem alunos para fazerem um TFC.
+
 *Avaliação e apuramento de resultados*
 - Definir os critérios e os momentos de avaliação.
 - Prever uma avaliação adicional (quase certa).
 - Dividir o apuramento em dois processos: o cálculo da nota de cada avaliação, incluindo a nota intercalar, e o cálculo da nota final.
+
 *Documentação*
 - Acrescentar diagramas de sequência e de workflow aos processos.
 
