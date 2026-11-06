@@ -103,7 +103,7 @@ O orientador reviu o documento de processos e indicou o que alterar e melhorar.
 - Acrescentar diagramas de sequência e de workflow aos processos.
 
   
-### Reunião 6 — Feedback e Revisão do Documento de Processos
+### Reunião 6 — 04/11/2026
 
 **Com:** Prof. Luís Gomes (orientador) e o grupo de TFC DEISI 2257 e DEISI 2258
 
