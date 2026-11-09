@@ -138,7 +138,7 @@ O sistema não é um ator. A plataforma executa as regras automáticas (prazos, 
 | P-09.2 | Consultar avaliações | Aluno, Docente (orientador) | Ver as notas e as apreciações de cada momento. O orientador vê sempre as avaliações dos TFC que orienta, incluindo as dos anos anteriores. |
 | P-09.3 | Consultar relatórios de gestão | Coordenação | Ver propostas, candidaturas (incluindo as recusadas por falta de créditos), alunos sem TFC, entregas em atraso e avaliações por lançar. |
 | P-09.4 | Receber notificações | Todos | Receber avisos na plataforma e por email dos eventos relevantes. As notificações são um subsistema da plataforma, descrito em 5.7. |
-| P-09.5 | Consultar histórico de anos letivos | Aluno, Docente, Coordenação | Ver por defeito o ano letivo atual e retroceder aos anos fechados, só em leitura. |
+| P-09.5 | Consultar histórico de anos letivos | Docente (com TFC em anos anteriores) | Ver por defeito o ano letivo atual e retroceder aos anos fechados em que teve uma função num TFC, só em leitura. |
 
 ## 4. Estados
 
@@ -748,7 +748,7 @@ flowchart LR
 - **Evento:** o utilizador quer ver as avaliações de um TFC.
 - **Pré-condições:** aluno: resultados do momento publicados (P-06.7 ou P-07.3); orientador: é orientador do TFC.
 - **Fluxo:**
-  1. O utilizador escolhe o TFC. A lista abre no ano letivo atual; os anos anteriores consultam-se como em P-09.5.
+  1. O utilizador escolhe o TFC. A lista abre no ano letivo atual; o docente pode consultar os anos anteriores como em P-09.5, e o aluno só vê o ano atual.
   2. Vê a lista de momentos, com a nota de cada um.
   3. Abre um momento e vê a classificação de cada critério e as apreciações.
 - **Pós-condições:** nenhum dado é alterado.
@@ -791,17 +791,17 @@ flowchart LR
 | Resultados publicados | P-06.7, P-07.3 | Alunos; orientadores |
 | Prazo a aproximar-se | Agendador de lembretes | Alunos e docentes com pendências |
 
-**P-09.5 Consultar histórico de anos letivos** — *Aluno, Docente, Coordenação*
-- **Evento:** o utilizador quer ver dados de um ano letivo anterior.
-- **Pré-condições:** existe pelo menos um ano letivo fechado (P-01.4).
+**P-09.5 Consultar histórico de anos letivos** — *Docente (com TFC em anos anteriores)*
+- **Evento:** o docente quer ver dados de um ano letivo anterior.
+- **Pré-condições:** existe pelo menos um ano letivo fechado (P-01.4) em que o docente teve uma função num TFC (proponente, orientador, coorientador ou jurado).
 - **Fluxo:**
   1. Todas as consultas (propostas, TFC, entregas e avaliações) abrem no ano letivo atual.
-  2. O utilizador escolhe, num seletor de ano letivo, um ano anterior.
+  2. O docente escolhe, num seletor de ano letivo, um dos anos fechados em que teve uma função num TFC.
   3. A plataforma mostra um aviso de "só leitura" e as mesmas vistas, sem ações de escrita.
   4. A pesquisa e os filtros aplicam-se ao ano escolhido.
-- **Exceções:** o utilizador não tem dados nesse ano → mensagem informativa.
+- **Exceções:** docente sem nenhuma função em TFC de anos anteriores → o seletor não mostra anos anteriores.
 - **Pós-condições:** nenhum dado é alterado; na consulta seguinte, a plataforma volta a abrir no ano atual.
-- **Regras:** cada utilizador vê no histórico o que a sua função lhe permitia: o aluno os seus TFC, o orientador os que orientou e a coordenação todos; o histórico é uma base de dados de consulta e não entra nos cálculos, nos limites nem nas listas do ano atual (Reunião 6, 04/11; feedback do docente à versão anterior).
+- **Regras:** o histórico é só para docentes: cada docente vê apenas os TFC em que teve uma função nesses anos, e os alunos não têm acesso a anos anteriores; o histórico é uma base de dados de consulta e não entra nos cálculos, nos limites nem nas listas do ano atual (Reunião 6, 04/11; feedback do docente à versão anterior).
 
 ## 6. Questões em aberto
 
