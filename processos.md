@@ -92,7 +92,7 @@ O sistema não é um ator. A plataforma executa as regras automáticas (prazos, 
 | ID | Processo | Ator | Descrição |
 |---|---|---|---|
 | P-04.1 | Registar repositório e atividades | Aluno, Docente (orientador) | Associar o link do repositório Git e registar atividades e reuniões. |
-| P-04.2 | Dissociar grupo | Docente (orientador), Coordenação | Separar o grupo de um TFC (5.3) quando não há equilíbrio de esforço. As avaliações já feitas não se repetem. |
+| P-04.2 | Dissociar grupo | Docente (orientador), Coordenação | Separar um grupo quando não há equilíbrio de esforço. As avaliações já feitas não se repetem. |
 | P-04.3 | Pedir adiamento para a época de recurso | Aluno, Docente (orientador), Coordenação | Adiar a entrega final para a época de recurso, com parecer favorável do orientador. |
 
 ### MP-05 — Submissão de entregáveis
@@ -137,8 +137,7 @@ O sistema não é um ator. A plataforma executa as regras automáticas (prazos, 
 | P-09.1 | Consultar estado do TFC | Aluno, Docente (orientador) | Ver o TFC, os prazos, o estado das entregas e o que está por fazer. |
 | P-09.2 | Consultar avaliações | Aluno, Docente (orientador) | Ver as notas e as apreciações de cada momento. O orientador vê sempre as avaliações dos TFC que orienta, incluindo as dos anos anteriores. |
 | P-09.3 | Consultar relatórios de gestão | Coordenação | Ver propostas, candidaturas (incluindo as recusadas por falta de créditos), alunos sem TFC, entregas em atraso e avaliações por lançar. |
-| P-09.4 | Receber notificações | Todos | Receber avisos na plataforma e por email dos eventos relevantes. As notificações são um subsistema da plataforma, descrito em 5.7. |
-| P-09.5 | Consultar histórico de anos letivos | Docente (com TFC em anos anteriores) | Ver por defeito o ano letivo atual e retroceder aos anos fechados em que teve uma função num TFC, só em leitura. |
+| P-09.4 | Receber notificações | Todos | Receber avisos na plataforma e por email dos eventos relevantes. As notificações são um subsistema, detalhado na arquitetura da aplicação. |
 
 ## 4. Estados
 
@@ -168,13 +167,8 @@ stateDiagram-v2
     DISPONIVEL --> ATRIBUIDA : atribuir
     PRE_ATRIBUIDA --> ATRIBUIDA : atribuir
     ATRIBUIDA --> DISPONIVEL : validar desistência ou desatribuição
-    EM_VALIDACAO --> ARQUIVADA : fechar ano letivo
-    ALTERACOES --> ARQUIVADA : fechar ano letivo
-    ACEITE --> ARQUIVADA : fechar ano letivo
-    RECUSADA --> ARQUIVADA : fechar ano letivo
     DISPONIVEL --> ARQUIVADA : fechar ano letivo
-    PRE_ATRIBUIDA --> ARQUIVADA : fechar ano letivo
-    ATRIBUIDA --> ARQUIVADA : fechar ano letivo
+    RECUSADA --> ARQUIVADA : fechar ano letivo
 ```
 
 | Estado | Significado |
@@ -186,7 +180,7 @@ stateDiagram-v2
 | Disponível | Visível para candidatura por todos os alunos que cumprem o perfil. |
 | Pré-atribuída | Só é visível para os alunos pré-selecionados, que têm de fazer a candidatura. |
 | Atribuída | Atribuída a um aluno ou grupo. A partir daqui o trabalho segue a máquina de estados do TFC (4.3). |
-| Arquivada | Passou para o histórico no fecho do ano letivo, seja qual for o estado em que estava. |
+| Arquivada | Passou para o histórico no fecho do ano letivo. |
 
 ### 4.2 Candidatura
 
@@ -198,7 +192,6 @@ stateDiagram-v2
     state "Contemplada" as CONTEMPLADA
     state "Encerrada" as ENCERRADA
     state "Cancelada" as CANCELADA
-    state "Arquivada" as ARQUIVADA
 
     [*] --> ATIVA : candidatar individualmente
     [*] --> PENDENTE : candidatar em grupo
@@ -213,12 +206,6 @@ stateDiagram-v2
     ATIVA --> ENCERRADA : atribuir outro TFC ao candidato
     CONTEMPLADA --> ATIVA : validar desatribuição [candidaturas abertas]
     CONTEMPLADA --> ENCERRADA : validar desistência
-    PENDENTE --> ARQUIVADA : fechar ano letivo
-    ATIVA --> ARQUIVADA : fechar ano letivo
-    CONTEMPLADA --> ARQUIVADA : fechar ano letivo
-    RECUSADA --> ARQUIVADA : fechar ano letivo
-    ENCERRADA --> ARQUIVADA : fechar ano letivo
-    CANCELADA --> ARQUIVADA : fechar ano letivo
 ```
 
 | Estado | Significado | Está na lista de candidaturas? |
@@ -229,7 +216,6 @@ stateDiagram-v2
 | Contemplada | O TFC foi atribuído a este aluno ou grupo. | Não (passa a ser o seu TFC) |
 | Encerrada | Terminou sem atribuição. O motivo fica registado: TFC atribuído a outro, aluno já contemplado, recusada pelo colega, sem confirmação a tempo ou desistência. | Não (fica no histórico) |
 | Cancelada | Retirada ou substituída pelo aluno. | Não (fica no histórico) |
-| Arquivada | Passou para o histórico no fecho do ano letivo, seja qual for o estado em que estava. | Não (fica no histórico) |
 
 A lista de candidaturas tem as candidaturas pendentes e ativas, com prioridade de 1 a n, sem lacunas. Sempre que uma candidatura sai da lista, as seguintes sobem uma posição.
 
@@ -273,7 +259,7 @@ stateDiagram-v2
 
 Cada ficha tem o ator, o evento que inicia o processo, as pré-condições, o fluxo, as alternativas e exceções, as pós-condições (o que se pode observar no fim do processo) e as regras com a respetiva fonte.
 
-Os processos de MP-04 e MP-08, a constituição do júri (P-06.4), o agendamento das defesas (P-06.5) e os processos de consulta P-09.1 e P-09.3 ficam descritos apenas no nível mezzo (secção 3).
+Os processos de MP-04 e MP-08, a constituição do júri (P-06.4), o agendamento das defesas (P-06.5) e os processos de consulta e notificações (P-09.1, P-09.3 e P-09.4) ficam descritos apenas no nível mezzo (secção 3).
 
 ### 5.1 MP-01 — Configuração do ano letivo
 
@@ -318,9 +304,9 @@ Os processos de MP-04 e MP-08, a constituição do júri (P-06.4), o agendamento
   1. A coordenação pede para fechar o ano letivo.
   2. A plataforma mostra o que ainda está pendente (por exemplo, avaliações por lançar ou TFC sem situação definida).
   3. A coordenação confirma.
-  4. A plataforma passa as propostas, as candidaturas e os TFC do ano para o histórico.
+  4. A plataforma passa os TFC e as propostas do ano para o histórico.
 - **Exceções:** existem pendências → a plataforma avisa e a coordenação decide se fecha o ano na mesma.
-- **Pós-condições:** o ano letivo fica fechado; os TFC ficam no estado Arquivado, e as propostas e as candidaturas no estado Arquivada, seja qual for o estado em que estavam; os dados do ano podem ser consultados (P-09.5), mas não alterados.
+- **Pós-condições:** o ano letivo fica fechado; os TFC ficam no estado Arquivado e as propostas não atribuídas no estado Arquivada; os dados do ano podem ser consultados, mas não alterados.
 - **Regras:** a plataforma guarda os dados de todos os anos letivos (Reunião 5, 28/10); o fecho do ano letivo passa os dados para um histórico consultável (Reunião 6, 04/11).
 
 ### 5.2 MP-02 — Gestão de propostas
@@ -389,8 +375,6 @@ Os processos de MP-04 e MP-08, a constituição do júri (P-06.4), o agendamento
 - **Regras:** o docente pode alterar tudo num TFC ainda não atribuído, desde que a alteração seja compatível com as candidaturas existentes; mudar para individual ou em grupo é sempre possível (orientador, email de 01/11).
 
 ### 5.3 MP-03 — Candidatura e atribuição
-
-**Grupo.** Na candidatura, o grupo é a dupla de alunos que o submissor identifica em P-03.2 e que o colega confirma em P-03.3. Não há um passo prévio de formação de grupo: a mesma dupla pode ter várias candidaturas, e cada uma é confirmada à parte. Enquanto não há atribuição, cada aluno só pode ter candidaturas em grupo com um colega (é assim que se lê a regra "cada aluno só pode estar num grupo", cap. 4; ver a questão 2 da secção 6). Quando um TFC é atribuído a dois alunos, por candidatura (P-03.9) ou por junção feita pelo docente (P-03.8), a dupla passa a ser o **grupo do TFC**. É este grupo que o orientador pode dissociar em P-04.2 e a que se referem a desistência (P-03.12) e a entrega (P-05.3).
 
 **P-03.1 Submeter candidatura individual** — *Aluno*
 - **Evento:** o aluno escolhe um TFC e pede para se candidatar.
@@ -466,15 +450,7 @@ sequenceDiagram
   4. A plataforma regista a troca.
 - **Exceções:** TFC B já está na lista, indisponível ou atribuído → não troca e mantém o TFC A; fase fechada → só consulta.
 - **Pós-condições:** a candidatura ao TFC A fica Cancelada (substituída); a candidatura ao TFC B fica na mesma posição, com a data e a hora da troca, Ativa se for individual ou Pendente de confirmação se for em grupo; o número de candidaturas não muda.
-- **Regras:** só durante a fase de candidaturas; um TFC atribuído não pode ser trocado sem ser primeiro desatribuído (P-03.13) (orientador, email de 01/11).
-- **Justificação:** substituir equivale a cancelar a candidatura ao TFC A (P-03.6) e candidatar-se ao TFC B (P-03.1 ou P-03.2), com duas diferenças que justificam manter o processo. A candidatura ao TFC B herda a posição da candidatura ao TFC A. E a troca é uma só operação, por isso, se o TFC B não passar as verificações, o aluno mantém o TFC A. Não há estados novos: usa a transição "cancelar ou substituir" e o registo de uma nova candidatura (Reunião 6, 04/11; decisão da equipa).
-
-| | Cancelar (P-03.6) e candidatar-se de novo (P-03.1 ou P-03.2) | Substituir (P-03.5) |
-|---|---|---|
-| Posição do TFC B na lista | Última; as candidaturas seguintes à do TFC A subiram uma posição | A do TFC A; as outras não mudam |
-| Se o TFC B não passar as verificações | O aluno já perdeu o TFC A | O TFC A mantém-se |
-| Data e hora da candidatura ao TFC B | As do novo registo | As da troca |
-| Candidatura em grupo | Nova candidatura, que o colega confirma | Nova candidatura, que o colega confirma |
+- **Regras:** só durante a fase de candidaturas; um TFC atribuído não pode ser trocado sem ser primeiro desatribuído (P-03.13) (orientador, email de 01/11). Ver a questão 2 da secção 6.
 
 **P-03.6 Cancelar candidatura** — *Aluno (submissor, se for grupo)*
 - **Evento:** o aluno quer retirar uma candidatura.
@@ -748,69 +724,21 @@ flowchart LR
 - **Evento:** o utilizador quer ver as avaliações de um TFC.
 - **Pré-condições:** aluno: resultados do momento publicados (P-06.7 ou P-07.3); orientador: é orientador do TFC.
 - **Fluxo:**
-  1. O utilizador escolhe o TFC. A lista abre no ano letivo atual; o docente pode consultar os anos anteriores como em P-09.5, e o aluno só vê o ano atual.
+  1. O utilizador escolhe o TFC e, se for orientador, o ano letivo.
   2. Vê a lista de momentos, com a nota de cada um.
   3. Abre um momento e vê a classificação de cada critério e as apreciações.
 - **Pós-condições:** nenhum dado é alterado.
 - **Regras:** os orientadores podem consultar sempre as avaliações dos TFC que orientam, em todos os momentos e incluindo os anos anteriores (Reunião 6, 04/11); o aluno só vê os momentos com resultados publicados.
-
-**P-09.4 Receber notificações** — *Todos*
-- **Evento:** um processo da plataforma conclui uma operação prevista no catálogo de eventos (por exemplo, atribuição de um TFC, candidatura em grupo por confirmar ou relatório validado), ou aproxima-se um prazo.
-- **Pré-condições:** utilizador com conta ativa; evento previsto no catálogo.
-- **Fluxo:**
-  1. O processo que originou o evento conclui a sua operação.
-  2. O subsistema de notificações recebe o evento.
-  3. Determina os destinatários pelo perfil e pela função de cada um no TFC.
-  4. Gera a mensagem a partir do modelo do evento.
-  5. Envia o aviso na plataforma e por email.
-  6. Regista o envio e o estado de leitura.
-  7. O utilizador abre o aviso e marca-o como lido.
-- **Exceções:** falha no envio de email → o subsistema repete o envio e regista o resultado, sem afetar a operação que originou o evento; ano letivo fechado → não gera lembretes nem avisos operativos.
-- **Pós-condições:** o destinatário tem o aviso na plataforma e no email; fica registado quem foi notificado, de quê, quando e por que canal.
-- **Regras:** as notificações são um subsistema da plataforma com módulo próprio, e não uma linha em cada processo: os restantes módulos só publicam eventos e o subsistema decide a quem e como os envia. O evento só é publicado depois de a operação estar concluída, para que ninguém seja avisado de uma ação revertida (feedback do docente à versão anterior; decisão de arquitetura da equipa, a confirmar).
-
-| Componente | Função |
-|---|---|
-| Catálogo de eventos | Lista os eventos que os processos podem publicar e o conteúdo de cada um |
-| Resolução de destinatários | Determina quem recebe cada evento, pelo perfil e pela função no TFC |
-| Modelos de mensagem | Textos de cada evento, por canal |
-| Canais | Aviso na plataforma e email |
-| Agendador de lembretes | Avisa da proximidade dos prazos, a partir do calendário (P-01.1) |
-| Registo de envios | Guarda destinatário, evento, canal, data, estado de entrega e estado de leitura |
-
-| Evento | Processo de origem | Destinatários |
-|---|---|---|
-| Proposta submetida | P-02.1 | Coordenação; 2.º aluno, se for grupo |
-| Proposta aceite, recusada ou com alterações pedidas | P-02.2 | Proponente |
-| Proposta publicada | P-02.4 | Proponente |
-| Candidatura em grupo por confirmar ou confirmada | P-03.2, P-03.3 | Colega; submissor |
-| TFC atribuído | P-03.9 | Aluno(s), orientador, coorientador |
-| Desistência ou desatribuição validada | P-03.12, P-03.13 | Orientador, coorientador, proponente, coordenação; aluno(s), na desatribuição |
-| Relatório enviado, validado ou devolvido | P-05.1, P-05.2 | Orientador; aluno e coordenação |
-| Entrega submetida | P-05.3 | Orientador, coordenação |
-| Resultados publicados | P-06.7, P-07.3 | Alunos; orientadores |
-| Prazo a aproximar-se | Agendador de lembretes | Alunos e docentes com pendências |
-
-**P-09.5 Consultar histórico de anos letivos** — *Docente (com TFC em anos anteriores)*
-- **Evento:** o docente quer ver dados de um ano letivo anterior.
-- **Pré-condições:** existe pelo menos um ano letivo fechado (P-01.4) em que o docente teve uma função num TFC (proponente, orientador, coorientador ou jurado).
-- **Fluxo:**
-  1. Todas as consultas (propostas, TFC, entregas e avaliações) abrem no ano letivo atual.
-  2. O docente escolhe, num seletor de ano letivo, um dos anos fechados em que teve uma função num TFC.
-  3. A plataforma mostra um aviso de "só leitura" e as mesmas vistas, sem ações de escrita.
-  4. A pesquisa e os filtros aplicam-se ao ano escolhido.
-- **Exceções:** docente sem nenhuma função em TFC de anos anteriores → o seletor não mostra anos anteriores.
-- **Pós-condições:** nenhum dado é alterado; na consulta seguinte, a plataforma volta a abrir no ano atual.
-- **Regras:** o histórico é só para docentes: cada docente vê apenas os TFC em que teve uma função nesses anos, e os alunos não têm acesso a anos anteriores; o histórico é uma base de dados de consulta e não entra nos cálculos, nos limites nem nas listas do ano atual (Reunião 6, 04/11; feedback do docente à versão anterior).
 
 ## 6. Questões em aberto
 
 | # | Questão | Processos |
 |---|---|---|
 | 1 | Como se calcula a majoração do orientador na nota de cada momento? Já se sabe que a nota é a média aritmética das avaliações e que a majoração começa em 0. | P-06.1, P-07.1 |
-| 2 | Um aluno pode ter ao mesmo tempo candidaturas individuais e candidaturas em grupo, ou candidaturas em grupo com colegas diferentes? | P-03.1, P-03.2 |
-| 3 | Cada momento tem um prazo de entrega e um prazo de avaliação diferentes? | P-05.3, P-06.1, P-06.6 |
-| 4 | As propostas não atribuídas podem passar para o ano letivo seguinte quando se fecha o ano? | P-01.4 |
+| 2 | Mantém-se o processo de substituição (P-03.5), ou o aluno cancela, candidata-se de novo e reordena? Os dois caminhos são válidos (Reunião 6, 04/11). | P-03.5 |
+| 3 | Um aluno pode ter ao mesmo tempo candidaturas individuais e candidaturas em grupo? | P-03.1, P-03.2 |
+| 4 | Cada momento tem um prazo de entrega e um prazo de avaliação diferentes? | P-05.3, P-06.1, P-06.6 |
+| 5 | As propostas não atribuídas podem passar para o ano letivo seguinte quando se fecha o ano? | P-01.4 |
 
 ## 7. Referências
 
