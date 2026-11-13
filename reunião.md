@@ -151,16 +151,55 @@ O orientador reviu o documento de processos e indicou o que alterar e melhorar.
 - Evitar texto bruto ou genérico que aparente ter sido gerado por IA sem revisão.
 - Em vez de colar o articulado do regulamento, fazer referências diretas aos pontos do regulamento no corpo do texto e incluir a ligação oficial nas referências bibliográficas do relatório.
 
-**Próximos passos**
+# Reunião 7 — 11/11/2026
 
-1. Reformular o documento de processos aplicando todas as correções indicadas e rever a lista de processos (incluindo a retirada do P-03.1).
-2. Gerar os diagramas de *state machine* em Mermaid para propostas e candidaturas.
-3. Derivar os processos para **casos de uso** e **user stories** em modelo ágil (atores, pré-condições, pós-condições e critérios de aceitação), a partir da descrição detalhada dos processos.
-4. Enviar ao orientador apenas o link do último *commit* do repositório com os registos de reunião.
+**Com:** Prof. Luís Gomes (orientador)
 
-**Decisões**
+## O que foi falado
 
-- Retirar o processo de formação de grupo (P-03.1).
-- Na candidatura em grupo, o segundo elemento confirma cada uma das candidaturas do grupo, aceitando-a ou recusando-a.
-- Avançar para os casos de uso e as user stories a partir da descrição detalhada dos processos.
-- Inquérito com ramificação por perfil (cada perfil responde apenas aos blocos que lhe dizem respeito).
+### 1. Análise dos Inquéritos e Notas de Reunião
+
+- **Alunos do ano em curso:** Obtiveram-se 48 respostas num universo de cerca de 80 alunos inscritos (aproximadamente 2/3 da turma), o que tem significado estatístico e será avaliado com foco na fase de inscrições dos TFCs (onde os processos sofrerão maior alteração).
+- **Alunos de anos anteriores:** As 4 respostas recolhidas (aproximadamente 5% da turma) não têm significado estatístico e não serão tratadas, devendo apenas ser colocada uma nota na análise a indicar essa limitação.
+- **Docentes:** As 8 respostas obtidas (cerca de 1/3 dos professores envolvidos) não são estatisticamente relevantes para análises detalhadas ou gráficos circulares (*pie charts*), mas indicam tendências. Deve isolar-se apenas 3 a 4 perguntas com respostas unânimes ou tendências muito claras, adicionando uma nota de que o desenho da aplicação as terá em conta.
+
+### 2. Prazos, Arquitetura e Código Legado
+
+- O orientador lembrou que falta exatamente um mês para a entrega final do trabalho (a contar do dia 11 de novembro).
+- Deve ser iniciada a escrita do relatório e a definição da estrutura do documento, bem como o desenho da arquitetura da aplicação.
+- A equipa tem total liberdade para escolher a *stack* tecnológica (como Kotlin/Java ou Django/Python para o *backend*, e React para o *frontend*), devendo a IA ser usada apenas no apoio à configuração do ambiente de desenvolvimento.
+- O código da aplicação existente (com cerca de 10 anos e sem evolução nos últimos 5-6 anos) será disponibilizado para testes, mas **não deve ser reaproveitado**.
+- O regulamento exige uma proposta de arquitetura definida e um protótipo funcional (*wireframe*).
+- A aplicação terá de integrar com a API do GitHub para chamadas a funções, ações e repositórios. Como a linguagem do *backend* afeta essa integração, a equipa deve dedicar 1 a 2 horas a pesquisar a documentação da API do GitHub antes de tomar a decisão final.
+
+### 3. Separação Frontend/Backend e Infraestrutura
+
+- O trabalho deve ser separado entre *frontend* e *backend*, acordando conjuntamente a componente transacional exposta pela base de dados. Regras internas (*triggers*, funções, *views*) ficam a cargo da implementação de *backend*.
+- Deve decidir-se se a comunicação de leitura/escrita é feita por SQL direto no código (*pipes*) ou através de uma camada de API.
+- Para a reunião seguinte, a equipa deve levar cenários de arquitetura formulados para testar o seu encaixe na infraestrutura oficial de publicação de TFCs a apresentar pelo Prof. Rui Santos.
+
+### 4. Processos, Gestão de Entregáveis e Templates de Avaliação
+
+- O ficheiro de processos de 9 de novembro foi revisto e validado quanto aos momentos de avaliação (tópico 6) e configuração do ano letivo (tópico 8).
+- A submissão e validação de relatórios *draft* pelo orientador (processos P052 e P053) será efetuada dentro da plataforma.
+- **Regra de armazenamento:** Para evitar o crescimento excessivo da base de dados, não se devem guardar ficheiros nem *drafts* na base de dados. Ao submeter um novo *draft*, deve executar-se a função `delete` para apagar o anterior. Os ficheiros devem ser mantidos no sistema de ficheiros ou no repositório do GitHub (na organização da faculdade), registando na base de dados apenas o *hash* do *commit* (`git commit SHA`).
+- **Templates de avaliação (Tópico 8):** O tópico 8 deve ser reajustado para definir os 4 *templates* modelo da plataforma:
+  1. Avaliação Intercalar;
+  2. Avaliação Final com júri/apresentação presencial;
+  3. Avaliação Final sem júri/apresentação presencial;
+  4. DaisyFest (votação por pares com registo de média e presenças).
+
+## Próximos passos
+
+1. Iniciar a elaboração do relatório e a definição do modelo de estrutura.
+2. Formular 2 a 3 cenários de arquitetura para validar na aula seguinte com o Prof. Rui Santos.
+3. Pesquisar a documentação da API do GitHub durante 1 a 2 horas para fundamentar a escolha da linguagem do *backend*.
+4. Reajustar o tópico 8 dos processos para contemplar formalmente os 4 *templates* de avaliação.
+
+## Decisões
+
+- Não reaproveitar o código legado da aplicação anterior.
+- Efetuar a eliminação (`delete`) de ficheiros *draft* antigos e registar na base de dados apenas o *hash* do *commit* (`git commit SHA`) associado ao repositório no GitHub.
+- Manter a submissão e validação de relatórios *draft* dentro da plataforma.
+- Isolar nos inquéritos a docentes apenas as perguntas com tendências unânimes (3 a 4 perguntas) e assinalar a falta de relevância estatística nos ex-alunos.
+- Configurar o tópico 8 com os 4 *templates* modelo de avaliação (Intercalar, Final com júri, Final sem júri e DaisyFest).
