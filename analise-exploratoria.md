@@ -11,7 +11,7 @@ Este documento analisa as respostas ao inquérito sobre a plataforma de gestão 
 - **Respostas:** 60, distribuídas por três perfis, cada um com um percurso próprio no inquérito.
 - **Escalas:** as perguntas de avaliação usam uma escala de 1 a 5, em que 5 é o valor mais favorável.
 
-![Respostas por perfil](img/analise/fig1_perfis.png)
+![Respostas por perfil]
 
 | Perfil | Respostas | Tratamento nesta análise |
 |---|---|---|
@@ -27,7 +27,7 @@ Estes alunos só usaram a plataforma para consultar propostas e para se candidat
 
 ### 2.1 Avaliação das tarefas
 
-![Avaliação de 1 a 5 pelos alunos a iniciar o TFC](img/analise/fig2_escalas_alunos.png)
+![Avaliação de 1 a 5 pelos alunos a iniciar o TFC]
 
 | Pergunta | Mediana | 4–5 | 1–2 |
 |---|---|---|---|
@@ -46,7 +46,7 @@ Estes alunos só usaram a plataforma para consultar propostas e para se candidat
 
 ### 2.2 Lista de propostas
 
-![Filtros em falta na lista de propostas](img/analise/fig3_filtros.png)
+![Filtros em falta na lista de propostas]
 
 - Os filtros mais pedidos são tecnologia (42%), disciplina associada (35%), orientador (29%) e palavra-chave (29%). Cerca de um terço (31%) não pede nenhum filtro.
 - **O que faltou na informação de cada TFC** (19 respostas abertas, das quais 6 dizem que não faltou nada):
@@ -59,13 +59,13 @@ Estes alunos só usaram a plataforma para consultar propostas e para se candidat
 
 ### 2.3 Página inicial
 
-![Informação pretendida na página inicial](img/analise/fig4_pagina_inicial.png)
+![Informação pretendida na página inicial]
 
 O que os alunos mais querem ver ao entrar é o estado do seu TFC (73%), uma linha temporal com as etapas e os prazos (67%) e as tarefas pendentes (60%).
 
 ### 2.4 Dispositivos e frequência de uso
 
-![Experiência por dispositivo](img/analise/fig5_dispositivos.png)
+![Experiência por dispositivo]
 
 - **Computador:** 74% dos 47 alunos que o usam classificam a experiência como boa ou muito boa.
 - **Telemóvel:** dos 36 alunos que o usam, só 44% dão boa ou muito boa e 25% dão má ou muito má. Uma resposta aberta refere que, no telemóvel, foi preciso fazer scroll para o lado para encontrar o botão de ver o TFC.
@@ -119,7 +119,7 @@ Por isso, o inquérito não permite tirar conclusões sobre as entregas e as ava
 
 ## 6. Conclusões para os requisitos
 
-Os processos referidos estão em [02_processos.md](02_processos.md).
+Os processos referidos estão em [02_processos.md](processos.md).
 
 **Candidaturas e propostas (alunos a iniciar o TFC)**
 - **Página inicial:** mostrar o estado do TFC, a linha temporal das etapas e dos prazos e as tarefas pendentes. É o pedido mais frequente, e perceber o que fazer a seguir é a tarefa com menos respostas positivas.
