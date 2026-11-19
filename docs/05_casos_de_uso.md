@@ -18,7 +18,7 @@ Cada caso de uso tem:
 - **Pré-condições:** o que tem de ser verdade antes.
 - **Fluxo principal:** os passos do cenário de sucesso.
 - **Alternativas e exceções:** os desvios e o que acontece em cada um.
-- **Critérios de aceitação:** testes no formato *Dado / Quando / Então*, que dizem como se verifica que o caso de uso funciona. Ficam antes das pós-condições.
+- **Critérios de aceitação (casos de teste):** os testes que verificam o caso de uso, numa tabela antes das pós-condições. Cada teste tem um identificador (`CT-xx.yy.n`), a situação inicial com os dados de teste, os passos e o resultado esperado.
 - **Pós-condições:** o que se pode observar no fim (estados, registos, notificações).
 - **Regras:** com a fonte.
 - **Relações:** `include` (o caso de uso inclui sempre o outro), `extend` (acrescenta comportamento em certas condições) e «desencadeia» (o fim de um caso de uso inicia outro).
@@ -50,6 +50,7 @@ As permissões dependem do **perfil** da conta e da **função** que o docente t
 Cada caixa é um macro-processo e agrupa vários casos de uso. Seguem a ordem do ano letivo, de cima para baixo.
 
 ```mermaid
+%%{init: {"flowchart": {"curve": "linear"}}}%%
 flowchart TB
     classDef ator fill:#dbe7f5,stroke:#2f4f7f,stroke-width:2px,color:#13253f
     classDef uc fill:#ffffff,stroke:#666,color:#222
@@ -74,6 +75,7 @@ Um diagrama por ator. Em cima está o ator; em baixo, agrupados por tema, os cas
 **Aluno**
 
 ```mermaid
+%%{init: {"flowchart": {"curve": "linear"}}}%%
 flowchart TB
     classDef ator fill:#dbe7f5,stroke:#2f4f7f,stroke-width:2px,color:#13253f
     classDef uc fill:#ffffff,stroke:#666,color:#222
@@ -114,6 +116,7 @@ flowchart TB
 **Docente** (as funções mudam de TFC para TFC)
 
 ```mermaid
+%%{init: {"flowchart": {"curve": "linear"}}}%%
 flowchart TB
     classDef ator fill:#dbe7f5,stroke:#2f4f7f,stroke-width:2px,color:#13253f
     classDef uc fill:#ffffff,stroke:#666,color:#222
@@ -145,6 +148,7 @@ flowchart TB
 **Coordenação**
 
 ```mermaid
+%%{init: {"flowchart": {"curve": "linear"}}}%%
 flowchart TB
     classDef ator fill:#dbe7f5,stroke:#2f4f7f,stroke-width:2px,color:#13253f
     classDef uc fill:#ffffff,stroke:#666,color:#222
@@ -185,6 +189,7 @@ flowchart TB
 **Restantes atores**
 
 ```mermaid
+%%{init: {"flowchart": {"curve": "linear"}}}%%
 flowchart LR
     classDef ator fill:#dbe7f5,stroke:#2f4f7f,stroke-width:2px,color:#13253f
     classDef uc fill:#ffffff,stroke:#666,color:#222
@@ -287,10 +292,15 @@ flowchart LR
   2. A plataforma verifica a coerência das datas.
   3. A coordenação publica o calendário.
 - **Alternativas e exceções:** datas incoerentes → erro e não publica; alterar uma data quando já há submissões nessa fase → pede confirmação e regista a alteração.
-- **Critérios de aceitação:**
-  - Dado um calendário com a fase de candidaturas de 09/09 a 04/10, quando um aluno tenta candidatar-se a 05/10, então a ação não está disponível.
-  - Dada uma fase com fim anterior ao início, quando a coordenação tenta publicar, então a plataforma indica o erro e não publica.
-  - Dada uma fase com submissões, quando a coordenação muda a data, então a plataforma pede confirmação e regista a alteração.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-01.1.1 | Fase de candidaturas de 09/09 a 04/10; hoje é 05/10 | O aluno abre um TFC Disponível | O botão **Candidatar** não aparece |
+| CT-01.1.2 | Fase de propostas com início a 30/09 e fim a 01/09 | A coordenação carrega em **Publicar calendário** | A plataforma mostra o erro nas datas e o calendário não é publicado |
+| CT-01.1.3 | Fase de propostas aberta, com 3 propostas submetidas | A coordenação altera a data de fim da fase | A plataforma pede confirmação; depois de confirmar, a alteração fica registada com a data e o utilizador |
+
 - **Pós-condições:** calendário publicado e visível para todos; cada funcionalidade só está disponível dentro da sua fase.
 - **Regras:** datas de 2026/27 do regulamento [1] (Anexo A de 02), alteráveis pela coordenação; as datas são sempre verificadas no servidor.
 
@@ -305,9 +315,14 @@ flowchart LR
   3. Indica, para cada docente, se está ativo ou inativo.
   4. A plataforma verifica duplicados e guarda.
 - **Alternativas e exceções:** utilizador duplicado → os registos são fundidos.
-- **Critérios de aceitação:**
-  - Dado um aluno com 85 ECTS, quando é importado, então aparece como não elegível para candidaturas.
-  - Dado um docente marcado como inativo, quando se escolhe um orientador, então não aparece na lista, mas os TFC antigos continuam associados a ele.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-01.2.1 | Ficheiro de importação com um aluno com 85 ECTS | A coordenação importa o ficheiro | O aluno fica registado e marcado como não elegível para candidaturas |
+| CT-01.2.2 | Docente marcado como inativo, orientador de um TFC de 2025/26 | A coordenação abre a lista de escolha de orientador | O docente não aparece na lista; o TFC de 2025/26 continua associado a ele |
+
 - **Pós-condições:** cada utilizador entra com o perfil atribuído; alunos com menos de 90 ECTS aparecem como não elegíveis para candidaturas.
 - **Regras:** só docentes ativos aparecem nas listas de proponente, orientador, coorientador e jurado; os inativos mantêm o histórico (Reunião 5, 28/10).
 
@@ -319,8 +334,13 @@ flowchart LR
 - **Fluxo principal:**
   1. Cria ou edita cursos (por exemplo LEI, LIG, LCD) e grupos (por exemplo "LEI + LIG").
   2. Associa cada curso aos seus grupos.
-- **Critérios de aceitação:**
-  - Dado um curso desativado, quando um docente abre o formulário de proposta, então o curso não aparece; nas propostas antigas continua visível.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-01.3.1 | Curso LCD desativado; uma proposta antiga com o curso LCD | Um docente abre o formulário de nova proposta e depois a proposta antiga | No formulário novo, LCD não aparece; na proposta antiga, LCD continua visível |
+
 - **Pós-condições:** cursos e grupos aparecem como caixas de verificação no formulário de proposta (UC-02.1) e no perfil do candidato.
 - **Regras:** um curso ou grupo desativado deixa de aparecer nas novas propostas, mas mantém-se nas antigas (Reunião 5, 28/10).
 
@@ -335,9 +355,14 @@ flowchart LR
   3. A coordenação confirma.
   4. A plataforma passa os TFC e as propostas para o histórico.
 - **Alternativas e exceções:** há pendências → aviso; a coordenação decide se fecha na mesma.
-- **Critérios de aceitação:**
-  - Dado um ano fechado, quando alguém tenta alterar uma nota desse ano, então a alteração não é possível, mas a nota pode ser consultada.
-  - Dado um ano com avaliações por lançar, quando a coordenação pede o fecho, então a plataforma lista as pendências antes de confirmar.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-01.4.1 | Ano 2025/26 fechado | A coordenação tenta alterar uma nota de 2025/26 | A alteração é recusada; a nota continua visível para consulta |
+| CT-01.4.2 | Ano 2026/27 com 2 avaliações por lançar | A coordenação pede para fechar o ano | A plataforma lista as 2 avaliações pendentes antes de pedir confirmação |
+
 - **Pós-condições:** ano fechado; TFC no estado Arquivado; propostas não atribuídas no estado Arquivada; dados consultáveis e não alteráveis.
 - **Regras:** a plataforma guarda todos os anos (Reunião 5, 28/10); o fecho passa os dados para um histórico consultável (Reunião 6, 04/11).
 
@@ -380,10 +405,15 @@ O proponente é um docente, um aluno ou um proponente externo. Ordem habitual: U
   3. A plataforma verifica os campos obrigatórios.
   4. A plataforma regista a proposta.
 - **Alternativas e exceções:** fase fechada → formulário indisponível; sem perfil de candidato nem alunos pré-selecionados → não submete; proposta individual com 2.º aluno → não submete; 2.º aluno já indicado noutra proposta em grupo → não submete.
-- **Critérios de aceitação:**
-  - Dado um docente DEISI que não indica aluno, quando submete, então a proposta fica Aceite sem passar pela coordenação.
-  - Dado um aluno que submete uma proposta, quando a submete, então fica Em validação e a coordenação é notificada.
-  - Dada uma proposta individual com 2.º aluno indicado, quando o proponente submete, então a plataforma não a regista e indica o erro.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-02.1.1 | Docente DEISI ativo; fase de propostas de docentes aberta | O docente submete uma proposta sem aluno indicado | A proposta fica no estado Aceite |
+| CT-02.1.2 | Aluno inscrito na UC; fase de propostas de alunos aberta | O aluno submete uma proposta | A proposta fica Em validação e a coordenação recebe uma notificação |
+| CT-02.1.3 | Formulário com modalidade individual e um 2.º aluno indicado | O proponente carrega em **Submeter** | A proposta não é registada e a plataforma indica o erro na modalidade |
+
 - **Pós-condições:** proposta de docente DEISI sem aluno indicado → **Aceite**; restantes → **Em validação**; a coordenação é notificada.
 - **Regras:** propostas de docentes aceites sem validação, exceto com aluno indicado (regulamento [1], cap. 3); um aluno pode submeter várias propostas e a proposta em grupo é submetida por um só elemento (cap. 3); o orientador indicado pelo aluno tem de ter dado acordo prévio (cap. 3); empresas e outros departamentos têm formulários diferentes e podem indicar um coorientador (Reunião 6, 04/11); a modalidade é vinculativa (orientador, email de 01/11).
 - **Modelo de dados:** o 03 já prevê campos que o P-02.1 não lista: área de aplicação, proposta de que é continuação, anexos em PDF e notas internas (pedidos no inquérito). Ver a lacuna 3.
@@ -398,9 +428,14 @@ O proponente é um docente, um aluno ou um proponente externo. Ordem habitual: U
   2. Analisa o tema, o esforço, o enquadramento e a disponibilidade do orientador.
   3. Aceita, pede alterações (com mensagem) ou recusa (com justificação obrigatória).
   4. Se aceitar, pode acrescentar tarefas ou requisitos e nomeia o orientador e o coorientador.
-- **Critérios de aceitação:**
-  - Dada uma proposta Em validação, quando a coordenação a recusa sem justificação, então a plataforma não permite.
-  - Dado um orientador com 5 orientações, quando é nomeado para mais uma, então aparece um aviso, mas a nomeação é possível.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-02.2.1 | Proposta Em validação | A coordenação escolhe **Recusar** sem escrever justificação | A plataforma não deixa recusar e pede a justificação |
+| CT-02.2.2 | Docente já com 5 orientações | A coordenação nomeia-o orientador de mais uma proposta | Aparece um aviso, mas a nomeação fica registada |
+
 - **Pós-condições:** proposta **Aceite**, **Alterações solicitadas** ou **Recusada**; a mudança fica no histórico; o proponente é notificado.
 - **Regras:** nas propostas de empresas e outros departamentos, a coordenação nomeia o orientador pela área científica e pode substituir o sugerido (cap. 2 e 3); aviso quando o orientador passa as 5 orientações, sem bloquear.
 - **Relações:** desencadeia UC-02.3 (alterações) ou UC-02.4 (aceite).
@@ -415,8 +450,13 @@ O proponente é um docente, um aluno ou um proponente externo. Ordem habitual: U
   2. Edita a proposta.
   3. Reenvia.
 - **Alternativas e exceções:** fase fechada → só consulta.
-- **Critérios de aceitação:**
-  - Dada uma proposta com alterações solicitadas, quando o proponente reenvia, então fica Em validação e a coordenação é notificada.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-02.3.1 | Proposta em Alterações solicitadas; fase de propostas aberta | O proponente edita a proposta e carrega em **Reenviar** | A proposta volta a Em validação e a coordenação recebe uma notificação |
+
 - **Pós-condições:** proposta volta a **Em validação**; a coordenação é notificada.
 
 ### UC-02.4 Publicar proposta
@@ -427,9 +467,14 @@ O proponente é um docente, um aluno ou um proponente externo. Ordem habitual: U
 - **Fluxo principal:**
   1. Escolhe as propostas aceites a publicar (pode ser todas).
   2. Confirma.
-- **Critérios de aceitação:**
-  - Dadas propostas Aceites, quando a coordenação as publica, então ficam Disponíveis e aparecem na lista dos alunos.
-  - Dada uma proposta com aluno pré-selecionado, quando é publicada, então só esse aluno a vê.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-02.4.1 | 3 propostas Aceites, sem aluno pré-selecionado | A coordenação seleciona as 3 e carrega em **Publicar** | As 3 propostas ficam Disponíveis e aparecem na lista dos alunos |
+| CT-02.4.2 | Proposta Aceite com o aluno A pré-selecionado | A coordenação publica a proposta; o aluno A e o aluno B abrem a lista | A proposta fica Pré-atribuída; o aluno A vê-a e o aluno B não |
+
 - **Pós-condições:** sem aluno pré-selecionado → **Disponível**, visível para todos os alunos elegíveis; com aluno pré-selecionado → **Pré-atribuída**, visível só para esse aluno; o proponente é notificado.
 - **Regras:** «aceite» e «disponível» são estados diferentes porque a publicação é um evento entre eles (Reunião 6, 04/11); mesmo com pré-seleção, o aluno tem de se candidatar (cap. 3).
 
@@ -441,10 +486,15 @@ O proponente é um docente, um aluno ou um proponente externo. Ordem habitual: U
 - **Fluxo principal:**
   1. A lista mostra ID, título, orientador e coorientador, com pesquisa por orientador e filtro por modalidade.
   2. O utilizador abre uma proposta e vê empresa, orientador, título, descrição, modalidade, estado, cursos, disciplinas e tecnologias.
-- **Critérios de aceitação:**
-  - Dado o filtro «Python», quando o aluno o aplica, então só vê propostas com essa tecnologia.
-  - Dado um aluno que não usa filtros, quando abre a lista, então vê todas as propostas disponíveis sem passos adicionais.
-  - Dada uma proposta Atribuída, quando um aluno abre a lista, então não a vê como disponível.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-02.5.1 | Lista com 4 propostas Disponíveis, 2 delas com a tecnologia Python | O aluno escolhe o filtro de tecnologia «Python» | A lista mostra só as 2 propostas com Python |
+| CT-02.5.2 | Lista com 4 propostas Disponíveis | O aluno abre a lista sem escolher filtros | A lista mostra as 4 propostas |
+| CT-02.5.3 | Proposta X no estado Atribuída | O aluno abre a lista de propostas | A proposta X não aparece como disponível para candidatura |
+
 - **Pós-condições:** nenhum dado é alterado.
 - **Regras:** o aluno vê as propostas Disponíveis e a sua Pré-atribuída; o proponente vê as suas em todos os estados.
 - **Melhorias pedidas no inquérito** (analise-exploratoria, secção 6; a incluir em 02): filtros por tecnologia (42%), disciplina (35%), orientador e palavra-chave (29% cada); descrição breve na lista; TFC atribuídos assinalados ou retirados; consulta e candidatura na mesma página.
@@ -459,9 +509,14 @@ O proponente é um docente, um aluno ou um proponente externo. Ordem habitual: U
   2. A plataforma verifica a compatibilidade com as candidaturas existentes.
   3. Guarda.
 - **Alternativas e exceções:** mudar para grupo com candidaturas individuais existentes → não guarda; mudar para individual com candidaturas em grupo → não guarda.
-- **Critérios de aceitação:**
-  - Dada uma proposta com candidaturas individuais, quando o docente a muda para «só grupo», então a alteração não é guardada e a plataforma explica porquê.
-  - Dada uma alteração compatível, quando é guardada, então os candidatos são notificados.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-02.6.1 | Proposta Disponível, individual, com 2 candidaturas individuais | O docente muda a modalidade para «em grupo» e guarda | A alteração não é guardada e a plataforma explica que há candidaturas individuais |
+| CT-02.6.2 | Proposta Disponível com 2 candidatos | O docente altera a descrição e guarda | A alteração fica guardada e os 2 candidatos recebem uma notificação |
+
 - **Pós-condições:** proposta com os novos dados, no mesmo estado; candidatos notificados.
 - **Regras:** o docente pode alterar tudo num TFC não atribuído, desde que compatível com as candidaturas existentes (orientador, email de 01/11).
 
@@ -520,11 +575,16 @@ Num grupo, só o aluno que submete (submissor) faz UC-03.2 e UC-03.4 a UC-03.6. 
   3. A plataforma verifica os créditos e o perfil.
   4. A plataforma regista a candidatura.
 - **Alternativas e exceções:** sem os créditos mínimos → mensagem e candidatura **Recusada** registada (aluno, TFC, data, motivo); limite atingido → botão desativado («retire uma candidatura de outro TFC»); TFC só para grupos → mensagem; TFC atribuído entretanto → não regista.
-- **Critérios de aceitação:**
-  - Dado um aluno com 3 candidaturas, quando se candidata a outro TFC, então a nova candidatura fica Ativa na posição 4.
-  - Dado um aluno com 85 ECTS, quando se candidata, então vê a mensagem de créditos e a candidatura fica Recusada e visível para a coordenação.
-  - Dado um aluno com 6 candidaturas, quando abre outro TFC, então o botão está desativado com a mensagem a indicar o limite.
-  - Dado um aluno que já se candidatou a um TFC, quando tenta candidatar-se outra vez, então a plataforma não regista uma segunda candidatura.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-03.1.1 | Aluno elegível com 3 candidaturas Ativas | O aluno candidata-se a um quarto TFC Disponível | A nova candidatura fica Ativa na posição 4 |
+| CT-03.1.2 | Aluno com 85 ECTS (mínimo 90) | O aluno candidata-se a um TFC | Aparece a mensagem de créditos insuficientes; a candidatura fica Recusada e aparece no relatório da coordenação |
+| CT-03.1.3 | Aluno com 6 candidaturas Ativas (limite 6) | O aluno abre o detalhe de outro TFC | O botão **Candidatar** está desativado, com a mensagem a indicar o limite |
+| CT-03.1.4 | Aluno com uma candidatura Ativa ao TFC X | O aluno tenta candidatar-se outra vez ao TFC X | A segunda candidatura não é registada |
+
 - **Pós-condições:** candidatura **Ativa** na última posição, com data e hora; número de candidaturas do TFC aumenta um. Na alternativa, **Recusada**, fora da lista e visível nos relatórios da coordenação (UC-09.3).
 - **Regras:** pelo menos 90 ECTS na data de referência (cap. 4); 3 a 6 candidaturas por ordem de preferência, limite parametrizável (cap. 3 e 4); com pré-seleção, a candidatura é obrigatória (cap. 3).
 
@@ -539,10 +599,15 @@ Num grupo, só o aluno que submete (submissor) faz UC-03.2 e UC-03.4 a UC-03.6. 
   3. A plataforma verifica créditos e perfil dos dois, modalidade, limite e duplicação.
   4. A plataforma regista a candidatura e notifica o colega.
 - **Alternativas e exceções:** TFC individual → mensagem; um dos alunos sem créditos → **Recusada**, como em UC-03.1; colega já noutro grupo → não regista.
-- **Critérios de aceitação:**
-  - Dado um TFC de grupo, quando o submissor indica o colega e se candidata, então a candidatura fica Pendente e o colega é notificado.
-  - Dado um TFC individual, quando o submissor tenta candidatar o grupo, então vê a mensagem de que o TFC não aceita grupos.
-  - Dado um grupo com uma candidatura feita, quando o submissor faz a segunda, então o número do colega já vem preenchido.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-03.2.1 | TFC X com modalidade em grupo; alunos A e B elegíveis e sem grupo | O aluno A indica o número do aluno B e carrega em **Candidatar em grupo** | A candidatura fica Pendente de confirmação e o aluno B recebe uma notificação |
+| CT-03.2.2 | TFC Y com modalidade individual | O aluno A tenta candidatar o grupo ao TFC Y | Aparece a mensagem «este TFC é individual e não aceita grupos» e nada é registado |
+| CT-03.2.3 | Grupo A + B com uma candidatura já feita | O aluno A abre outro TFC e carrega em **Candidatar em grupo** | O número do aluno B já vem preenchido |
+
 - **Pós-condições:** candidatura **Pendente de confirmação** na última posição, com data e hora; não entra na seleção enquanto pendente.
 - **Regras:** cada aluno só pode estar num grupo (cap. 4); só o submissor cria e altera as candidaturas do grupo (Reunião 6, 04/11).
 - **Relações:** desencadeia UC-03.3.
@@ -557,10 +622,15 @@ Num grupo, só o aluno que submete (submissor) faz UC-03.2 e UC-03.4 a UC-03.6. 
   2. Carrega em **Confirmar**.
   3. A plataforma verifica de novo a disponibilidade do TFC e o perfil do colega.
 - **Alternativas e exceções:** recusa → candidatura sai da lista e as seguintes sobem; sem resposta até ao fim da fase → fecha sem confirmação.
-- **Critérios de aceitação:**
-  - Dada uma candidatura pendente na posição 2, quando o colega confirma, então fica Ativa na posição 2.
-  - Dada uma candidatura pendente na posição 2 de 4, quando o colega recusa, então fica Encerrada e as posições 3 e 4 passam a 2 e 3.
-  - Dada uma candidatura pendente, quando a fase de candidaturas fecha sem resposta, então fica Encerrada com o motivo «sem confirmação».
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-03.3.1 | Candidatura do grupo Pendente de confirmação, na posição 2 | O aluno B carrega em **Confirmar** | A candidatura fica Ativa e mantém a posição 2 |
+| CT-03.3.2 | Lista do grupo com 4 candidaturas; a da posição 2 está Pendente | O aluno B carrega em **Recusar** na posição 2 | A candidatura fica Encerrada; as das posições 3 e 4 passam a 2 e 3 |
+| CT-03.3.3 | Candidatura Pendente de confirmação; a fase de candidaturas acaba hoje | A fase de candidaturas fecha sem resposta do aluno B | A candidatura fica Encerrada com o motivo «sem confirmação» |
+
 - **Pós-condições:** confirmada → **Ativa** na mesma posição e o submissor é notificado; recusada ou sem resposta → **Encerrada**, com o motivo.
 - **Regras:** o colega confirma cada candidatura, uma a uma, e pode aceitar umas e recusar outras (decisão da equipa depois da Reunião 6, 04/11).
 
@@ -574,10 +644,15 @@ Num grupo, só o aluno que submete (submissor) faz UC-03.2 e UC-03.4 a UC-03.6. 
   2. Sobe ou desce uma candidatura.
   3. A plataforma renumera.
 - **Alternativas e exceções:** fase fechada → só consulta.
-- **Critérios de aceitação:**
-  - Dada a lista A(1), B(2), C(3), quando o aluno sobe C uma posição, então a lista fica A(1), C(2), B(3).
-  - Dado um aluno que abre a lista, quando a vê, então as candidaturas aparecem ordenadas por prioridade.
-  - Dado o colega de um grupo, quando abre a lista, então vê a ordem mas não a pode alterar.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-03.4.1 | Lista do aluno: A(1), B(2), C(3) | O aluno sobe a candidatura C uma posição | A lista fica A(1), C(2), B(3) |
+| CT-03.4.2 | Candidaturas criadas pela ordem C, A, B, com prioridades A(1), B(2), C(3) | O aluno abre a lista de candidaturas | A lista aparece pela ordem A, B, C |
+| CT-03.4.3 | Grupo A + B com 3 candidaturas | O aluno B (colega) abre a lista de candidaturas | O aluno B vê a ordem, mas os controlos para a alterar não aparecem |
+
 - **Pós-condições:** lista com a nova ordem, de 1 a n e sem lacunas; posições anterior e nova registadas; data e hora da candidatura inalteradas.
 - **Regras:** num grupo, só o submissor altera a ordem.
 - **Melhoria pedida no inquérito:** a lista deve aparecer **pela ordem de prioridade**, não pela ordem de criação.
@@ -593,9 +668,14 @@ Num grupo, só o aluno que submete (submissor) faz UC-03.2 e UC-03.4 a UC-03.6. 
   3. A plataforma verifica B (créditos, perfil, disponibilidade, modalidade, duplicação).
   4. Regista a troca.
 - **Alternativas e exceções:** B já na lista, indisponível ou atribuído → não troca e mantém A; fase fechada → só consulta.
-- **Critérios de aceitação:**
-  - Dado A na posição 2, quando o aluno substitui A por B, então B fica na posição 2 e A fica Cancelada.
-  - Dado B já na lista, quando o aluno tenta a troca, então nada muda e a plataforma explica porquê.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-03.5.1 | Candidatura ao TFC A na posição 2; TFC B Disponível | O aluno escolhe **Substituir** em A e seleciona B | A candidatura a B fica na posição 2 e a candidatura a A fica Cancelada |
+| CT-03.5.2 | Candidaturas aos TFC A e B já na lista | O aluno tenta substituir A por B | Nada muda e a plataforma explica que B já está na lista |
+
 - **Pós-condições:** candidatura a A **Cancelada** (substituída); candidatura a B na mesma posição, com data e hora da troca, **Ativa** se individual ou **Pendente** se for em grupo; número de candidaturas inalterado.
 - **Regras:** só na fase de candidaturas; um TFC atribuído não se troca sem ser primeiro desatribuído (UC-03.13) (orientador, email de 01/11). Ver questão 2 de 02.
 
@@ -609,8 +689,13 @@ Num grupo, só o aluno que submete (submissor) faz UC-03.2 e UC-03.4 a UC-03.6. 
   2. A plataforma pede confirmação.
   3. O aluno confirma.
 - **Alternativas e exceções:** fase fechada → não cancela.
-- **Critérios de aceitação:**
-  - Dada a lista A(1), B(2), C(3), quando o aluno cancela A, então a lista fica B(1), C(2) e aparece o aviso de menos de 3 candidaturas.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-03.6.1 | Lista do aluno: A(1), B(2), C(3) | O aluno cancela a candidatura A e confirma | A lista fica B(1), C(2) e aparece o aviso de menos de 3 candidaturas |
+
 - **Pós-condições:** candidatura **Cancelada**, fora da lista e no histórico; as seguintes sobem; com menos de 3 candidaturas, aparece um aviso.
 - **Regras:** o mínimo de 3 é verificado no fim da fase (cap. 3).
 
@@ -625,9 +710,14 @@ Num grupo, só o aluno que submete (submissor) faz UC-03.2 e UC-03.4 a UC-03.6. 
   3. A plataforma mostra uma simulação das atribuições, sem gravar.
   4. A coordenação revê, ajusta com justificação e confirma.
 - **Alternativas e exceções:** TFC sem candidatos → continua Disponível; aluno sem TFC no fim → atribuição pela coordenação, com justificação.
-- **Critérios de aceitação:**
-  - Dado um TFC com uma candidatura pendente e duas ativas, quando o proponente abre a seleção, então só vê as duas ativas.
-  - Dada uma simulação, quando a coordenação ajusta uma atribuição sem justificação, então a plataforma não permite.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-03.7.1 | TFC com 1 candidatura Pendente e 2 Ativas; fase de candidaturas fechada | O proponente abre a seleção de candidatos | Aparecem só as 2 candidaturas Ativas |
+| CT-03.7.2 | Simulação de atribuições gerada | A coordenação altera uma atribuição sem escrever justificação | A plataforma não guarda o ajuste e pede a justificação |
+
 - **Pós-condições:** cada TFC com candidatos tem um selecionado e confirmado; ordenações e ajustes registados.
 - **Regras:** ordem para aluno com tema próprio e candidaturas (cap. 4).
 - **Relações:** desencadeia UC-03.9.
@@ -644,9 +734,14 @@ Num grupo, só o aluno que submete (submissor) faz UC-03.2 e UC-03.4 a UC-03.6. 
   4. Os dois alunos aceitam.
   5. A coordenação valida.
 - **Alternativas e exceções:** um aluno recusa ou a coordenação não valida → não se forma o grupo; TFC individual → não junta; aluno já num grupo → não junta.
-- **Critérios de aceitação:**
-  - Dados dois alunos que aceitam e validação da coordenação, quando o processo termina, então o TFC fica atribuído ao grupo e as outras candidaturas dos dois ficam Encerradas.
-  - Dado um aluno que recusa, quando o processo termina, então nada muda nas candidaturas dos dois.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-03.8.1 | TFC em grupo Disponível; alunos A e B sem TFC e sem grupo | O docente junta A e B; os dois aceitam; a coordenação valida | O TFC fica atribuído ao grupo A + B e as outras candidaturas dos dois ficam Encerradas |
+| CT-03.8.2 | Junção proposta para os alunos A e B | O aluno B recusa | O grupo não é criado e as candidaturas de A e B não mudam |
+
 - **Pós-condições:** grupo formado; candidaturas anteriores dos dois **Encerradas**; TFC atribuído ao grupo (UC-03.9) sem passar pela lista.
 - **Regras:** os dois alunos têm de aceitar (orientador, email de 01/11); grupos de 2 e cada aluno num só grupo (cap. 4).
 - **Relações:** desencadeia UC-03.9.
@@ -661,9 +756,14 @@ Num grupo, só o aluno que submete (submissor) faz UC-03.2 e UC-03.4 a UC-03.6. 
   2. A coordenação confirma ou nomeia outro orientador e o coorientador (só ativos).
   3. A plataforma regista e executa UC-03.10.
 - **Alternativas e exceções:** pré-selecionado sem créditos → alerta; pré-selecionado em dois TFC → decide a coordenação; orientador com mais de 5 orientações → aviso, sem bloquear.
-- **Critérios de aceitação:**
-  - Dado um aluno com 4 candidaturas, quando lhe é atribuído o TFC da posição 2, então essa fica Contemplada e as outras três Encerradas.
-  - Dada uma atribuição, quando é confirmada, então o TFC fica Em curso e o aluno, o orientador e o coorientador são notificados.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-03.9.1 | Aluno com 4 candidaturas Ativas | A coordenação atribui-lhe o TFC da posição 2 e confirma o orientador | A candidatura da posição 2 fica Contemplada e as outras 3 ficam Encerradas |
+| CT-03.9.2 | Seleção confirmada para o TFC X, com orientador e coorientador | A coordenação confirma a atribuição | O TFC X fica Em curso; o aluno, o orientador e o coorientador recebem uma notificação |
+
 - **Pós-condições:** proposta **Atribuída**; TFC **Em curso**; candidatura do aluno **Contemplada** e as restantes dele **Encerradas** (aluno já contemplado); orientador e coorientador associados; aluno, orientador e coorientador notificados.
 - **Regras:** cada aluno só tem um TFC (cap. 4); atribuição automática quando o pré-selecionado se candidata ou quando o aluno só tem tema próprio aceite (cap. 3 e 4); o aluno pode começar logo após a atribuição (cap. 5).
 - **Relações:** include UC-03.10.
@@ -678,9 +778,14 @@ Num grupo, só o aluno que submete (submissor) faz UC-03.2 e UC-03.4 a UC-03.6. 
   2. Fecha cada uma, guardando a posição *k*.
   3. Em cada lista, as candidaturas abaixo de *k* sobem uma posição.
 - **Alternativas e exceções:** falha a meio → nenhuma lista fica atualizada só em parte; aluno a alterar a lista (UC-03.4) → prevalece a atualização da plataforma e o aluno vê um aviso.
-- **Critérios de aceitação:**
-  - Dada a lista A(1), B(2), C(3), D(4), quando B é atribuído a outro aluno, então a lista fica A(1), C(2), D(3) e a candidatura a B fica Encerrada.
-  - Dada uma falha a meio da atualização, quando a operação é desfeita, então nenhuma lista fica alterada.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-03.10.1 | Lista de outro aluno: A(1), B(2), C(3), D(4) | O TFC B é atribuído a um aluno diferente | A lista fica A(1), C(2), D(3) e a candidatura a B fica Encerrada |
+| CT-03.10.2 | 5 listas afetadas pela atribuição; uma falha simulada a meio da atualização | A plataforma executa a atribuição | A atribuição é desfeita e nenhuma das 5 listas fica alterada |
+
 - **Pós-condições:** essas candidaturas ficam **Encerradas** (TFC atribuído a outro); cada lista fica de 1 a n−1, com a mesma ordem relativa; posições registadas.
 - **Regras:** os outros candidatos não são notificados; veem a lista atualizada quando a abrem (Reunião 6, 04/11).
 
@@ -693,9 +798,14 @@ Num grupo, só o aluno que submete (submissor) faz UC-03.2 e UC-03.4 a UC-03.6. 
   1. Revê a lista final.
   2. Publica.
 - **Alternativas e exceções:** correção depois da publicação → registada e envolvidos notificados.
-- **Critérios de aceitação:**
-  - Dada a lista final publicada, quando um aluno entra, então vê o seu TFC e o orientador.
-  - Dada uma correção após a publicação, quando é feita, então fica registada e os envolvidos são notificados.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-03.11.1 | Lista final publicada; aluno com TFC atribuído | O aluno entra na plataforma | O aluno vê o seu TFC e o orientador |
+| CT-03.11.2 | Lista final já publicada | A coordenação corrige o orientador de um TFC | A correção fica registada e o aluno e os dois orientadores recebem uma notificação |
+
 - **Pós-condições:** lista visível para alunos e docentes; alunos atribuídos notificados.
 
 ### UC-03.12 Registar desistência
@@ -709,9 +819,14 @@ Num grupo, só o aluno que submete (submissor) faz UC-03.2 e UC-03.4 a UC-03.6. 
   3. O orientador regista o parecer.
   4. A coordenação valida.
 - **Alternativas e exceções:** num grupo, se um desiste e o outro continua, o TFC mantém-se com quem fica e o orientador ajusta o âmbito.
-- **Critérios de aceitação:**
-  - Dada uma desistência validada com a fase aberta, quando termina, então a proposta volta a aparecer na lista de propostas.
-  - Dada uma desistência validada, quando o aluno abre as candidaturas, então as antigas continuam Encerradas.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-03.12.1 | TFC X Em curso; fase de candidaturas aberta | O aluno pede a desistência, o orientador dá parecer e a coordenação valida | O TFC fica Cancelado e a proposta X volta a aparecer na lista de propostas |
+| CT-03.12.2 | Aluno com 3 candidaturas Encerradas antes da atribuição | A desistência do aluno é validada | As 3 candidaturas continuam Encerradas |
+
 - **Pós-condições:** TFC **Cancelado** e histórico guardado; candidatura contemplada **Encerrada** (desistência); proposta volta a **Disponível**; com a fase aberta, volta à lista de propostas; com a fase fechada, só a coordenação a atribui; orientador, coorientador, proponente e coordenação notificados.
 - **Regras:** as candidaturas antigas do aluno não são repostas; não se admitem novos trabalhos depois da data-limite das candidaturas (cap. 1).
 - **Modelo de dados:** registada como Pedido do tipo desistência, com motivo, parecer do orientador e validação. O mesmo padrão (pedido → parecer → validação) serve UC-03.13, UC-04.2 e UC-04.3, por isso o frontend pode usar o mesmo ecrã para os quatro.
@@ -725,9 +840,14 @@ Num grupo, só o aluno que submete (submissor) faz UC-03.2 e UC-03.4 a UC-03.6. 
   1. O orientador pede e indica o motivo.
   2. A coordenação valida.
 - **Alternativas e exceções:** a coordenação não valida → atribuição mantém-se.
-- **Critérios de aceitação:**
-  - Dada uma desatribuição validada com a fase aberta, quando termina, então a candidatura do aluno volta a Ativa.
-  - Dada uma desatribuição recusada pela coordenação, quando termina, então o TFC continua Em curso.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-03.13.1 | TFC Em curso; fase de candidaturas aberta | O orientador pede a desatribuição e a coordenação valida | O TFC fica Cancelado e a candidatura do aluno volta a Ativa |
+| CT-03.13.2 | TFC Em curso | O orientador pede a desatribuição e a coordenação recusa | O TFC continua Em curso |
+
 - **Pós-condições:** TFC **Cancelado** e histórico guardado; proposta volta a **Disponível**; com a fase aberta, a candidatura do aluno volta a **Ativa** e pode ser alterada (UC-03.4 a UC-03.6); aluno, orientador e coordenação notificados.
 - **Regras:** um TFC atribuído só se altera depois de desatribuído; pedida pelo orientador, validada pela coordenação (orientador, email de 01/11). Ao contrário da desistência, não é pedida pelo aluno.
 
@@ -780,8 +900,13 @@ Estes casos de uso têm só o que o nível mezzo de 02 permite afirmar. Os ponto
 - **Ator principal:** Aluno; parecer do orientador e decisão da coordenação.
 - **Objetivo:** passar a entrega final para a época de recurso.
 - **Pré-condições:** TFC **Em curso**.
-- **Critérios de aceitação:**
-  - Dado um pedido com parecer favorável e aprovado, quando termina, então o TFC fica Adiado para recurso.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-04.3.1 | TFC Em curso; pedido de adiamento com parecer favorável do orientador | A coordenação aprova o pedido | O TFC fica Adiado para recurso |
+
 - **Pós-condições:** com parecer favorável do orientador e aprovação → TFC **Adiado para recurso** (secção 4.3 de 02).
 
 ---
@@ -822,10 +947,15 @@ Ordem: UC-05.1 → UC-05.2 → UC-05.3. Se o orientador devolver o relatório em
   2. A plataforma verifica a antecedência em relação ao prazo.
   3. A plataforma guarda o ficheiro e apaga o anterior, se existir.
 - **Alternativas e exceções:** fora da antecedência mínima → aviso; o orientador pode recusar.
-- **Critérios de aceitação:**
-  - Dado um relatório já enviado, quando o aluno envia outro, então só fica o novo e o anterior é apagado.
-  - Dado um envio com menos de 1 semana para o prazo, quando o aluno envia, então vê um aviso, mas o envio é registado.
-  - Dado um envio, quando termina, então o orientador é notificado e a base de dados não contém o ficheiro.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-05.1.1 | Relatório da AI1 já enviado (ficheiro v1) | O aluno envia um novo PDF (v2) | Só existe o ficheiro v2; o v1 foi apagado da pasta |
+| CT-05.1.2 | Prazo de entrega da AI1 daqui a 3 dias (antecedência mínima 7 dias) | O aluno envia o relatório | Aparece um aviso de antecedência, mas o envio fica registado |
+| CT-05.1.3 | TFC Em curso; momento AI1 aberto | O aluno envia o relatório | O orientador recebe uma notificação e a base de dados guarda só o caminho do ficheiro |
+
 - **Pós-condições:** relatório à espera de validação, com data e hora; só existe um ficheiro por momento, o último; orientador notificado.
 - **Regras:** antecedência mínima parametrizável, por defeito 1 semana (regulamento [1], cap. 1, ponto 13); versões anteriores não são guardadas; ficheiros numa pasta do servidor e não na base de dados (Reunião 7, 11/11). Ver questão 7 de 02 (ficheiros no GitHub).
 - **Modelo de dados:** o ficheiro fica numa pasta do servidor e a entrega guarda só o caminho; a base de dados nunca guarda o ficheiro.
@@ -839,9 +969,14 @@ Ordem: UC-05.1 → UC-05.2 → UC-05.3. Se o orientador devolver o relatório em
 - **Fluxo principal:**
   1. Abre o relatório na plataforma.
   2. Aceita-o ou devolve-o com comentários.
-- **Critérios de aceitação:**
-  - Dado um relatório devolvido com comentários, quando o aluno abre a entrega, então vê os comentários e pode enviar outro ficheiro.
-  - Dado um relatório aceite, quando o aluno abre a entrega, então o relatório aparece como entregue com a data e o orientador.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-05.2.1 | Relatório da AI1 à espera de validação | O orientador devolve-o com o comentário «rever a secção 3» | O aluno vê o comentário e pode enviar um novo ficheiro |
+| CT-05.2.2 | Relatório da AI1 à espera de validação | O orientador aceita-o | O relatório aparece como entregue, com a data e o nome do orientador |
+
 - **Pós-condições:** aceite → registado como entregue, com a data e o orientador que aceitou, e a coordenação é informada; devolvido → o aluno vê os comentários e pode enviar outro (UC-05.1).
 - **Regras:** só são aceites para avaliação relatórios validados pelo orientador (cap. 5); o relatório só está entregue quando o orientador o aceita (Reunião 7, 11/11).
 
@@ -856,11 +991,16 @@ Ordem: UC-05.1 → UC-05.2 → UC-05.3. Se o orientador devolver o relatório em
   3. A plataforma verifica os links.
   4. A plataforma guarda a entrega.
 - **Alternativas e exceções:** prazo ultrapassado → não submete e regista a falta; link para um canal em vez de um vídeo, ou link inacessível → alerta.
-- **Critérios de aceitação:**
-  - Dado um relatório ainda não aceite, quando o aluno abre a entrega, então não consegue submeter.
-  - Dado um link para um canal de vídeo, quando o aluno submete, então vê um alerta.
-  - Dado o prazo ultrapassado, quando o aluno tenta alterar a entrega, então não consegue, mas vê o que entregou.
-  - Dada a submissão da entrega final, quando termina, então o TFC fica Entregue.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-05.3.1 | Relatório da AI1 ainda não aceite | O aluno abre a entrega da AI1 | O botão **Submeter entrega** está desativado |
+| CT-05.3.2 | Relatório aceite | O aluno indica como vídeo o link de um canal e submete | Aparece um alerta a pedir o link de um vídeo |
+| CT-05.3.3 | Entrega da AI1 submetida; prazo de entrega ultrapassado | O aluno tenta alterar o link do vídeo | A alteração não é possível; a entrega continua visível |
+| CT-05.3.4 | TFC Em curso; relatório final aceite | O aluno submete a entrega final | O TFC fica Entregue |
+
 - **Pós-condições:** entrega registada com data e hora; orientador e coordenação notificados; na entrega final, o TFC passa a **Entregue**; depois do prazo, a entrega não pode ser alterada, mas continua visível.
 - **Regras:** vídeo público, indicado pelo link, e inalterável até à nota final (anexo D); todos os relatórios incluem o inquérito sobre IA generativa (anexo E); num grupo, qualquer elemento submete, sem validação do outro (orientador, email de 01/11); o prazo fecha as entregas, que continuam consultáveis (Reunião 6, 04/11).
 - **Ator secundário:** agente de verificação (DEISI2258); o resultado fica em VerificacaoAutomatica (cumpre, não cumpre ou erro) e é mostrado ao aluno e ao orientador.
@@ -912,12 +1052,17 @@ A Coordenação aparece duas vezes: em cima, a preparar a avaliação; em baixo,
   3. Indica os dados do modelo (escala, diferença máxima entre jurados, majoração do orientador, arredondamentos).
   4. A plataforma verifica que a soma dos pesos é 100% e ativa o modelo.
 - **Alternativas e exceções:** soma diferente de 100% → não ativa; alterar um momento com avaliações → nova versão do modelo, sem mudar as avaliações feitas.
-- **Critérios de aceitação:**
-  - Dados momentos com pesos que somam 95%, quando a coordenação tenta ativar, então o modelo não é ativado.
-  - Dado um momento com avaliações, quando a coordenação o altera, então é criada uma nova versão e as avaliações feitas mantêm a versão antiga.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-06.1.1 | Momentos com pesos AI1 20%, AI2 20%, final 50% e DEISIFest 5% (total 95%) | A coordenação tenta ativar o modelo | O modelo não é ativado e a plataforma indica que os pesos somam 95% |
+| CT-06.1.2 | Momento AI1 com 3 avaliações já submetidas (versão 1 do modelo) | A coordenação altera o peso da AI1 | É criada a versão 2 do modelo; as 3 avaliações continuam ligadas à versão 1 |
+
 - **Pós-condições:** momentos no calendário de alunos e docentes; prazos aplicados em UC-05.3 e UC-06.6; cada avaliação fica associada à versão do modelo.
 - **Regras:** 2026/27: AI1 20%, AI2 20%, final 55%, DEISIFest 5% (regulamento [1], cap. 6); escala de 10 níveis; justificação acima de 2 níveis de diferença (cap. 6); notas parciais com 2 casas decimais e final às unidades; aprovação com 10 ou mais (cap. 6); nota = nível × 2 (orientador, email de 01/11); majoração do orientador começa em 0 (questão 1 de 02).
-- **Modelo de dados:** o tipo do momento prevê INTERCALAR, FINAL, DEISIFEST, PRESENCAS e OUTRO; o modelo de 2026/27 já está carregado no backend. Ver a lacuna 8 sobre os quatro modelos base.
+- **Modelo de dados:** o tipo do momento prevê INTERCALAR, FINAL, DEISIFEST, PRESENCAS e OUTRO; o modelo de 2026/27 já está carregado no backend. Ver a lacuna 7 sobre os quatro modelos base.
 
 ### UC-06.2 Definir critérios de avaliação
 - **Ator principal:** Coordenação.
@@ -929,8 +1074,13 @@ A Coordenação aparece duas vezes: em cima, a preparar a avaliação; em baixo,
   2. Cria os critérios (nome, descrição, peso).
   3. A plataforma verifica que somam 100%.
 - **Alternativas e exceções:** soma diferente de 100% → não guarda; alterar critérios com avaliações feitas → nova versão do modelo.
-- **Critérios de aceitação:**
-  - Dados os 7 critérios da AI1 com pesos que somam 100%, quando a coordenação guarda, então o formulário da AI1 mostra os 7 critérios.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-06.2.1 | Momento AI1 com 7 critérios cujos pesos somam 100% | A coordenação guarda os critérios | O formulário de avaliação da AI1 mostra os 7 critérios |
+
 - **Pós-condições:** o formulário de avaliação do momento (UC-06.6) mostra os critérios.
 - **Regras:** critérios e pesos do regulamento (cap. 5); por exemplo, a entrega de 13/12 tem 7 critérios (Reunião 6, 04/11).
 
@@ -944,25 +1094,40 @@ A Coordenação aparece duas vezes: em cima, a preparar a avaliação; em baixo,
   2. Se tiver nota, indica se conta para a nota final ou para um momento específico.
   3. A plataforma recalcula os pesos afetados e mostra-os.
   4. A coordenação confirma.
-- **Critérios de aceitação:**
-  - Dado o modelo base, quando a coordenação acrescenta um momento de 10% na nota final, então a plataforma mostra AI1 18%, AI2 18%, final 49,5% e DEISIFest 4,5% antes de guardar.
-  - Dado um seminário só de presença, quando é criado, então não entra no cálculo de notas e aparece em UC-08.1.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-06.3.1 | Modelo base: AI1 20%, AI2 20%, final 55%, DEISIFest 5% | A coordenação acrescenta um momento de 10% na nota final | Antes de guardar, a plataforma mostra AI1 18%, AI2 18%, final 49,5% e DEISIFest 4,5% |
+| CT-06.3.2 | Modelo de avaliação ativo | A coordenação cria um seminário só de presença | O seminário não entra no cálculo das notas e aparece no registo de presenças (UC-08.1) |
+
 - **Pós-condições:** momento no calendário; com nota, entra no cálculo (UC-07.1, UC-07.2); de presença, as presenças registam-se em UC-08.1.
 - **Regras:** o novo momento tem peso fixo e os restantes são recalculados na mesma proporção; com 10% na nota final ficam AI1 18%, AI2 18%, final 49,5% e DEISIFest 4,5% (orientador, email de 01/11); o processo é genérico (Reunião 6, 04/11).
 
 ### UC-06.4 Constituir júri [mezzo]
 - **Ator principal:** Coordenação.
 - **Objetivo:** definir o júri de cada TFC em cada momento.
-- **Critérios de aceitação:**
-  - Dado o júri de uma intercalar, quando a coordenação tenta incluir o orientador do TFC, então a plataforma não permite.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-06.4.1 | Momento AI1 do TFC X, cujo orientador é o docente D | A coordenação tenta pôr o docente D no júri | A plataforma não permite e explica porquê |
+
 - **Pós-condições:** os jurados veem o TFC nas suas avaliações pendentes (UC-06.6).
 - **Regras:** nas intercalares, o orientador não pode ser jurado do seu TFC (secção 1 de 02); júri cego nas intercalares (cap. 5).
 
 ### UC-06.5 Agendar defesas [mezzo]
 - **Ator principal:** Coordenação.
 - **Objetivo:** marcar e publicar as defesas finais.
-- **Critérios de aceitação:**
-  - Dada uma defesa marcada para daqui a 24 h, quando a coordenação tenta publicar, então a plataforma indica que falta antecedência.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-06.5.1 | Defesa marcada para daqui a 24 h | A coordenação tenta publicá-la | A plataforma indica que são precisas pelo menos 48 h de antecedência |
+
 - **Pós-condições:** as defesas ficam publicadas, com data, hora e local, e visíveis para os alunos e o júri.
 - **Regras:** publicadas com pelo menos 48 h de antecedência.
 
@@ -977,13 +1142,18 @@ A Coordenação aparece duas vezes: em cima, a preparar a avaliação; em baixo,
   3. Submete.
   4. A plataforma compara com os outros jurados.
 - **Alternativas e exceções:** diferença acima do limite num critério → pede justificação (extend) e só submete depois; prazo ultrapassado → só consulta.
-- **Critérios de aceitação:**
-  - Dado um jurado que dá 8 num critério em que outro deu 5, quando submete, então tem de escrever uma justificação para a avaliação ficar submetida.
-  - Dado o prazo de avaliação ultrapassado, quando o jurado abre o formulário, então só o pode consultar.
-  - Dado um jurado a meio da apreciação, quando a sessão expira e volta a entrar, então o texto escrito está guardado como rascunho.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-06.6.1 | O jurado 1 deu nível 5 no critério «relatório» | O jurado 2 dá nível 8 nesse critério e submete | A plataforma pede uma justificação; a avaliação só fica submetida depois de a escrever |
+| CT-06.6.2 | Prazo de avaliação da AI1 ultrapassado | O jurado abre o formulário da AI1 | O formulário abre só para consulta |
+| CT-06.6.3 | Jurado a meio da apreciação | A sessão expira e o jurado volta a entrar | O texto já escrito está guardado como rascunho |
+
 - **Pós-condições:** avaliação submetida, associada ao jurado, TFC, momento e versão do modelo; alterável até ao prazo; depois, só consulta.
 - **Regras:** justificação acima de 2 níveis de diferença (cap. 6); júri cego nas intercalares (cap. 5); depois do prazo não se submete nem altera (Reunião 6, 04/11).
-- **Modelo de dados:** a avaliação tem estado Rascunho ou Submetida, e o rascunho é guardado à medida que o jurado escreve (03, pedido no inquérito). O P-06.6 ainda não o refere (lacuna 9).
+- **Modelo de dados:** a avaliação tem estado Rascunho ou Submetida, e o rascunho é guardado à medida que o jurado escreve (03, pedido no inquérito). O P-06.6 ainda não o refere (lacuna 8).
 
 ### UC-06.7 Publicar resultados intercalares
 - **Ator principal:** Coordenação.
@@ -993,8 +1163,13 @@ A Coordenação aparece duas vezes: em cima, a preparar a avaliação; em baixo,
 - **Fluxo principal:**
   1. Revê as notas.
   2. Publica.
-- **Critérios de aceitação:**
-  - Dadas notas publicadas, quando o aluno abre as avaliações, então vê a nota e as apreciações desse momento.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-06.7.1 | Notas da AI1 publicadas | O aluno abre as avaliações | O aluno vê a nota e as apreciações da AI1 |
+
 - **Pós-condições:** cada aluno vê a nota e as apreciações (UC-09.2) e é notificado.
 - **Regras:** até 10 dias úteis depois do prazo de entrega (cap. 5).
 
@@ -1009,9 +1184,14 @@ A Coordenação aparece duas vezes: em cima, a preparar a avaliação; em baixo,
   3. Junta os outros momentos que contam para este (UC-06.3).
   4. A coordenação revê e confirma.
 - **Alternativas e exceções:** falta a avaliação de um jurado → não calcula e alerta; diferença acima do limite sem justificação → não calcula.
-- **Critérios de aceitação:**
-  - Dados dois jurados com notas 14,00 e 16,00 e majoração 0, quando a plataforma calcula, então a nota do momento é 15,00.
-  - Dado um jurado sem avaliação submetida, quando se pede o cálculo, então não é feito e a coordenação é alertada.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-07.1.1 | 2 jurados com notas 14,00 e 16,00; majoração do orientador 0 | A coordenação pede o cálculo da nota do momento | A nota do momento é 15,00 |
+| CT-07.1.2 | 1 de 2 jurados sem avaliação submetida | A coordenação pede o cálculo | O cálculo não é feito e a coordenação vê um alerta |
+
 - **Pós-condições:** nota com 2 casas decimais, publicável (UC-06.7); cálculo guardado com as notas de cada jurado.
 - **Regras:** média aritmética de 2 a 4 jurados, sem peso por jurado; majoração começa em 0 (orientador, email de 01/11; questão 1 de 02).
 
@@ -1025,9 +1205,14 @@ A Coordenação aparece duas vezes: em cima, a preparar a avaliação; em baixo,
   2. Arredonda às unidades.
   3. Determina a situação (aprovado, reprovado ou excluído).
   4. A coordenação confirma.
-- **Critérios de aceitação:**
-  - Dadas as notas AI1 = 14, AI2 = 15, final = 16 e DEISIFest = 12 com os pesos de 2026/27, quando a plataforma calcula, então a nota final é 15 (14×0,20 + 15×0,20 + 16×0,55 + 12×0,05 = 15,2, arredondado às unidades).
-  - Dado um aluno com presença em 60% dos seminários, quando a plataforma determina a situação, então aplica a regra dos 70% (cap. 5).
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-07.2.1 | AI1 = 14, AI2 = 15, final = 16, DEISIFest = 12; pesos de 2026/27 | A coordenação pede o cálculo da nota final | A nota final é 15 (14×0,20 + 15×0,20 + 16×0,55 + 12×0,05 = 15,2, arredondado às unidades) |
+| CT-07.2.2 | Aluno com nota final 14 e presença em 60% dos seminários | A coordenação pede o cálculo da situação | O aluno não fica Aprovado, porque não tem 70% de presenças (cap. 5) |
+
 - **Pós-condições:** nota final e situação registadas; TFC **Avaliado**; cálculo guardado.
 - **Regras:** aprovação com 10 ou mais (cap. 6); presença em pelo menos 70% dos seminários do ano (cap. 5).
 
@@ -1040,8 +1225,13 @@ A Coordenação aparece duas vezes: em cima, a preparar a avaliação; em baixo,
   1. Revê as notas finais da época.
   2. Publica.
 - **Alternativas e exceções:** correção depois da publicação → registada com motivo; envolvidos notificados.
-- **Critérios de aceitação:**
-  - Dados resultados publicados, quando o orientador abre um TFC que orienta, então vê a nota final e a situação.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-07.3.1 | Resultados finais publicados | O orientador abre um TFC que orienta | O orientador vê a nota final e a situação do aluno |
+
 - **Pós-condições:** o aluno vê a nota final e a situação; o orientador vê o resultado dos TFC que orienta; TFC **Concluído**; aluno e orientador notificados.
 - **Regras:** publicação existe também no apuramento final (Reunião 6, 04/11).
 
@@ -1068,9 +1258,14 @@ A Coordenação aparece duas vezes: em cima, a preparar a avaliação; em baixo,
 ### UC-09.1 Consultar estado do TFC [mezzo]
 - **Ator principal:** Aluno ou Docente (orientador).
 - **Objetivo:** ver o TFC, os prazos, o estado das entregas e o que está por fazer.
-- **Critérios de aceitação:**
-  - Dado um aluno com o relatório da AI1 devolvido, quando entra, então vê na página inicial a tarefa «enviar novo relatório» e o prazo.
-  - Dado um jurado com duas avaliações por fazer, quando entra, então vê as duas na página inicial.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-09.1.1 | Relatório da AI1 do aluno devolvido pelo orientador | O aluno entra na plataforma | A página inicial mostra a tarefa «enviar novo relatório» e o prazo |
+| CT-09.1.2 | Jurado com 2 avaliações por fazer | O jurado entra na plataforma | A página inicial mostra as 2 avaliações pendentes |
+
 - **Pós-condições:** nenhum dado é alterado.
 - **Pedidos do inquérito** (a incluir em 02): na página inicial, o aluno quer ver o estado do TFC (73%), a linha temporal com as etapas e prazos (67%) e as tarefas pendentes (60%); o docente quer ver as tarefas e as avaliações pendentes (7 em 8).
 
@@ -1083,18 +1278,28 @@ A Coordenação aparece duas vezes: em cima, a preparar a avaliação; em baixo,
   1. Escolhe o TFC e, se for orientador, o ano letivo.
   2. Vê os momentos com a nota.
   3. Abre um momento e vê a classificação por critério e as apreciações.
-- **Critérios de aceitação:**
-  - Dado um TFC de 2025/26 orientado pelo docente, quando escolhe esse ano, então vê todas as avaliações desse TFC.
-  - Dado o aluno de um TFC com a AI2 ainda por publicar, quando abre as avaliações, então só vê a AI1.
-  - Dado um aluno que fez nova entrega, quando o orientador abre as avaliações, então continua a ver os momentos anteriores.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-09.2.1 | Docente orientador de um TFC de 2025/26 | O docente escolhe o ano 2025/26 e abre as avaliações desse TFC | O docente vê todas as avaliações desse TFC |
+| CT-09.2.2 | TFC com a AI1 publicada e a AI2 por publicar | O aluno abre as avaliações | O aluno vê só a AI1 |
+| CT-09.2.3 | Aluno com a AI1 avaliada e a entrega da AI2 submetida | O orientador abre as avaliações do TFC | O orientador continua a ver a avaliação da AI1 |
+
 - **Pós-condições:** nenhum dado é alterado.
 - **Regras:** o orientador consulta sempre as avaliações dos TFC que orienta, em todos os momentos e anos (Reunião 6, 04/11); o aluno só vê momentos publicados.
 
 ### UC-09.3 Consultar relatórios de gestão [mezzo]
 - **Ator principal:** Coordenação.
 - **Objetivo:** ver propostas, candidaturas (incluindo as recusadas por falta de créditos), alunos sem TFC, entregas em atraso e avaliações por lançar.
-- **Critérios de aceitação:**
-  - Dado um aluno com candidatura Recusada por créditos, quando a coordenação abre o relatório de candidaturas, então vê essa candidatura com o motivo.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-09.3.1 | Aluno com candidatura Recusada por falta de créditos | A coordenação abre o relatório de candidaturas | A candidatura aparece no relatório com o motivo «sem créditos» |
+
 - **Pós-condições:** nenhum dado é alterado.
 - **Pedido do inquérito** (a incluir em 02): exportação para Excel ou PDF (6 em 8 docentes).
 - **Modelo de dados:** o 03 já prevê estes relatórios (avaliações pendentes, entregas em falta, TFC por estado, candidaturas por proposta, alunos sem TFC e discrepâncias entre jurados) e as exportações a partir deles.
@@ -1102,29 +1307,17 @@ A Coordenação aparece duas vezes: em cima, a preparar a avaliação; em baixo,
 ### UC-09.4 Receber notificações [mezzo]
 - **Ator principal:** Plataforma (envia); destinatários: todos.
 - **Objetivo:** avisar cada utilizador dos eventos relevantes, na plataforma e por email.
-- **Critérios de aceitação:**
-  - Dado um relatório enviado (UC-05.1), quando termina o envio, então o orientador tem uma notificação na plataforma e um email.
+
+**Critérios de aceitação (casos de teste)**
+
+| Teste | Situação inicial | Passos | Resultado esperado |
+|---|---|---|---|
+| CT-09.4.1 | TFC Em curso | O aluno envia o relatório da AI1 (UC-05.1) | O orientador recebe uma notificação na plataforma e um email |
+
 - **Pós-condições:** o destinatário tem a notificação na plataforma e, nos eventos que o exigem, um email.
 - **Regras:** as notificações são um subsistema, detalhado na arquitetura; os outros candidatos não são notificados quando um TFC é atribuído (UC-03.10).
 
 ---
-
-## 13. Lacunas detetadas ao escrever os casos de uso
-
-Pontos que não estão definidos em 02, ou em que os documentos do projeto não coincidem, e que convém fechar com o orientador e com os outros grupos:
-
-| # | Lacuna | Casos de uso |
-|---|---|---|
-| 1 | O docente não tem processo próprio para ver as suas tarefas e avaliações pendentes (pedido de 7 em 8 docentes). O 03 já prevê a vista `vw_avaliacoes_pendentes`, mas liga-a ao P-09.3, que é da coordenação | UC-09.1, UC-09.3 |
-| 2 | A exportação para Excel ou PDF não está em nenhum processo | UC-09.3 |
-| 3 | O P-02.5 não refere os filtros por tecnologia, disciplina e palavra-chave nem a descrição breve na lista, e o P-02.1 não refere os campos que o 03 já tem (área de aplicação, continuação de outra proposta, anexos, notas internas). O backend já filtra por tecnologia e palavra-chave | UC-02.1, UC-02.5 |
-| 4 | Falta definir com o DEISI2258 o que o agente verifica e como o resultado chega à base de dados, e se a plataforma regista o hash do commit na submissão | UC-04.1, UC-05.3 |
-| 5 | Não está definido quem fica com o TFC numa dissociação de grupo | UC-04.2 |
-| 6 | O candidato não é notificado quando um TFC a que se candidatou é atribuído a outro. Decisão da Reunião 6, mas um aluno do inquérito pediu-o; pelo menos o estado Encerrada tem de ser visível e claro | UC-03.10 |
-| 7 | Os nomes dos estados têm de se perceber sem explicação (13% dos alunos não perceberam «À espera de publicação») | todos os de MP-03 |
-| 8 | Os quatro modelos base de avaliação não estão fechados. O registo do DEISI2257 (Reunião 7) indica intercalar, final com júri e apresentação, DEISIFest e presenças, e o 03 segue-o; as notas do DEISI2256 da mesma reunião indicam intercalar, final com júri, final sem júri e DEISIFest. Ligado à questão 6 de 02 | UC-06.1, UC-08.1, UC-08.2 |
-| 9 | O rascunho da avaliação (03) não está no P-06.6 | UC-06.6 |
-| 10 | Os registos da Reunião 7 não coincidem sobre os ficheiros: o do DEISI2257 diz que guardar os entregáveis só no GitHub, com o hash do commit, «não avança para já»; o do DEISI2256 regista-o como decisão. O 02 e o 03 seguem a pasta no servidor | UC-05.1, UC-05.3 |
 
 ## Referências
 
