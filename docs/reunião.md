@@ -189,17 +189,60 @@ O orientador reviu o documento de processos e indicou o que alterar e melhorar.
   3. Avaliação Final sem júri/apresentação presencial;
   4. DaisyFest (votação por pares com registo de média e presenças).
 
-*Próximos passos*
+### Reunião 8 — 18/11/2026
 
-1. Iniciar a elaboração do relatório e a definição do modelo de estrutura.
-2. Formular 2 a 3 cenários de arquitetura para validar na aula seguinte com o Prof. Rui Santos.
-3. Pesquisar a documentação da API do GitHub durante 1 a 2 horas para fundamentar a escolha da linguagem do *backend*.
-4. Reajustar o tópico 8 dos processos para contemplar formalmente os 4 *templates* de avaliação.
+**Com:** Prof. Luís Gomes (orientador) e o grupo DEISI2257
 
-*Decisões*
+**O que foi falado**
 
-- Não reaproveitar o código legado da aplicação anterior.
-- Efetuar a eliminação (`delete`) de ficheiros *draft* antigos e registar na base de dados apenas o *hash* do *commit* (`git commit SHA`) associado ao repositório no GitHub.
-- Manter a submissão e validação de relatórios *draft* dentro da plataforma.
-- Isolar nos inquéritos a docentes apenas as perguntas com tendências unânimes (3 a 4 perguntas) e assinalar a falta de relevância estatística nos ex-alunos.
-- Configurar o tópico 8 com os 4 *templates* modelo de avaliação (Intercalar, Final com júri, Final sem júri e DaisyFest).
+*Mockups e interface (frontend)*
+- O protótipo apresentado está graficamente limpo. As cores e o estilo são uma escolha da equipa e não são relevantes nesta fase.
+- O esquema de navegação segue a mesma lógica dada em IHM. O mockup pode ser feito diretamente em HTML e é estático: não é preciso que os processos funcionem.
+- Por volta de maio, o protótipo funcional vai ser apreciado e comentado pelos colegas; as questões de cores ajustam-se nessa altura.
+- **CSS com variáveis:** definir no início da CSS as variáveis de formatação (tipo e tamanho de letra, cores, etc.), para se poder mudar o aspeto, por exemplo de fundo escuro para fundo claro, alterando só as variáveis.
+- **Acessibilidade:** a formatação deve cumprir as normas de acessibilidade do W3C, pelo menos ao nível A.
+- **Contraste:** os cartões dos TFC têm texto escuro sobre fundo escuro, com pouco contraste. Corrigir.
+
+*Ecrãs a fazer agora em mockup*
+- **Aluno:** lista de propostas, página do TFC com a candidatura e a parte do grupo. A candidatura em grupo é muito diferente da plataforma atual, por isso convém validá-la já com um mockup.
+- **Docente:** submeter proposta e selecionar candidatos. Na lista, o docente vê quantos candidatos tem cada TFC, abre o TFC, vê os candidatos e seleciona-o na mesma página.
+- **Coordenação:** usa as mesmas páginas dos docentes, mas vê todos os TFC e não só os seus.
+- **Seleção e publicação:** a seleção é igual, seja feita pelo orientador, pelo proponente ou pela coordenação. O orientador ou o proponente escolhe o candidato; a coordenação tem um botão de confirmar que, na prática, é publicar, para a atribuição ficar fechada e pública. São botões diferentes.
+- **Avaliações (mais tarde):** dois ecrãs, o das avaliações por docente e o de controlo das avaliações. Aqui os orientadores não se distinguem dos outros docentes.
+
+*Arquitetura*
+- A arquitetura tem de se ajustar à plataforma de publicação que vai ser apresentada pelo Prof. Rui Santos. A equipa deve ver essa apresentação e os requisitos de publicação antes de fechar a arquitetura.
+- O ponto de partida são três contentores: frontend, backend e base de dados.
+- A base de dados costuma ser o problema nestas plataformas, por causa dos recursos que exige. Pode ser preciso usar uma base de dados externa alojada, com acesso por API.
+
+*Modelo de dados (apresentado pelo DEISI2257)*
+- **Grupos:** guardar a informação na tabela do grupo e não na do aluno, tratando os trabalhos individuais como grupos de um. Dá menos trabalho na programação que alimenta o frontend.
+- **Avaliações:** as avaliações são individuais por docente, mas não estão ligadas ao momento de avaliação. Com o modelo atual, cada docente só pode avaliar cada TFC uma vez, o que não funciona.
+- **Correção:** ligar a avaliação à **entrega** e não ao TFC. Como a entrega identifica o TFC e o momento, deixa de haver duplicação e o momento fica implícito.
+- O orientador perguntou o que é a tabela «fase» (fases do calendário do ano letivo).
+- Aplicar também ao outro trabalho o que foi discutido para este.
+
+*Casos de uso e histórias de utilizador*
+- Os casos de uso estão bem feitos; o problema é terem as histórias de utilizador dentro.
+- Uma história de utilizador **não é uma subdivisão** de um caso de uso. São complementares, mas não são a mesma coisa, por isso não devem estar no mesmo sítio nem repetir-se. Se forem iguais, escolhe-se um e deixa-se o outro.
+- Os critérios de aceitação ficam no caso de uso, **antes das pós-condições**, e são **testes** (*test cases*), não critérios escritos.
+- Corrigir a formatação do texto e as traduções literais (por exemplo, «Como coordenação», de *As a coordinator*).
+- O orientador perguntou se havia um diagrama de casos de uso de visão geral; foram mostrados os diagramas por ator.
+
+*Fecho*
+- O orientador vai ver com mais atenção os documentos enviados e mandar o feedback.
+
+**Próximos passos**
+1. Fazer os mockups estáticos dos ecrãs principais: lista de propostas, candidatura e grupo do aluno; seleção de candidatos do docente; vista da coordenação com o botão de publicar.
+2. Reorganizar a CSS com variáveis de formatação no início, rever o contraste dos cartões e cumprir pelo menos o nível A de acessibilidade.
+3. Ver a apresentação do Prof. Rui Santos e ajustar a arquitetura aos requisitos de publicação, em particular a base de dados.
+4. DEISI2257: ligar a avaliação à entrega e guardar a informação dos trabalhos no grupo, com os individuais como grupos de um.
+5. Separar as histórias de utilizador dos casos de uso e escrever os critérios de aceitação como casos de teste, antes das pós-condições.
+
+**Decisões**
+- Os mockups desta fase são estáticos e podem ser feitos em HTML.
+- As cores ficam à escolha da equipa, mas a CSS usa variáveis e cumpre as normas de acessibilidade.
+- O orientador ou o proponente seleciona o candidato e a coordenação publica a atribuição.
+- A avaliação passa a estar ligada à entrega.
+- Os trabalhos individuais são tratados como grupos de um.
+- Casos de uso e histórias de utilizador ficam em documentos separados.
