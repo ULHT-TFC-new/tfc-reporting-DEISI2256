@@ -24,7 +24,13 @@ Cada caso de uso tem:
 - **Relações:** `include` (o caso de uso inclui sempre o outro), `extend` (acrescenta comportamento em certas condições) e «desencadeia» (o fim de um caso de uso inicia outro).
 - **Modelo de dados:** quando é útil, as classes de [03_modelo_de_dados.md](03_modelo_de_dados.md) envolvidas.
 
-**Como ler os diagramas de cada macro-processo:** cada linha tem um ator (círculo azul) à esquerda, ligado aos casos de uso que ele inicia (caixas brancas) à direita. Um caso de uso que pode ser feito por dois atores aparece nas duas linhas. A ordem em que os casos de uso acontecem está escrita por baixo de cada diagrama.
+**Como ler os diagramas de casos de uso:** usam a notação UML, com a sintaxe `usecase-beta` do Mermaid 12.
+- Os **atores** (bonecos) estão fora da plataforma e ligam-se por uma linha aos casos de uso que iniciam.
+- Os **casos de uso** (elipses) estão dentro de um **pacote** com o nome do macro-processo.
+- **«include»** (seta tracejada): o caso de uso inclui sempre o outro (por exemplo, atribuir um TFC inclui atualizar as listas de candidaturas).
+- **«extend»** (seta tracejada): o caso de uso acrescenta comportamento ao outro, só em certas condições ou variantes.
+- **Generalização** (seta com triângulo): um ator é um caso particular de outro (por exemplo, o aluno é um proponente).
+- A ordem em que os casos de uso acontecem está escrita por baixo de cada diagrama.
 
 Os casos de uso dos processos que em 02 só estão descritos no nível mezzo (MP-04, MP-08, P-06.4, P-06.5, P-09.1, P-09.3 e P-09.4) estão assinalados com **[mezzo]**. Têm só o que o nível mezzo permite afirmar; o detalhe fica por validar com o orientador.
 
@@ -70,140 +76,144 @@ flowchart TB
 
 ### 3.2 O que cada ator faz
 
-Um diagrama por ator. Em cima está o ator; em baixo, agrupados por tema, os casos de uso que ele inicia.
+Um diagrama de casos de uso por ator, em notação UML: o ator está fora da plataforma e liga-se aos casos de uso que inicia, agrupados por tema em pacotes.
 
 **Aluno**
 
 ```mermaid
-%%{init: {"flowchart": {"curve": "linear"}}}%%
-flowchart TB
-    classDef ator fill:#dbe7f5,stroke:#2f4f7f,stroke-width:2px,color:#13253f
-    classDef uc fill:#ffffff,stroke:#666,color:#222
-    A(("Aluno")):::ator
-    subgraph P2["Propostas"]
-        direction TB
-        a1(["Submeter proposta"]):::uc
-        a2(["Consultar propostas"]):::uc
-        a1 ~~~ a2
-    end
-    subgraph P3["Candidaturas"]
-        direction TB
-        a3(["Candidatar-se sozinho ou em grupo"]):::uc
-        a4(["Confirmar candidatura do colega"]):::uc
-        a5(["Mudar prioridade, substituir ou cancelar"]):::uc
-        a6(["Desistir do TFC"]):::uc
-        a3 ~~~ a4 ~~~ a5 ~~~ a6
-    end
-    subgraph P5["TFC e entregas"]
-        direction TB
-        a7(["Registar repositório"]):::uc
-        a8(["Enviar relatório ao orientador"]):::uc
-        a9(["Submeter entrega"]):::uc
-        a7 ~~~ a8 ~~~ a9
-    end
-    subgraph P9["Consultas"]
-        direction TB
-        a10(["Ver estado do TFC e prazos"]):::uc
-        a11(["Ver avaliações"]):::uc
-        a10 ~~~ a11
-    end
-    A --> P2
-    A --> P3
-    A --> P5
-    A --> P9
+usecase-beta
+direction LR
+actor AL("Aluno")
+systemBoundary P2["Propostas"]
+    a1("UC-02.1\nSubmeter proposta")
+    a2("UC-02.5\nConsultar propostas")
+end
+P2@{ type: package }
+systemBoundary P3["Candidaturas"]
+    a3("UC-03.1 / UC-03.2\nCandidatar-se sozinho ou em grupo")
+    a4("UC-03.3\nConfirmar candidatura do colega")
+    a5("UC-03.4 a UC-03.6\nMudar prioridade, substituir ou cancelar")
+    a6("UC-03.12\nDesistir do TFC")
+end
+P3@{ type: package }
+systemBoundary P5["TFC e entregas"]
+    a7("UC-04.1\nRegistar repositório")
+    a8("UC-05.1\nEnviar relatório ao orientador")
+    a9("UC-05.3\nSubmeter entrega")
+end
+P5@{ type: package }
+systemBoundary P9["Consultas"]
+    a10("UC-09.1\nVer estado do TFC e prazos")
+    a11("UC-09.2\nVer avaliações")
+end
+P9@{ type: package }
+AL -- a1
+AL -- a2
+AL -- a3
+AL -- a4
+AL -- a5
+AL -- a6
+AL -- a7
+AL -- a8
+AL -- a9
+AL -- a10
+AL -- a11
 ```
 
-**Docente** (as funções mudam de TFC para TFC)
+**Docente** (o mesmo ator, com funções diferentes de TFC para TFC)
 
 ```mermaid
-%%{init: {"flowchart": {"curve": "linear"}}}%%
-flowchart TB
-    classDef ator fill:#dbe7f5,stroke:#2f4f7f,stroke-width:2px,color:#13253f
-    classDef uc fill:#ffffff,stroke:#666,color:#222
-    D(("Docente")):::ator
-    subgraph Prop["Como proponente"]
-        direction TB
-        d1(["Submeter e alterar propostas"]):::uc
-        d2(["Selecionar candidatos"]):::uc
-        d3(["Juntar dois alunos num TFC"]):::uc
-        d1 ~~~ d2 ~~~ d3
-    end
-    subgraph Ori["Como orientador"]
-        direction TB
-        d4(["Validar relatório"]):::uc
-        d5(["Registar atividades"]):::uc
-        d6(["Pedir desatribuição"]):::uc
-        d7(["Ver avaliações dos seus TFC"]):::uc
-        d4 ~~~ d5 ~~~ d6 ~~~ d7
-    end
-    subgraph Jur["Como jurado"]
-        direction TB
-        d8(["Preencher formulário de avaliação"]):::uc
-    end
-    D --> Prop
-    D --> Ori
-    D --> Jur
+usecase-beta
+direction LR
+actor DO("Docente")
+systemBoundary Prop["Como proponente"]
+    d1("UC-02.1 / UC-02.6\nSubmeter e alterar propostas")
+    d2("UC-03.7\nSelecionar candidatos")
+    d3("UC-03.8\nJuntar dois alunos num TFC")
+end
+Prop@{ type: package }
+systemBoundary Ori["Como orientador"]
+    d4("UC-05.2\nValidar relatório")
+    d5("UC-04.1\nRegistar atividades")
+    d6("UC-03.13\nPedir desatribuição")
+    d7("UC-09.2\nVer avaliações dos seus TFC")
+end
+Ori@{ type: package }
+systemBoundary Jur["Como jurado"]
+    d8("UC-06.6\nPreencher formulário de avaliação")
+end
+Jur@{ type: package }
+DO -- d1
+DO -- d2
+DO -- d3
+DO -- d4
+DO -- d5
+DO -- d6
+DO -- d7
+DO -- d8
 ```
 
 **Coordenação**
 
 ```mermaid
-%%{init: {"flowchart": {"curve": "linear"}}}%%
-flowchart TB
-    classDef ator fill:#dbe7f5,stroke:#2f4f7f,stroke-width:2px,color:#13253f
-    classDef uc fill:#ffffff,stroke:#666,color:#222
-    C(("Coordenação")):::ator
-    subgraph Ano["Ano letivo"]
-        direction TB
-        c1(["Definir calendário"]):::uc
-        c2(["Gerir utilizadores e cursos"]):::uc
-        c3(["Fechar o ano letivo"]):::uc
-        c1 ~~~ c2 ~~~ c3
-    end
-    subgraph Prop["Propostas e atribuição"]
-        direction TB
-        c4(["Validar e publicar propostas"]):::uc
-        c5(["Atribuir TFC e orientador"]):::uc
-        c6(["Publicar a lista final"]):::uc
-        c4 ~~~ c5 ~~~ c6
-    end
-    subgraph Aval["Avaliação"]
-        direction TB
-        c7(["Definir momentos e critérios"]):::uc
-        c8(["Constituir júri e agendar defesas"]):::uc
-        c7 ~~~ c8
-    end
-    subgraph Res["Resultados"]
-        direction TB
-        c9(["Calcular notas"]):::uc
-        c10(["Publicar resultados"]):::uc
-        c11(["Ver relatórios de gestão"]):::uc
-        c9 ~~~ c10 ~~~ c11
-    end
-    C --> Ano
-    C --> Prop
-    C --> Aval
-    C --> Res
+usecase-beta
+direction LR
+actor CD("Coordenação")
+systemBoundary Ano["Ano letivo"]
+    c1("UC-01.1\nDefinir calendário")
+    c2("UC-01.2 / UC-01.3\nGerir utilizadores e cursos")
+    c3("UC-01.4\nFechar o ano letivo")
+end
+Ano@{ type: package }
+systemBoundary Prop["Propostas e atribuição"]
+    c4("UC-02.2 / UC-02.4\nValidar e publicar propostas")
+    c5("UC-03.9\nAtribuir TFC e orientador")
+    c6("UC-03.11\nPublicar a lista final")
+end
+Prop@{ type: package }
+systemBoundary Aval["Avaliação"]
+    c7("UC-06.1 / UC-06.2\nDefinir momentos e critérios")
+    c8("UC-06.4 / UC-06.5\nConstituir júri e agendar defesas")
+end
+Aval@{ type: package }
+systemBoundary Res["Resultados"]
+    c9("UC-07.1 / UC-07.2\nCalcular notas")
+    c10("UC-06.7 / UC-07.3\nPublicar resultados")
+    c11("UC-09.3\nVer relatórios de gestão")
+end
+Res@{ type: package }
+CD -- c1
+CD -- c2
+CD -- c3
+CD -- c4
+CD -- c5
+CD -- c6
+CD -- c7
+CD -- c8
+CD -- c9
+CD -- c10
+CD -- c11
 ```
 
 **Restantes atores**
 
 ```mermaid
-%%{init: {"flowchart": {"curve": "linear"}}}%%
-flowchart LR
-    classDef ator fill:#dbe7f5,stroke:#2f4f7f,stroke-width:2px,color:#13253f
-    classDef uc fill:#ffffff,stroke:#666,color:#222
-    E(("Proponente externo")):::ator
-    O(("Organização de seminários")):::ator
-    AD(("Administrador")):::ator
-    e1(["Submeter proposta"]):::uc
-    e2(["Selecionar candidatos"]):::uc
-    o1(["Registar presenças"]):::uc
-    ad1(["Gerir utilizadores"]):::uc
-    E --> e1
-    E --> e2
-    O --> o1
-    AD --> ad1
+usecase-beta
+direction LR
+actor PE("Proponente externo")
+actor OS("Organização de seminários")
+actor AD("Administrador")
+systemBoundary Out["Plataforma de gestão de TFC"]
+    e1("UC-02.1\nSubmeter proposta")
+    e2("UC-03.7\nSelecionar candidatos")
+    o1("UC-08.1\nRegistar presenças")
+    ad1("UC-01.2\nGerir utilizadores")
+end
+Out@{ type: package }
+PE -- e1
+PE -- e2
+OS -- o1
+AD -- ad1
 ```
 
 A secção 4 tem a lista completa, com o número de cada caso de uso, e as secções 5 a 12 têm o detalhe.
@@ -265,21 +275,22 @@ A secção 4 tem a lista completa, com o número de cada caso de uso, e as secç
 ## 5. MP-01 — Configuração do ano letivo
 
 ```mermaid
-flowchart LR
-    classDef ator fill:#dbe7f5,stroke:#2f4f7f,stroke-width:2px,color:#13253f
-    classDef uc fill:#ffffff,stroke:#666,color:#222
-    A1(("Coordenação")):::ator
-    U01_1(["UC-01.1 Definir calendário"]):::uc
-    U01_2(["UC-01.2 Gerir utilizadores e perfis"]):::uc
-    U01_3(["UC-01.3 Gerir cursos e grupos de cursos"]):::uc
-    U01_4(["UC-01.4 Fechar o ano letivo"]):::uc
-    A1 --- U01_1
-    A1 --- U01_2
-    A1 --- U01_3
-    A1 --- U01_4
-    A2(("Administrador")):::ator
-    U01_2b(["UC-01.2 Gerir utilizadores e perfis"]):::uc
-    A2 --- U01_2b
+usecase-beta
+direction LR
+actor CD("Coordenação")
+actor AD("Administrador")
+systemBoundary MP01["MP-01 Configuração do ano letivo"]
+    U011("UC-01.1\nDefinir calendário")
+    U013("UC-01.3\nGerir cursos e grupos de cursos")
+    U014("UC-01.4\nFechar o ano letivo")
+    U012("UC-01.2\nGerir utilizadores e perfis")
+end
+MP01@{ type: package }
+CD -- U011
+CD -- U013
+CD -- U014
+CD -- U012
+AD -- U012
 ```
 
 ### UC-01.1 Definir calendário
@@ -371,28 +382,35 @@ flowchart LR
 ## 6. MP-02 — Gestão de propostas
 
 ```mermaid
-flowchart LR
-    classDef ator fill:#dbe7f5,stroke:#2f4f7f,stroke-width:2px,color:#13253f
-    classDef uc fill:#ffffff,stroke:#666,color:#222
-    A1(("Proponente")):::ator
-    U02_1(["UC-02.1 Submeter proposta"]):::uc
-    U02_3(["UC-02.3 Rever proposta"]):::uc
-    A1 --- U02_1
-    A1 --- U02_3
-    A2(("Docente proponente")):::ator
-    U02_6(["UC-02.6 Alterar proposta disponível"]):::uc
-    A2 --- U02_6
-    A3(("Coordenação")):::ator
-    U02_2(["UC-02.2 Validar proposta"]):::uc
-    U02_4(["UC-02.4 Publicar proposta"]):::uc
-    A3 --- U02_2
-    A3 --- U02_4
-    A4(("Todos")):::ator
-    U02_5(["UC-02.5 Consultar propostas"]):::uc
-    A4 --- U02_5
+usecase-beta
+direction LR
+actor AL("Aluno")
+actor PE("Proponente externo")
+actor DO("Docente")
+actor PR("Proponente")
+actor CD("Coordenação")
+systemBoundary MP02["MP-02 Gestão de propostas"]
+    U021("UC-02.1\nSubmeter proposta")
+    U023("UC-02.3\nRever proposta")
+    U025("UC-02.5\nConsultar propostas")
+    U026("UC-02.6\nAlterar proposta disponível")
+    U022("UC-02.2\nValidar proposta")
+    U024("UC-02.4\nPublicar proposta")
+end
+MP02@{ type: package }
+AL --|> PR
+PE --|> PR
+DO --|> PR
+PR -- U021
+PR -- U023
+PR -- U025
+DO -- U026
+CD -- U025
+CD -- U022
+CD -- U024
 ```
 
-O proponente é um docente, um aluno ou um proponente externo. Ordem habitual: UC-02.1 → UC-02.2 → UC-02.4. Se a coordenação pedir alterações em UC-02.2, o proponente faz UC-02.3 e a proposta volta a UC-02.2.
+O aluno, o docente e o proponente externo são especializações do ator **Proponente** (seta de generalização). Ordem habitual: UC-02.1 → UC-02.2 → UC-02.4. Se a coordenação pedir alterações em UC-02.2, o proponente faz UC-02.3 e a proposta volta a UC-02.2.
 
 ### UC-02.1 Submeter proposta
 - **Ator principal:** Docente, Aluno ou Proponente externo.
@@ -525,42 +543,59 @@ O proponente é um docente, um aluno ou um proponente externo. Ordem habitual: U
 ## 7. MP-03 — Candidatura e atribuição
 
 ```mermaid
-flowchart LR
-    classDef ator fill:#dbe7f5,stroke:#2f4f7f,stroke-width:2px,color:#13253f
-    classDef uc fill:#ffffff,stroke:#666,color:#222
-    A1(("Aluno")):::ator
-    U03_1(["UC-03.1 Candidatura individual"]):::uc
-    U03_2(["UC-03.2 Candidatura em grupo"]):::uc
-    U03_4(["UC-03.4 Alterar prioridade"]):::uc
-    U03_5(["UC-03.5 Substituir TFC"]):::uc
-    U03_6(["UC-03.6 Cancelar candidatura"]):::uc
-    U03_12(["UC-03.12 Registar desistência"]):::uc
-    A1 --- U03_1
-    A1 --- U03_2
-    A1 --- U03_4
-    A1 --- U03_5
-    A1 --- U03_6
-    A1 --- U03_12
-    A2(("Colega do grupo")):::ator
-    U03_3(["UC-03.3 Confirmar candidatura em grupo"]):::uc
-    A2 --- U03_3
-    A3(("Docente")):::ator
-    U03_7(["UC-03.7 Selecionar candidatos"]):::uc
-    U03_8(["UC-03.8 Juntar alunos num TFC"]):::uc
-    U03_13(["UC-03.13 Desatribuir TFC"]):::uc
-    A3 --- U03_7
-    A3 --- U03_8
-    A3 --- U03_13
-    A4(("Coordenação")):::ator
-    U03_7b(["UC-03.7 Selecionar candidatos"]):::uc
-    U03_9(["UC-03.9 Atribuir TFC e orientador"]):::uc
-    U03_11(["UC-03.11 Publicar atribuições"]):::uc
-    A4 --- U03_7b
-    A4 --- U03_9
-    A4 --- U03_11
+usecase-beta
+direction LR
+actor CO("Colega do grupo")
+actor AL("Aluno")
+systemBoundary MP03["MP-03 Candidatura"]
+    U033("UC-03.3\nConfirmar candidatura em grupo")
+    U032("UC-03.2\nEm grupo")
+    U031("UC-03.1\nIndividual")
+    U03C("Submeter candidatura")
+    U034("UC-03.4\nAlterar prioridade")
+    U035("UC-03.5\nSubstituir TFC")
+    U036("UC-03.6\nCancelar candidatura")
+end
+MP03@{ type: package }
+CO -- U033
+AL -- U03C
+AL -- U034
+AL -- U035
+AL -- U036
+U031 ..> : extend U03C
+U032 ..> : extend U03C
+U032 ..> : include U033
 ```
 
-Num grupo, só o aluno que submete (submissor) faz UC-03.2 e UC-03.4 a UC-03.6. UC-03.7 também pode ser feito por um proponente externo. Ordem habitual: UC-03.1 ou UC-03.2 (confirmado em UC-03.3) → UC-03.7 → UC-03.9 → UC-03.11. Ao atribuir um TFC (UC-03.9), a plataforma retira-o automaticamente das listas dos outros candidatos (UC-03.10).
+```mermaid
+usecase-beta
+direction LR
+actor PE("Proponente externo")
+actor DO("Docente")
+actor CD("Coordenação")
+actor AL("Aluno")
+systemBoundary MP03b["MP-03 Seleção e atribuição"]
+    U037("UC-03.7\nSelecionar candidatos")
+    U038("UC-03.8\nJuntar alunos num TFC")
+    U0313("UC-03.13\nDesatribuir TFC")
+    U039("UC-03.9\nAtribuir TFC e orientador")
+    U0310("UC-03.10\nAtualizar listas de candidaturas")
+    U0311("UC-03.11\nPublicar atribuições")
+    U0312("UC-03.12\nRegistar desistência")
+end
+MP03b@{ type: package }
+PE -- U037
+DO -- U037
+DO -- U038
+DO -- U0313
+CD -- U037
+CD -- U039
+CD -- U0311
+AL -- U0312
+U039 ..> : include U0310
+```
+
+O primeiro diagrama tem as candidaturas e o segundo a seleção e a atribuição. A candidatura individual (UC-03.1) e a candidatura em grupo (UC-03.2) são extensões de *Submeter candidatura*; a candidatura em grupo inclui a confirmação pelo colega (UC-03.3). A atribuição (UC-03.9) inclui a atualização automática das listas dos outros candidatos (UC-03.10). Num grupo, só o aluno que submete (submissor) faz UC-03.2 e UC-03.4 a UC-03.6. Ordem habitual: UC-03.1 ou UC-03.2 → UC-03.7 → UC-03.9 → UC-03.11.
 
 **Lista de candidaturas** (secção 4.2 de 02): contém as candidaturas Pendentes e Ativas do aluno ou grupo, com prioridade de 1 a n, sem lacunas. Sempre que uma sai, as seguintes sobem uma posição. Num grupo, só o **submissor** cria, ordena, substitui e cancela; o **colega** confirma cada candidatura e consulta a lista.
 
@@ -856,24 +891,22 @@ Num grupo, só o aluno que submete (submissor) faz UC-03.2 e UC-03.4 a UC-03.6. 
 ## 8. MP-04 — Acompanhamento do TFC [mezzo]
 
 ```mermaid
-flowchart LR
-    classDef ator fill:#dbe7f5,stroke:#2f4f7f,stroke-width:2px,color:#13253f
-    classDef uc fill:#ffffff,stroke:#666,color:#222
-    A1(("Aluno")):::ator
-    U04_1(["UC-04.1 Registar repositório e atividades"]):::uc
-    U04_3(["UC-04.3 Pedir adiamento para recurso"]):::uc
-    A1 --- U04_1
-    A1 --- U04_3
-    A2(("Orientador")):::ator
-    U04_1b(["UC-04.1 Registar repositório e atividades"]):::uc
-    U04_2(["UC-04.2 Dissociar grupo"]):::uc
-    A2 --- U04_1b
-    A2 --- U04_2
-    A3(("Coordenação")):::ator
-    U04_2b(["UC-04.2 Dissociar grupo"]):::uc
-    U04_3b(["UC-04.3 Decidir o adiamento"]):::uc
-    A3 --- U04_2b
-    A3 --- U04_3b
+usecase-beta
+direction LR
+actor AL("Aluno")
+actor DO("Docente")
+actor CD("Coordenação")
+systemBoundary MP04["MP-04 Acompanhamento do TFC"]
+    U043("UC-04.3\nPedir adiamento para recurso")
+    U041("UC-04.1\nRegistar repositório e atividades")
+    U042("UC-04.2\nDissociar grupo")
+end
+MP04@{ type: package }
+AL -- U043
+AL -- U041
+DO -- U041
+DO -- U042
+CD -- U042
 ```
 
 Estes casos de uso têm só o que o nível mezzo de 02 permite afirmar. Os pontos marcados *a validar* são propostas da equipa.
@@ -914,17 +947,21 @@ Estes casos de uso têm só o que o nível mezzo de 02 permite afirmar. Os ponto
 ## 9. MP-05 — Submissão de entregáveis
 
 ```mermaid
-flowchart LR
-    classDef ator fill:#dbe7f5,stroke:#2f4f7f,stroke-width:2px,color:#13253f
-    classDef uc fill:#ffffff,stroke:#666,color:#222
-    A1(("Aluno")):::ator
-    U05_1(["UC-05.1 Enviar relatório ao orientador"]):::uc
-    U05_3(["UC-05.3 Submeter entrega"]):::uc
-    A1 --- U05_1
-    A1 --- U05_3
-    A2(("Orientador")):::ator
-    U05_2(["UC-05.2 Validar relatório"]):::uc
-    A2 --- U05_2
+usecase-beta
+direction LR
+actor AL("Aluno")
+actor DO("Docente")
+actor AG("Agente de verificação (DEISI2258)")
+systemBoundary MP05["MP-05 Submissão de entregáveis"]
+    U051("UC-05.1\nEnviar relatório ao orientador")
+    U053("UC-05.3\nSubmeter entrega")
+    U052("UC-05.2\nValidar relatório")
+end
+MP05@{ type: package }
+AL -- U051
+AL -- U053
+DO -- U052
+AG -- U053
 ```
 
 Ordem: UC-05.1 → UC-05.2 → UC-05.3. Se o orientador devolver o relatório em UC-05.2, o aluno volta a UC-05.1.
@@ -1011,35 +1048,50 @@ Ordem: UC-05.1 → UC-05.2 → UC-05.3. Se o orientador devolver o relatório em
 ## 10. MP-06 — Avaliação e MP-07 — Apuramento de resultados
 
 ```mermaid
-flowchart LR
-    classDef ator fill:#dbe7f5,stroke:#2f4f7f,stroke-width:2px,color:#13253f
-    classDef uc fill:#ffffff,stroke:#666,color:#222
-    A1(("Coordenação")):::ator
-    U06_1(["UC-06.1 Definir momentos"]):::uc
-    U06_2(["UC-06.2 Definir critérios"]):::uc
-    U06_3(["UC-06.3 Definir outro momento"]):::uc
-    U06_4(["UC-06.4 Constituir júri"]):::uc
-    U06_5(["UC-06.5 Agendar defesas"]):::uc
-    U06_7(["UC-06.7 Publicar resultados intercalares"]):::uc
-    A1 --- U06_1
-    A1 --- U06_2
-    A1 --- U06_3
-    A1 --- U06_4
-    A1 --- U06_5
-    A1 --- U06_7
-    A2(("Jurado")):::ator
-    U06_6(["UC-06.6 Preencher formulário de avaliação"]):::uc
-    A2 --- U06_6
-    A3(("Coordenação ")):::ator
-    U07_1(["UC-07.1 Calcular nota do momento"]):::uc
-    U07_2(["UC-07.2 Calcular nota final"]):::uc
-    U07_3(["UC-07.3 Publicar resultados finais"]):::uc
-    A3 --- U07_1
-    A3 --- U07_2
-    A3 --- U07_3
+usecase-beta
+direction LR
+actor CD("Coordenação")
+actor DO("Docente")
+systemBoundary MP06["MP-06 Preparar a avaliação"]
+    U061("UC-06.1\nDefinir momentos de avaliação")
+    U062("UC-06.2\nDefinir critérios de avaliação")
+    U063("UC-06.3\nDefinir outro momento de avaliação")
+    U064("UC-06.4\nConstituir júri")
+    U065("UC-06.5\nAgendar defesas")
+    U067("UC-06.7\nPublicar resultados intercalares")
+end
+MP06@{ type: package }
+systemBoundary MP06b["MP-06 Avaliar"]
+    U066("UC-06.6\nPreencher formulário de avaliação")
+    U066J("Justificar diferença entre jurados")
+end
+MP06b@{ type: package }
+CD -- U061
+CD -- U062
+CD -- U063
+CD -- U064
+CD -- U065
+CD -- U067
+DO -- U066
+U066J ..> : extend U066
 ```
 
-A Coordenação aparece duas vezes: em cima, a preparar a avaliação; em baixo, a calcular e publicar as notas (MP-07). No meio está a avaliação feita pelos jurados. Ordem: UC-06.1 a UC-06.5 → UC-06.6 → UC-07.1 → UC-06.7 (intercalares) ou UC-07.2 → UC-07.3 (final).
+```mermaid
+usecase-beta
+direction LR
+actor CD("Coordenação")
+systemBoundary MP07["MP-07 Apuramento de resultados"]
+    U071("UC-07.1\nCalcular nota do momento")
+    U072("UC-07.2\nCalcular nota final e situação")
+    U073("UC-07.3\nPublicar resultados finais")
+end
+MP07@{ type: package }
+CD -- U071
+CD -- U072
+CD -- U073
+```
+
+O primeiro diagrama é a avaliação (MP-06) e o segundo o apuramento (MP-07). A justificação da diferença entre jurados é uma extensão do preenchimento do formulário (UC-06.6): só acontece quando a diferença passa o limite. Ordem: UC-06.1 a UC-06.5 → UC-06.6 → UC-07.1 → UC-06.7 (intercalares) ou UC-07.2 → UC-07.3 (final).
 
 ### UC-06.1 Definir momentos de avaliação
 - **Ator principal:** Coordenação.
@@ -1239,6 +1291,21 @@ A Coordenação aparece duas vezes: em cima, a preparar a avaliação; em baixo,
 
 ## 11. MP-08 — Seminários e DEISIFest [mezzo]
 
+```mermaid
+usecase-beta
+direction LR
+actor OS("Organização de seminários")
+actor CD("Coordenação")
+systemBoundary MP08["MP-08 Seminários e DEISIFest"]
+    U081("UC-08.1\nRegistar presenças em seminários")
+    U082("UC-08.2\nRegistar resultado do DEISIFest")
+end
+MP08@{ type: package }
+OS -- U081
+CD -- U081
+CD -- U082
+```
+
 ### UC-08.1 Registar presenças em seminários [mezzo]
 - **Ator principal:** Organização de seminários ou Coordenação.
 - **Objetivo:** registar as presenças nos seminários definidos como momentos (UC-06.3).
@@ -1254,6 +1321,31 @@ A Coordenação aparece duas vezes: em cima, a preparar a avaliação; em baixo,
 ---
 
 ## 12. MP-09 — Consulta e notificações
+
+```mermaid
+usecase-beta
+direction LR
+actor AL("Aluno")
+actor DO("Docente")
+actor CD("Coordenação")
+actor UT("Utilizador")
+systemBoundary MP09["MP-09 Consulta e notificações"]
+    U091("UC-09.1\nConsultar estado do TFC")
+    U092("UC-09.2\nConsultar avaliações")
+    U094("UC-09.4\nReceber notificações")
+    U093("UC-09.3\nConsultar relatórios de gestão")
+end
+MP09@{ type: package }
+AL --|> UT
+DO --|> UT
+CD --|> UT
+UT -- U091
+UT -- U092
+UT -- U094
+CD -- U093
+```
+
+**Utilizador** generaliza o aluno, o docente e a coordenação: todos consultam o estado do TFC e as avaliações (com o âmbito do seu perfil) e recebem notificações; só a coordenação consulta os relatórios de gestão.
 
 ### UC-09.1 Consultar estado do TFC [mezzo]
 - **Ator principal:** Aluno ou Docente (orientador).
@@ -1318,6 +1410,22 @@ A Coordenação aparece duas vezes: em cima, a preparar a avaliação; em baixo,
 - **Regras:** as notificações são um subsistema, detalhado na arquitetura; os outros candidatos não são notificados quando um TFC é atribuído (UC-03.10).
 
 ---
+
+## 13. Lacunas detetadas ao escrever os casos de uso
+
+Pontos que não estão definidos em 02, ou em que os documentos do projeto não coincidem, e que convém fechar com o orientador e com os outros grupos:
+
+| # | Lacuna | Casos de uso |
+|---|---|---|
+| 1 | O docente não tem processo próprio para ver as suas tarefas e avaliações pendentes (pedido de 7 em 8 docentes). O 03 já prevê a vista `vw_avaliacoes_pendentes`, mas liga-a ao P-09.3, que é da coordenação | UC-09.1, UC-09.3 |
+| 2 | A exportação para Excel ou PDF não está em nenhum processo | UC-09.3 |
+| 3 | O P-02.5 não refere os filtros por tecnologia, disciplina e palavra-chave nem a descrição breve na lista, e o P-02.1 não refere os campos que o 03 já tem (área de aplicação, continuação de outra proposta, anexos, notas internas). O backend já filtra por tecnologia e palavra-chave | UC-02.1, UC-02.5 |
+| 4 | Falta definir com o DEISI2258 o que o agente verifica e como o resultado chega à base de dados, e se a plataforma regista o hash do commit na submissão | UC-04.1, UC-05.3 |
+| 5 | Não está definido quem fica com o TFC numa dissociação de grupo | UC-04.2 |
+| 6 | Os nomes dos estados têm de se perceber sem explicação (13% dos alunos não perceberam «À espera de publicação») | todos os de MP-03 |
+| 7 | Os quatro modelos base de avaliação não estão fechados. O registo do DEISI2257 (Reunião 7) indica intercalar, final com júri e apresentação, DEISIFest e presenças, e o 03 segue-o; as notas do DEISI2256 da mesma reunião indicam intercalar, final com júri, final sem júri e DEISIFest. Ligado à questão 6 de 02 | UC-06.1, UC-08.1, UC-08.2 |
+| 8 | O rascunho da avaliação (03) não está no P-06.6 | UC-06.6 |
+| 9 | Os registos da Reunião 7 não coincidem sobre os ficheiros: o do DEISI2257 diz que guardar os entregáveis só no GitHub, com o hash do commit, «não avança para já»; o do DEISI2256 regista-o como decisão. O 02 e o 03 seguem a pasta no servidor | UC-05.1, UC-05.3 |
 
 ## Referências
 
