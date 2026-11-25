@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Os meus TFC · TFC DEISI (mockup)</title>
+  <link rel="stylesheet" href="css/mockups.css">
+  <script src="js/tema.js"></script>
+</head>
+<body>
+  <a class="saltar" href="#conteudo">Saltar para o conteúdo</a>
+  <p class="aviso-mockup">Mockup estático: os dados são fictícios e os botões não gravam nada.</p>
+  <header class="cabecalho">
+    <div class="cabecalho-interior">
+      <a class="marca" href="index.html">TFC DEISI</a>
+      <nav aria-label="Menu principal">
+      <ul class="menu">
+        <li><a href="docente-tfcs.html" aria-current="page">Os meus TFC</a></li>
+        <li><a href="docente-proposta.html">Nova proposta</a></li>
+      </ul>
+      </nav>
+      <span class="utilizador">Prof.ª Ana Costa · Docente</span>
+      <button type="button" id="mudar-tema" class="botao secundario pequeno" aria-pressed="false">Tema escuro</button>
+    </div>
+  </header>
+  <main id="conteudo" class="pagina">
+    <div class="topo">
+      <div>
+        <h1>Os meus TFC</h1>
+        <p class="sub">2026/27 · propostas em que é proponente ou orientadora.</p>
+      </div>
+      <a class="botao" href="docente-proposta.html">Submeter nova proposta</a>
+    </div>
+    <div class="tabela-envolve">
+    <table>
+      <thead><tr><th scope="col">TFC</th><th scope="col">Modalidade</th><th scope="col">Estado</th><th scope="col" class="numero">Candidatos</th><th scope="col">Ações</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><span class="codigo">DEMO01</span>Plataforma de reporting de avaliações</th><td>Individual ou em grupo</td><td><span class="estado neutro">Disponível</span></td><td class="numero">3</td><td><a class="botao pequeno" href="docente-tfc.html" aria-label="Ver candidatos de DEMO01">Ver candidatos</a></td></tr>
+        <tr><th scope="row"><span class="codigo">DEMO03</span>Verificação automática de relatórios com GitHub Actions</th><td>Em grupo</td><td><span class="estado neutro">Disponível</span></td><td class="numero">0</td><td><span class="ajuda">Sem candidatos</span></td></tr>
+        <tr><th scope="row"><span class="codigo">DEMO06</span>Assistente de marcação de defesas</th><td>Individual</td><td><span class="estado pendente">Em validação</span></td><td class="numero">—</td><td><a class="botao secundario pequeno" href="docente-proposta.html" aria-label="Ver proposta DEMO06">Ver proposta</a></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </main>
+</body>
+</html>

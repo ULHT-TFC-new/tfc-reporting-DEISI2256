@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nova proposta · TFC DEISI (mockup)</title>
+  <link rel="stylesheet" href="css/mockups.css">
+  <script src="js/tema.js"></script>
+</head>
+<body>
+  <a class="saltar" href="#conteudo">Saltar para o conteúdo</a>
+  <p class="aviso-mockup">Mockup estático: os dados são fictícios e os botões não gravam nada.</p>
+  <header class="cabecalho">
+    <div class="cabecalho-interior">
+      <a class="marca" href="index.html">TFC DEISI</a>
+      <nav aria-label="Menu principal">
+      <ul class="menu">
+        <li><a href="docente-tfcs.html">Os meus TFC</a></li>
+        <li><a href="docente-proposta.html" aria-current="page">Nova proposta</a></li>
+      </ul>
+      </nav>
+      <span class="utilizador">Prof.ª Ana Costa · Docente</span>
+      <button type="button" id="mudar-tema" class="botao secundario pequeno" aria-pressed="false">Tema escuro</button>
+    </div>
+  </header>
+  <main id="conteudo" class="pagina">
+    <h1>Submeter proposta</h1>
+    <p class="sub">Fase de propostas de docentes aberta até 05/09. As propostas sem aluno indicado ficam logo aceites.</p>
+    <form class="cartao">
+      <div class="campo"><label for="titulo">Título</label><input id="titulo" type="text" required></div>
+      <div class="campo"><label for="descricao">Descrição</label><textarea id="descricao" rows="5" required></textarea></div>
+      <fieldset>
+        <legend>Modalidade</legend>
+        <div class="opcoes">
+          <label><input type="radio" name="modalidade"> Individual</label>
+          <label><input type="radio" name="modalidade"> Em grupo</label>
+          <label><input type="radio" name="modalidade" checked> Individual ou em grupo</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Cursos</legend>
+        <div class="opcoes">
+          <label><input type="checkbox" checked> LEI</label>
+          <label><input type="checkbox" checked> LIG</label>
+          <label><input type="checkbox"> LCD</label>
+        </div>
+      </fieldset>
+      <div class="filtros">
+        <div class="campo"><label for="disciplinas">Disciplinas do perfil</label><input id="disciplinas" type="text" aria-describedby="disc-ajuda"><span id="disc-ajuda" class="ajuda">Usadas para ordenar os candidatos.</span></div>
+        <div class="campo"><label for="tecnologias">Tecnologias</label><input id="tecnologias" type="text"></div>
+        <div class="campo"><label for="coorientador">Coorientador (opcional)</label><select id="coorientador"><option>Nenhum</option><option>Prof. Pedro Martins</option><option>Prof.ª Sofia Lopes</option></select></div>
+        <div class="campo"><label for="aluno">Aluno pré-selecionado (opcional)</label><input id="aluno" type="text" placeholder="Número de aluno" aria-describedby="aluno-ajuda"><span id="aluno-ajuda" class="ajuda">Com aluno indicado, a proposta vai a validação da coordenação.</span></div>
+      </div>
+      <div class="acoes">
+        <button type="button" class="botao">Submeter proposta</button>
+        <a class="botao secundario" href="docente-tfcs.html">Cancelar</a>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

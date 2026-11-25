@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Confirmar candidatura · TFC DEISI (mockup)</title>
+  <link rel="stylesheet" href="css/mockups.css">
+  <script src="js/tema.js"></script>
+</head>
+<body>
+  <a class="saltar" href="#conteudo">Saltar para o conteúdo</a>
+  <p class="aviso-mockup">Mockup estático: os dados são fictícios e os botões não gravam nada.</p>
+  <header class="cabecalho">
+    <div class="cabecalho-interior">
+      <a class="marca" href="index.html">TFC DEISI</a>
+      <nav aria-label="Menu principal">
+      <ul class="menu">
+        <li><a href="aluno-propostas.html">Propostas</a></li>
+        <li><a href="aluno-candidaturas.html">Candidaturas e grupo</a></li>
+        <li><a href="aluno-confirmar.html" aria-current="page">Vista do colega</a></li>
+      </ul>
+      </nav>
+      <span class="utilizador">Tiago Rocha · Aluno</span>
+      <button type="button" id="mudar-tema" class="botao secundario pequeno" aria-pressed="false">Tema escuro</button>
+    </div>
+  </header>
+  <main id="conteudo" class="pagina">
+    <h1>Candidaturas por confirmar</h1>
+    <p class="sub">Vista do Tiago Rocha (a22002), colega do grupo da Joana Silva.</p>
+    <ul class="lista">
+      <li class="cartao">
+        <div class="topo">
+          <h2><span class="codigo">DEMO04</span>Painel de indicadores para a coordenação</h2>
+          <span class="estado pendente">À tua espera</span>
+        </div>
+        <p class="descricao">A Joana candidatou o grupo a este TFC, na posição 3 da lista do grupo.</p>
+        <dl class="meta">
+          <div><dt>Orientador</dt><dd>Prof.ª Sofia Lopes</dd></div>
+          <div><dt>Modalidade</dt><dd>Individual ou em grupo</dd></div>
+        </dl>
+        <div class="acoes seccao">
+          <button type="button" class="botao">Confirmar</button>
+          <button type="button" class="botao perigo">Recusar</button>
+          <a href="aluno-tfc.html">Ver o TFC</a>
+        </div>
+      </li>
+    </ul>
+    <p class="seccao ajuda">Se recusares, a candidatura sai da lista do grupo e as seguintes sobem uma posição. Sem resposta até ao fim da fase, a candidatura fecha.</p>
+  </main>
+</body>
+</html>

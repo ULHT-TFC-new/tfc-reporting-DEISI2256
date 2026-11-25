@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Candidaturas e grupo · TFC DEISI (mockup)</title>
+  <link rel="stylesheet" href="css/mockups.css">
+  <script src="js/tema.js"></script>
+</head>
+<body>
+  <a class="saltar" href="#conteudo">Saltar para o conteúdo</a>
+  <p class="aviso-mockup">Mockup estático: os dados são fictícios e os botões não gravam nada.</p>
+  <header class="cabecalho">
+    <div class="cabecalho-interior">
+      <a class="marca" href="index.html">TFC DEISI</a>
+      <nav aria-label="Menu principal">
+      <ul class="menu">
+        <li><a href="aluno-propostas.html">Propostas</a></li>
+        <li><a href="aluno-candidaturas.html" aria-current="page">Candidaturas e grupo</a></li>
+        <li><a href="aluno-confirmar.html">Vista do colega</a></li>
+      </ul>
+      </nav>
+      <span class="utilizador">Joana Silva · Aluno</span>
+      <button type="button" id="mudar-tema" class="botao secundario pequeno" aria-pressed="false">Tema escuro</button>
+    </div>
+  </header>
+  <main id="conteudo" class="pagina">
+    <h1>Candidaturas e grupo</h1>
+    <p class="sub">Fase de candidaturas aberta até 04/10.</p>
+    <div class="duas-colunas">
+      <section class="cartao" aria-labelledby="t-lista">
+        <h2 id="t-lista">As minhas candidaturas</h2>
+        <p class="ajuda">Por ordem de preferência. Tens de ter entre 3 e 6.</p>
+        <div class="tabela-envolve">
+        <table>
+          <thead><tr><th scope="col" class="numero">Posição</th><th scope="col">TFC</th><th scope="col">Estado</th><th scope="col">Ações</th></tr></thead>
+          <tbody>
+          <tr>
+            <td class="numero">1</td>
+            <th scope="row"><span class="codigo">DEMO01</span>Plataforma de reporting de avaliações</th>
+            <td><span class="estado ok">Ativa</span></td>
+            <td><div class="acoes">
+              <button type="button" class="botao secundario pequeno" aria-label="Subir DEMO01" disabled>Subir</button>
+              <button type="button" class="botao secundario pequeno" aria-label="Descer DEMO01">Descer</button>
+              <button type="button" class="botao secundario pequeno" aria-label="Substituir DEMO01">Substituir</button>
+              <button type="button" class="botao perigo pequeno" aria-label="Cancelar DEMO01">Cancelar</button>
+            </div></td>
+          </tr>
+          <tr>
+            <td class="numero">2</td>
+            <th scope="row"><span class="codigo">DEMO05</span>Gestão de seminários e presenças</th>
+            <td><span class="estado ok">Ativa</span></td>
+            <td><div class="acoes">
+              <button type="button" class="botao secundario pequeno" aria-label="Subir DEMO05">Subir</button>
+              <button type="button" class="botao secundario pequeno" aria-label="Descer DEMO05">Descer</button>
+              <button type="button" class="botao secundario pequeno" aria-label="Substituir DEMO05">Substituir</button>
+              <button type="button" class="botao perigo pequeno" aria-label="Cancelar DEMO05">Cancelar</button>
+            </div></td>
+          </tr>
+          <tr>
+            <td class="numero">3</td>
+            <th scope="row"><span class="codigo">DEMO04</span>Painel de indicadores para a coordenação</th>
+            <td><span class="estado pendente">À espera do colega</span></td>
+            <td><div class="acoes">
+              <button type="button" class="botao secundario pequeno" aria-label="Subir DEMO04">Subir</button>
+              <button type="button" class="botao secundario pequeno" aria-label="Descer DEMO04" disabled>Descer</button>
+              <button type="button" class="botao secundario pequeno" aria-label="Substituir DEMO04">Substituir</button>
+              <button type="button" class="botao perigo pequeno" aria-label="Cancelar DEMO04">Cancelar</button>
+            </div></td>
+          </tr>
+          </tbody>
+        </table>
+        </div>
+        <p class="seccao"><a class="botao" href="aluno-propostas.html">Candidatar-me a outro TFC</a></p>
+      </section>
+      <section class="cartao" aria-labelledby="t-grupo">
+        <h2 id="t-grupo">O meu grupo</h2>
+        <dl class="meta" style="flex-direction:column">
+          <div><dt>Eu</dt><dd>Joana Silva (a22001) · submissora</dd></div>
+          <div><dt>Colega</dt><dd>Tiago Rocha (a22002)</dd></div>
+        </dl>
+        <p class="ajuda">Só a submissora cria e altera as candidaturas do grupo. O colega confirma ou recusa cada candidatura.</p>
+        <div class="mensagem aviso">A candidatura a DEMO04 só entra na seleção depois de o Tiago a confirmar.</div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
