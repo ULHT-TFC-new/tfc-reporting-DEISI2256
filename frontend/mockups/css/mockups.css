@@ -150,6 +150,7 @@ form:has(input[value="grupo"]:checked) .campo-colega { display: flex; }
 .estado.pendente { background: var(--aviso-clara); color: var(--aviso); }
 .estado.fechado { background: var(--erro-clara); color: var(--erro); }
 .estado.neutro { background: var(--primaria-clara); color: var(--texto); }
+.estado.colega { background: var(--primaria); color: var(--primaria-texto); border-color: var(--primaria); }
 
 /* ---------- Tabelas ---------- */
 .tabela-envolve { overflow-x: auto; }

@@ -8,7 +8,7 @@ Ecrãs principais da plataforma de TFC em HTML e CSS estáticos, pedidos pelo or
 
 | Perfil | Ecrãs |
 |---|---|
-| Aluno | Lista de temas com filtros; página do tema com a candidatura individual ou com um colega; candidaturas por ordem de preferência, com o colega de cada uma e os pedidos de colegas para confirmar; a minha proposta (tema proposto pelo aluno) |
+| Aluno | Lista de temas com filtros; página do tema com a candidatura individual ou com um colega; candidaturas por ordem de preferência, com o colega de cada uma e os propostas dos colegas na mesma lista, com uma etiqueta azul; as minhas propostas (temass propostos pelo aluno) |
 | Docente | As minhas propostas, em todas as fases e com o número de candidatos; selecionar candidato; submeter proposta |
 | Coordenação | Temas e atribuições; selecionar, confirmar e publicar a atribuição (botão à parte do de selecionar) |
 

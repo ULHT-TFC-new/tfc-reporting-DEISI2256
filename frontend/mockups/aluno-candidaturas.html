@@ -17,7 +17,7 @@
       <ul class="menu">
         <li><a href="aluno-temas.html">Temas</a></li>
         <li><a href="aluno-candidaturas.html" aria-current="page">Candidaturas</a></li>
-        <li><a href="aluno-proposta.html">A minha proposta</a></li>
+        <li><a href="aluno-proposta.html">Propostas</a></li>
       </ul>
       </nav>
       <span class="utilizador">Joana Silva · Aluno</span>
@@ -27,24 +27,9 @@
   <main id="conteudo" class="pagina">
     <h1>Candidaturas</h1>
     <p class="sub">Fase de candidaturas aberta até 04/10.</p>
-    <section class="cartao" aria-labelledby="t-pedidos">
-      <h2 id="t-pedidos">Pedidos de colegas para confirmar</h2>
-      <div class="topo">
-        <div>
-          <p><strong>Miguel Sousa</strong> (a22004) quer candidatar-se contigo ao tema <span class="codigo">DEMO03</span>Verificação automática de relatórios com GitHub Actions.</p>
-          <p class="ajuda">Se confirmares, a candidatura entra na tua lista na posição 4. Se recusares, ou se não responderes até ao fim da fase, a candidatura fecha.</p>
-        </div>
-        <span class="estado pendente">À tua espera</span>
-      </div>
-      <div class="acoes">
-        <button type="button" class="botao">Confirmar</button>
-        <button type="button" class="botao perigo">Recusar</button>
-        <a href="aluno-tema.html">Ver o tema</a>
-      </div>
-    </section>
-    <section class="cartao seccao" aria-labelledby="t-lista">
+    <section class="cartao" aria-labelledby="t-lista">
       <h2 id="t-lista">As minhas candidaturas</h2>
-      <p class="ajuda">Por ordem de preferência. Tens de ter entre 3 e 6. Cada candidatura em grupo é feita com um colega, que pode ser diferente de tema para tema.</p>
+      <p class="ajuda">Por ordem de preferência. Tens de ter entre 3 e 6. Podes fazer parte de mais do que um grupo: cada candidatura em grupo é feita com um colega, que pode ser diferente de tema para tema.</p>
       <div class="tabela-envolve">
       <table>
         <thead><tr><th scope="col" class="numero">Posição</th><th scope="col">Tema</th><th scope="col">Grupo</th><th scope="col">Estado</th><th scope="col">Ações</th></tr></thead>
@@ -85,10 +70,24 @@
               <button type="button" class="botao perigo pequeno" aria-label="Cancelar DEMO04">Cancelar</button>
             </div></td>
           </tr>
+          <tr>
+            <td class="numero">4</td>
+            <th scope="row"><span class="codigo">DEMO03</span>Verificação automática de relatórios com GitHub Actions</th>
+            <td>Com Miguel Sousa</td>
+            <td><span class="estado colega">Proposta do colega</span></td>
+            <td><div class="acoes">
+              <button type="button" class="botao pequeno" aria-label="Confirmar DEMO03">Confirmar</button>
+              <button type="button" class="botao perigo pequeno" aria-label="Recusar DEMO03">Recusar</button>
+            </div></td>
+          </tr>
         </tbody>
       </table>
       </div>
-      <p class="ajuda">A candidatura a DEMO04 só entra na seleção depois de a Rita a confirmar. Quando um tema é atribuído a um grupo, as outras candidaturas dos dois alunos fecham.</p>
+      <ul class="ajuda">
+        <li><span class="estado colega">Proposta do colega</span> o colega candidatou-vos a este tema; confirma ou recusa.</li>
+        <li><span class="estado pendente">À espera da Rita</span> só entra na seleção depois de a colega confirmar.</li>
+        <li>Se um colega ficar com outro tema, as candidaturas que tens com ele não ficam pendentes: passam a individuais, com uma nota a indicar que ficaste sem colega.</li>
+      </ul>
       <p class="seccao"><a class="botao" href="aluno-temas.html">Candidatar-me a outro tema</a></p>
     </section>
   </main>
