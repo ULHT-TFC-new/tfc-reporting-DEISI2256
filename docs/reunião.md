@@ -265,7 +265,7 @@ O orientador reviu o documento de processos e indicou o que alterar e melhorar.
 - No Codespaces, para ver os mockups, é preciso abrir a porta e indicar o caminho da pasta e o nome do ficheiro, se não for `index.html`.
 
 *Casos de uso*
-- O orientador viu os testes: «faltam lá coisas, mas aquilo está bonito. Está correto, está bem feito.» A IA está a ser usada com bons resultados.
+- O orientador viu os testes. A IA está a ser usada com bons resultados.
 
 *Modelo de dados e relatório (DEISI2257)*
 - O DEISI2257 já tem o diagrama de classes global e o diagrama entidade-relação completos.
@@ -276,7 +276,7 @@ O orientador reviu o documento de processos e indicou o que alterar e melhorar.
   - funciona melhor dar-lhe os dois modelos e perguntar se o E-R traduz bem o de classes;
   - ou criar um agente ou plugin com regras claras: normalização, chaves nas relações N para N, etc.
 - **Planeamento no relatório:** é a última coisa a fazer. Os módulos ficam por ordem de prioridade, cada um com as tabelas de que precisa. Os casos de uso e os requisitos são identificados só pelo número, sem os descrever outra vez. A base de dados pode ser feita aos poucos, módulo a módulo.
-- O trabalho está «muito bem encaminhado».
+- O trabalho está muito bem encaminhado.
 
 **Próximos passos**
 1. DEISI2258: enviar com urgência o esboço do módulo de verificação, com as interfaces da API.
