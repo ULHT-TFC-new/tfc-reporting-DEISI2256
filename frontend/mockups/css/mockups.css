@@ -115,6 +115,9 @@ input, select, textarea {
 fieldset { border: 1px solid var(--linha); border-radius: var(--raio); padding: 0.75rem var(--espaco); margin: 0 0 0.75rem; }
 .opcoes { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 .opcoes label { font-weight: 400; display: flex; gap: 0.4rem; align-items: center; }
+/* O campo do colega só aparece quando se escolhe «Em grupo» */
+.campo-colega { display: none; }
+form:has(input[value="grupo"]:checked) .campo-colega { display: flex; }
 
 /* ---------- Botões ---------- */
 .botao {
@@ -169,4 +172,5 @@ tr.selecionado { background: var(--sucesso-clara); }
 @media (max-width: 720px) {
   .duas-colunas { grid-template-columns: 1fr; }
   .topo { flex-direction: column; gap: 0.25rem; }
+  .estado { white-space: normal; }
 }
