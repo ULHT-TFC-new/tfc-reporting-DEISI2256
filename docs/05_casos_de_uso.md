@@ -4,8 +4,6 @@
 
 Este documento descreve os casos de uso da plataforma de gestão de TFC. É derivado de [02_processos.md](02_processos.md): **cada processo `P-xx.yy` dá origem ao caso de uso `UC-xx.yy`**, com o mesmo número, para que a rastreabilidade seja direta. A única exceção é o UC-02.7, que junta num caso de uso uma atualização que em 02 está repetida em quatro processos (ver a lacuna 10). Os estados (da proposta, da candidatura e do TFC) são os da secção 4 de 02 e as regras citam as mesmas fontes (regulamento [1], reuniões e emails do orientador).
 
-As histórias de utilizador não fazem parte dos casos de uso: estão num documento à parte, [06_user_stories.md](06_user_stories.md).
-
 **Divisão do trabalho** (registo de 11/11): o frontend é desenvolvido no DEISI2256 e o backend no DEISI2257; os dois cobrem toda a plataforma. A verificação automática dos entregáveis é feita por um agente do DEISI2258, que corre no GitHub (Actions e workflows): a plataforma regista o endereço do repositório e recebe o resultado do agente (email do orientador, 11/11).
 
 ## 1. Como ler este documento
