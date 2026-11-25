@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Candidaturas e grupo · TFC DEISI (mockup)</title>
+  <title>Candidaturas · TFC DEISI (mockup)</title>
   <link rel="stylesheet" href="css/mockups.css">
   <script src="js/tema.js"></script>
 </head>
@@ -15,29 +15,44 @@
       <a class="marca" href="index.html">TFC DEISI</a>
       <nav aria-label="Menu principal">
       <ul class="menu">
-        <li><a href="aluno-propostas.html">Propostas</a></li>
-        <li><a href="aluno-candidaturas.html" aria-current="page">Candidaturas e grupo</a></li>
-        <li><a href="aluno-confirmar.html">Vista do colega</a></li>
+        <li><a href="aluno-temas.html">Temas</a></li>
+        <li><a href="aluno-candidaturas.html" aria-current="page">Candidaturas</a></li>
+        <li><a href="aluno-proposta.html">A minha proposta</a></li>
       </ul>
       </nav>
       <span class="utilizador">Joana Silva · Aluno</span>
-      <button type="button" id="mudar-tema" class="botao secundario pequeno" aria-pressed="false">Tema escuro</button>
+      <button type="button" id="mudar-tema" class="botao secundario pequeno" aria-pressed="false">Modo escuro</button>
     </div>
   </header>
   <main id="conteudo" class="pagina">
-    <h1>Candidaturas e grupo</h1>
+    <h1>Candidaturas</h1>
     <p class="sub">Fase de candidaturas aberta até 04/10.</p>
-    <div class="duas-colunas">
-      <section class="cartao" aria-labelledby="t-lista">
-        <h2 id="t-lista">As minhas candidaturas</h2>
-        <p class="ajuda">Por ordem de preferência. Tens de ter entre 3 e 6.</p>
-        <div class="tabela-envolve">
-        <table>
-          <thead><tr><th scope="col" class="numero">Posição</th><th scope="col">TFC</th><th scope="col">Estado</th><th scope="col">Ações</th></tr></thead>
-          <tbody>
+    <section class="cartao" aria-labelledby="t-pedidos">
+      <h2 id="t-pedidos">Pedidos de colegas para confirmar</h2>
+      <div class="topo">
+        <div>
+          <p><strong>Miguel Sousa</strong> (a22004) quer candidatar-se contigo ao tema <span class="codigo">DEMO03</span>Verificação automática de relatórios com GitHub Actions.</p>
+          <p class="ajuda">Se confirmares, a candidatura entra na tua lista na posição 4. Se recusares, ou se não responderes até ao fim da fase, a candidatura fecha.</p>
+        </div>
+        <span class="estado pendente">À tua espera</span>
+      </div>
+      <div class="acoes">
+        <button type="button" class="botao">Confirmar</button>
+        <button type="button" class="botao perigo">Recusar</button>
+        <a href="aluno-tema.html">Ver o tema</a>
+      </div>
+    </section>
+    <section class="cartao seccao" aria-labelledby="t-lista">
+      <h2 id="t-lista">As minhas candidaturas</h2>
+      <p class="ajuda">Por ordem de preferência. Tens de ter entre 3 e 6. Cada candidatura em grupo é feita com um colega, que pode ser diferente de tema para tema.</p>
+      <div class="tabela-envolve">
+      <table>
+        <thead><tr><th scope="col" class="numero">Posição</th><th scope="col">Tema</th><th scope="col">Grupo</th><th scope="col">Estado</th><th scope="col">Ações</th></tr></thead>
+        <tbody>
           <tr>
             <td class="numero">1</td>
             <th scope="row"><span class="codigo">DEMO01</span>Plataforma de reporting de avaliações</th>
+            <td>Com Tiago Rocha</td>
             <td><span class="estado ok">Ativa</span></td>
             <td><div class="acoes">
               <button type="button" class="botao secundario pequeno" aria-label="Subir DEMO01" disabled>Subir</button>
@@ -49,6 +64,7 @@
           <tr>
             <td class="numero">2</td>
             <th scope="row"><span class="codigo">DEMO05</span>Gestão de seminários e presenças</th>
+            <td>Individual</td>
             <td><span class="estado ok">Ativa</span></td>
             <td><div class="acoes">
               <button type="button" class="botao secundario pequeno" aria-label="Subir DEMO05">Subir</button>
@@ -60,7 +76,8 @@
           <tr>
             <td class="numero">3</td>
             <th scope="row"><span class="codigo">DEMO04</span>Painel de indicadores para a coordenação</th>
-            <td><span class="estado pendente">À espera do colega</span></td>
+            <td>Com Rita Gomes</td>
+            <td><span class="estado pendente">À espera da Rita</span></td>
             <td><div class="acoes">
               <button type="button" class="botao secundario pequeno" aria-label="Subir DEMO04">Subir</button>
               <button type="button" class="botao secundario pequeno" aria-label="Descer DEMO04" disabled>Descer</button>
@@ -68,21 +85,12 @@
               <button type="button" class="botao perigo pequeno" aria-label="Cancelar DEMO04">Cancelar</button>
             </div></td>
           </tr>
-          </tbody>
-        </table>
-        </div>
-        <p class="seccao"><a class="botao" href="aluno-propostas.html">Candidatar-me a outro TFC</a></p>
-      </section>
-      <section class="cartao" aria-labelledby="t-grupo">
-        <h2 id="t-grupo">O meu grupo</h2>
-        <dl class="meta" style="flex-direction:column">
-          <div><dt>Eu</dt><dd>Joana Silva (a22001) · submissora</dd></div>
-          <div><dt>Colega</dt><dd>Tiago Rocha (a22002)</dd></div>
-        </dl>
-        <p class="ajuda">Só a submissora cria e altera as candidaturas do grupo. O colega confirma ou recusa cada candidatura.</p>
-        <div class="mensagem aviso">A candidatura a DEMO04 só entra na seleção depois de o Tiago a confirmar.</div>
-      </section>
-    </div>
+        </tbody>
+      </table>
+      </div>
+      <p class="ajuda">A candidatura a DEMO04 só entra na seleção depois de a Rita a confirmar. Quando um tema é atribuído a um grupo, as outras candidaturas dos dois alunos fecham.</p>
+      <p class="seccao"><a class="botao" href="aluno-temas.html">Candidatar-me a outro tema</a></p>
+    </section>
   </main>
 </body>
 </html>

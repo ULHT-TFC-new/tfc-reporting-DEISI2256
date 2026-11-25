@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A minha proposta · TFC DEISI (mockup)</title>
+  <link rel="stylesheet" href="css/mockups.css">
+  <script src="js/tema.js"></script>
+</head>
+<body>
+  <a class="saltar" href="#conteudo">Saltar para o conteúdo</a>
+  <p class="aviso-mockup">Mockup estático: os dados são fictícios e os botões não gravam nada.</p>
+  <header class="cabecalho">
+    <div class="cabecalho-interior">
+      <a class="marca" href="index.html">TFC DEISI</a>
+      <nav aria-label="Menu principal">
+      <ul class="menu">
+        <li><a href="aluno-temas.html">Temas</a></li>
+        <li><a href="aluno-candidaturas.html">Candidaturas</a></li>
+        <li><a href="aluno-proposta.html" aria-current="page">A minha proposta</a></li>
+      </ul>
+      </nav>
+      <span class="utilizador">Joana Silva · Aluno</span>
+      <button type="button" id="mudar-tema" class="botao secundario pequeno" aria-pressed="false">Modo escuro</button>
+    </div>
+  </header>
+  <main id="conteudo" class="pagina">
+    <h1>A minha proposta</h1>
+    <p class="sub">Temas propostos por ti, que não estão na lista dos docentes. Fase de propostas de alunos aberta até 20/09.</p>
+    <article class="cartao">
+      <div class="topo">
+        <h2><span class="codigo">DEMO07</span>Assistente de horários para os alunos de LEI</h2>
+        <span class="estado pendente">Proposta · em validação</span>
+      </div>
+      <p class="descricao">Aplicação que sugere horários sem sobreposições a partir das UCs em que o aluno está inscrito.</p>
+      <dl class="meta">
+        <div><dt>Orientador indicado</dt><dd>Prof. Pedro Martins (deu acordo prévio)</dd></div>
+        <div><dt>Modalidade</dt><dd>Individual</dd></div>
+        <div><dt>Submetida</dt><dd>15/09</dd></div>
+      </dl>
+      <ol class="etiquetas" aria-label="Fases da proposta">
+        <li><strong>Proposta</strong> · em validação pela coordenação</li>
+        <li>Tema · depois de aceite e publicado</li>
+        <li>TFC · quando te for atribuído</li>
+      </ol>
+      <p class="ajuda seccao">Mesmo com tema próprio, tens de te candidatar a ele quando for publicado. A coordenação pode pedir alterações; nesse caso, voltas a editar e a enviar a proposta.</p>
+    </article>
+    <section class="cartao seccao" aria-labelledby="t-nova">
+      <h2 id="t-nova">Submeter outra proposta</h2>
+      <form>
+        <div class="campo"><label for="a-titulo">Título</label><input id="a-titulo" type="text"></div>
+        <div class="campo"><label for="a-descricao">Descrição</label><textarea id="a-descricao" rows="4"></textarea></div>
+        <fieldset>
+          <legend>Modalidade</legend>
+          <div class="opcoes">
+            <label><input type="radio" name="a-mod" checked> Individual</label>
+            <label><input type="radio" name="a-mod"> Em grupo, com um colega</label>
+          </div>
+        </fieldset>
+        <div class="filtros">
+          <div class="campo"><label for="a-ori">Orientador indicado</label><select id="a-ori" aria-describedby="a-ori-ajuda"><option>Prof.ª Ana Costa</option><option>Prof. Pedro Martins</option><option>Prof.ª Sofia Lopes</option></select><span id="a-ori-ajuda" class="ajuda">O orientador tem de ter dado acordo prévio.</span></div>
+          <div class="campo"><label for="a-tec">Tecnologias</label><input id="a-tec" type="text"></div>
+        </div>
+        <button type="button" class="botao">Submeter proposta</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

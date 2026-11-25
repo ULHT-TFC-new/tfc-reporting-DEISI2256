@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Temas e atribuições · TFC DEISI (mockup)</title>
+  <link rel="stylesheet" href="css/mockups.css">
+  <script src="js/tema.js"></script>
+</head>
+<body>
+  <a class="saltar" href="#conteudo">Saltar para o conteúdo</a>
+  <p class="aviso-mockup">Mockup estático: os dados são fictícios e os botões não gravam nada.</p>
+  <header class="cabecalho">
+    <div class="cabecalho-interior">
+      <a class="marca" href="index.html">TFC DEISI</a>
+      <nav aria-label="Menu principal">
+      <ul class="menu">
+        <li><a href="coordenacao-temas.html" aria-current="page">Temas e atribuições</a></li>
+        <li><a href="docente-proposta.html">Nova proposta</a></li>
+      </ul>
+      </nav>
+      <span class="utilizador">Coordenação de TFC</span>
+      <button type="button" id="mudar-tema" class="botao secundario pequeno" aria-pressed="false">Modo escuro</button>
+    </div>
+  </header>
+  <main id="conteudo" class="pagina">
+    <div class="topo">
+      <div>
+        <h1>Temas e atribuições</h1>
+        <p class="sub">2026/27 · as mesmas páginas dos docentes, com todas as propostas, temas e TFC.</p>
+      </div>
+      <button type="button" class="botao">Publicar as 2 atribuições selecionadas</button>
+    </div>
+    <div class="mensagem">2 alunos elegíveis ainda sem TFC. A coordenação pode atribuir-lhes um tema com justificação.</div>
+    <form class="filtros" aria-label="Filtrar">
+      <div class="campo"><label for="c-ori">Orientador</label><select id="c-ori"><option>Todos</option><option>Prof.ª Ana Costa</option><option>Prof. Pedro Martins</option><option>Prof.ª Sofia Lopes</option></select></div>
+      <div class="campo"><label for="c-est">Fase</label><select id="c-est"><option>Todas</option><option>Proposta</option><option>Tema</option><option>TFC</option></select></div>
+    </form>
+    <div class="tabela-envolve">
+    <table>
+      <thead><tr><th scope="col">Título</th><th scope="col">Orientador</th><th scope="col" class="numero">Candidatos</th><th scope="col">Selecionado</th><th scope="col">Estado</th><th scope="col">Ações</th></tr></thead>
+      <tbody>
+        <tr>
+          <th scope="row"><span class="codigo">DEMO01</span>Plataforma de reporting de avaliações</th><td>Prof.ª Ana Costa</td><td class="numero">3</td><td>Joana Silva com Tiago Rocha</td>
+          <td><span class="estado neutro">Tema · selecionado, por publicar</span></td>
+          <td><a class="botao secundario pequeno" href="coordenacao-tema.html" aria-label="Abrir DEMO01">Abrir</a></td>
+        </tr>
+        <tr>
+          <th scope="row"><span class="codigo">DEMO02</span>Aplicação móvel de acompanhamento de TFC</th><td>Prof. Pedro Martins</td><td class="numero">2</td><td>Luís Neves</td>
+          <td><span class="estado ok">TFC · atribuído e publicado</span></td>
+          <td><a class="botao secundario pequeno" href="coordenacao-tema.html" aria-label="Abrir DEMO02">Abrir</a></td>
+        </tr>
+        <tr>
+          <th scope="row"><span class="codigo">DEMO03</span>Verificação automática de relatórios com GitHub Actions</th><td>Prof.ª Ana Costa</td><td class="numero">1</td><td>—</td>
+          <td><span class="estado neutro">Tema · por selecionar</span></td>
+          <td><a class="botao secundario pequeno" href="coordenacao-tema.html" aria-label="Abrir DEMO03">Abrir</a></td>
+        </tr>
+        <tr>
+          <th scope="row"><span class="codigo">DEMO04</span>Painel de indicadores para a coordenação</th><td>Prof.ª Sofia Lopes</td><td class="numero">4</td><td>—</td>
+          <td><span class="estado neutro">Tema · por selecionar</span></td>
+          <td><a class="botao secundario pequeno" href="coordenacao-tema.html" aria-label="Abrir DEMO04">Abrir</a></td>
+        </tr>
+        <tr>
+          <th scope="row"><span class="codigo">DEMO05</span>Gestão de seminários e presenças</th><td>Prof. Pedro Martins</td><td class="numero">3</td><td>Rita Gomes</td>
+          <td><span class="estado neutro">Tema · selecionado, por publicar</span></td>
+          <td><a class="botao secundario pequeno" href="coordenacao-tema.html" aria-label="Abrir DEMO05">Abrir</a></td>
+        </tr>
+        <tr>
+          <th scope="row"><span class="codigo">DEMO07</span>Assistente de horários para os alunos de LEI</th><td>Prof. Pedro Martins</td><td class="numero">—</td><td>—</td>
+          <td><span class="estado pendente">Proposta · em validação</span></td>
+          <td><a class="botao secundario pequeno" href="docente-proposta.html" aria-label="Validar DEMO07">Validar</a></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </main>
+</body>
+</html>

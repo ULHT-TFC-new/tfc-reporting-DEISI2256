@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mockups · TFC DEISI (mockup)</title>
+  <link rel="stylesheet" href="css/mockups.css">
+  <script src="js/tema.js"></script>
+</head>
+<body>
+  <a class="saltar" href="#conteudo">Saltar para o conteúdo</a>
+  <p class="aviso-mockup">Mockup estático: os dados são fictícios e os botões não gravam nada.</p>
+  <header class="cabecalho">
+    <div class="cabecalho-interior">
+      <a class="marca" href="index.html">TFC DEISI</a>
+      <span class="menu"></span>
+      <button type="button" id="mudar-tema" class="botao secundario pequeno" aria-pressed="false">Modo escuro</button>
+    </div>
+  </header>
+  <main id="conteudo" class="pagina">
+    <h1>Mockups da plataforma de TFC</h1>
+    <p class="sub">Ecrãs principais em HTML estático, para validar o desenho e a navegação antes da implementação.</p>
+    <div class="mensagem"><strong>Proposta → Tema → TFC.</strong> Uma <strong>proposta</strong> é o que alguém submete; depois de aceite e publicada passa a <strong>tema</strong>, a que os alunos se candidatam; quando é atribuído passa a <strong>TFC</strong>. O estado mostra sempre em que fase está.</div>
+    <div class="perfis">
+      <section class="cartao" aria-labelledby="p-aluno">
+        <h2 id="p-aluno">Aluno</h2>
+        <ul>
+          <li><a href="aluno-temas.html">Lista de temas</a></li>
+          <li><a href="aluno-tema.html">Página do tema e candidatura</a></li>
+          <li><a href="aluno-candidaturas.html">Candidaturas, incluindo as que os colegas pedem para confirmar</a></li>
+          <li><a href="aluno-proposta.html">A minha proposta (tema proposto pelo aluno)</a></li>
+        </ul>
+      </section>
+      <section class="cartao" aria-labelledby="p-docente">
+        <h2 id="p-docente">Docente</h2>
+        <ul>
+          <li><a href="docente-propostas.html">As minhas propostas, com o número de candidatos</a></li>
+          <li><a href="docente-tema.html">Selecionar candidato</a></li>
+          <li><a href="docente-proposta.html">Submeter proposta</a></li>
+        </ul>
+      </section>
+      <section class="cartao" aria-labelledby="p-coord">
+        <h2 id="p-coord">Coordenação</h2>
+        <ul>
+          <li><a href="coordenacao-temas.html">Temas e atribuições</a></li>
+          <li><a href="coordenacao-tema.html">Selecionar, confirmar e publicar</a></li>
+        </ul>
+      </section>
+    </div>
+    <p class="seccao ajuda">Os ecrãs das avaliações (por docente e de controlo) ficam para uma fase seguinte. O botão «Modo escuro» mostra que o aspeto muda só com as variáveis do início da CSS.</p>
+  </main>
+</body>
+</html>

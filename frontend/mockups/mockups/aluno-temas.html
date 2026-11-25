@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Propostas · TFC DEISI (mockup)</title>
+  <title>Temas · TFC DEISI (mockup)</title>
   <link rel="stylesheet" href="css/mockups.css">
   <script src="js/tema.js"></script>
 </head>
@@ -15,31 +15,31 @@
       <a class="marca" href="index.html">TFC DEISI</a>
       <nav aria-label="Menu principal">
       <ul class="menu">
-        <li><a href="aluno-propostas.html" aria-current="page">Propostas</a></li>
-        <li><a href="aluno-candidaturas.html">Candidaturas e grupo</a></li>
-        <li><a href="aluno-confirmar.html">Vista do colega</a></li>
+        <li><a href="aluno-temas.html" aria-current="page">Temas</a></li>
+        <li><a href="aluno-candidaturas.html">Candidaturas</a></li>
+        <li><a href="aluno-proposta.html">A minha proposta</a></li>
       </ul>
       </nav>
       <span class="utilizador">Joana Silva · Aluno</span>
-      <button type="button" id="mudar-tema" class="botao secundario pequeno" aria-pressed="false">Tema escuro</button>
+      <button type="button" id="mudar-tema" class="botao secundario pequeno" aria-pressed="false">Modo escuro</button>
     </div>
   </header>
   <main id="conteudo" class="pagina">
-    <h1>Propostas de TFC</h1>
-    <p class="sub">Fase de candidaturas aberta até 04/10. Tens 3 de 6 candidaturas. Os TFC já atribuídos não aparecem nesta lista.</p>
-    <form class="filtros" role="search" aria-label="Filtrar propostas">
+    <h1>Temas de TFC</h1>
+    <p class="sub">Fase de candidaturas aberta até 04/10. Tens 3 de 6 candidaturas. Os temas já atribuídos (que passaram a TFC) não aparecem nesta lista.</p>
+    <form class="filtros" role="search" aria-label="Filtrar temas">
       <div class="campo"><label for="f-texto">Palavra-chave</label><input id="f-texto" type="search" placeholder="Título ou descrição"></div>
       <div class="campo"><label for="f-tec">Tecnologia</label><select id="f-tec"><option>Todas</option><option>Django</option><option>GitHub Actions</option><option>PostgreSQL</option><option>Python</option><option>React</option><option>React Native</option><option>TypeScript</option></select></div>
       <div class="campo"><label for="f-disc">Disciplina</label><select id="f-disc"><option>Todas</option><option>Bases de Dados</option><option>Computação Móvel</option><option>Engenharia de Software</option><option>Estatística</option><option>Programação Web</option></select></div>
       <div class="campo"><label for="f-ori">Orientador</label><select id="f-ori"><option>Todos</option><option>Prof.ª Ana Costa</option><option>Prof. Pedro Martins</option><option>Prof.ª Sofia Lopes</option></select></div>
       <div class="campo"><label for="f-mod">Modalidade</label><select id="f-mod"><option>Todas</option><option>Individual</option><option>Em grupo</option></select></div>
     </form>
-    <p class="ajuda" aria-live="polite">5 propostas</p>
+    <p class="ajuda" aria-live="polite">6 temas</p>
     <ul class="lista">
       <li class="cartao">
         <div class="topo">
           <h2><span class="codigo">DEMO01</span>Plataforma de reporting de avaliações</h2>
-          <span class="estado ok">Já te candidataste · posição 1</span>
+          <span class="estado ok">Já te candidataste com Tiago Rocha · posição 1</span>
         </div>
         <p class="descricao">Plataforma web para os docentes registarem e consultarem as avaliações dos TFC, com relatórios por momento.</p>
         <dl class="meta">
@@ -64,7 +64,7 @@
           <div><dt>Candidatos</dt><dd>2</dd></div>
         </dl>
         <ul class="etiquetas" aria-label="Tecnologias"><li>React Native</li><li>TypeScript</li></ul>
-        <div class="acoes seccao"><a class="botao pequeno" href="aluno-tfc.html" aria-label="Ver e candidatar-me a DEMO02">Ver e candidatar-me</a></div>
+        <div class="acoes seccao"><a class="botao pequeno" href="aluno-tema.html" aria-label="Ver e candidatar-me a DEMO02">Ver e candidatar-me</a></div>
       </li>
       <li class="cartao">
         <div class="topo">
@@ -79,12 +79,12 @@
           <div><dt>Candidatos</dt><dd>0</dd></div>
         </dl>
         <ul class="etiquetas" aria-label="Tecnologias"><li>GitHub Actions</li><li>Python</li></ul>
-        <div class="acoes seccao"><a class="botao pequeno" href="aluno-tfc.html" aria-label="Ver e candidatar-me a DEMO03">Ver e candidatar-me</a></div>
+        <div class="acoes seccao"><a class="botao pequeno" href="aluno-tema.html" aria-label="Ver e candidatar-me a DEMO03">Ver e candidatar-me</a></div>
       </li>
       <li class="cartao">
         <div class="topo">
           <h2><span class="codigo">DEMO04</span>Painel de indicadores para a coordenação</h2>
-          <span class="estado neutro">Disponível</span>
+          <span class="estado ok">Já te candidataste com Rita Gomes · posição 3</span>
         </div>
         <p class="descricao">Painel com indicadores de propostas, candidaturas e avaliações para apoiar a coordenação.</p>
         <dl class="meta">
@@ -94,12 +94,12 @@
           <div><dt>Candidatos</dt><dd>4</dd></div>
         </dl>
         <ul class="etiquetas" aria-label="Tecnologias"><li>React</li><li>Python</li></ul>
-        <div class="acoes seccao"><a class="botao pequeno" href="aluno-tfc.html" aria-label="Ver e candidatar-me a DEMO04">Ver e candidatar-me</a></div>
+        <div class="acoes seccao"><a class="botao secundario pequeno" href="aluno-candidaturas.html">Ver candidatura</a></div>
       </li>
       <li class="cartao">
         <div class="topo">
           <h2><span class="codigo">DEMO05</span>Gestão de seminários e presenças</h2>
-          <span class="estado neutro">Disponível</span>
+          <span class="estado ok">Já te candidataste · posição 2</span>
         </div>
         <p class="descricao">Registo dos seminários do ano e das presenças dos alunos, com o cálculo da percentagem.</p>
         <dl class="meta">
@@ -109,7 +109,22 @@
           <div><dt>Candidatos</dt><dd>3</dd></div>
         </dl>
         <ul class="etiquetas" aria-label="Tecnologias"><li>Django</li><li>PostgreSQL</li></ul>
-        <div class="acoes seccao"><a class="botao pequeno" href="aluno-tfc.html" aria-label="Ver e candidatar-me a DEMO05">Ver e candidatar-me</a></div>
+        <div class="acoes seccao"><a class="botao secundario pequeno" href="aluno-candidaturas.html">Ver candidatura</a></div>
+      </li>
+      <li class="cartao">
+        <div class="topo">
+          <h2><span class="codigo">DEMO09</span>Portal de estágios e projetos com empresas</h2>
+          <span class="estado neutro">Disponível</span>
+        </div>
+        <p class="descricao">Portal onde as empresas publicam projetos e os alunos manifestam interesse, com acompanhamento pela coordenação.</p>
+        <dl class="meta">
+          <div><dt>Orientador</dt><dd>Prof.ª Sofia Lopes</dd></div>
+          <div><dt>Modalidade</dt><dd>Individual ou em grupo</dd></div>
+          <div><dt>Cursos</dt><dd>LEI, LIG</dd></div>
+          <div><dt>Candidatos</dt><dd>2</dd></div>
+        </dl>
+        <ul class="etiquetas" aria-label="Tecnologias"><li>Django</li><li>React</li></ul>
+        <div class="acoes seccao"><a class="botao pequeno" href="aluno-tema.html" aria-label="Ver e candidatar-me a DEMO09">Ver e candidatar-me</a></div>
       </li>
     </ul>
   </main>

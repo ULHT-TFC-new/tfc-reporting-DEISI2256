@@ -12,7 +12,7 @@
   --tamanho-subtitulo: 1.2rem;
   --altura-linha: 1.5;
 
-  /* Cores (tema claro) */
+  /* Cores (modo claro) */
   --fundo: #f4f6f9;
   --superficie: #ffffff;
   --texto: #1b2430;
@@ -35,7 +35,7 @@
   --largura-max: 1040px;
 }
 
-/* Tema escuro: só mudam as variáveis de cor */
+/* Modo escuro: só mudam as variáveis de cor */
 :root[data-tema="escuro"] {
   --fundo: #11161d;
   --superficie: #1b222c;

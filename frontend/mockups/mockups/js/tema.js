@@ -7,7 +7,7 @@
     if (!botao) return;
     function atualizar() {
       var escuro = raiz.getAttribute("data-tema") === "escuro";
-      botao.textContent = escuro ? "Tema claro" : "Tema escuro";
+      botao.textContent = escuro ? "Modo claro" : "Modo escuro";
       botao.setAttribute("aria-pressed", escuro ? "true" : "false");
     }
     botao.addEventListener("click", function () {
