@@ -232,17 +232,66 @@ O orientador reviu o documento de processos e indicou o que alterar e melhorar.
 *Fecho*
 - O orientador vai ver com mais atenção os documentos enviados e mandar o feedback.
 
+
+
+### Reunião 9 — 25/11/2026
+
+**Com:** Prof. Luís Gomes (orientador), o grupo DEISI2257 e o grupo DEISI2258
+
+**O que foi falado**
+
+*Módulo de verificação dos entregáveis (DEISI2258)*
+- O DEISI2258 tem de enviar com urgência o esboço do módulo, sobretudo as **interfaces (API)**, para se ver como se integra com o frontend e com o backend. Faltam menos de 20 dias para os relatórios da 1.ª entrega.
+- Nesta fase não é para programar: é para definir a camada de interface, chamada pelo frontend ou pelo backend, e incluí-la nos casos de uso da aplicação.
+- O DEISI2256 e o DEISI2257 vão ter de acrescentar aos casos de uso as chamadas ao módulo de verificação, quando as interfaces forem enviadas.
+- Há duas arquiteturas possíveis, com interfaces diferentes:
+  - **ativa:** o relatório da verificação é pedido quando é preciso e a API devolve um JSON com o resultado;
+  - **passiva:** o relatório é feito com a entrega e guardado na base de dados.
+- Se a verificação for feita com a entrega, a entrega tem de passar pela plataforma e não por um *fork*: com um *fork* no repositório, o frontend não sabe que o trabalho foi entregue.
+- **Template e fork são diferentes:** um template é uma cópia independente, sem ligação ao original; um fork mantém o controlo de versões e pode ser atualizado. Disponibilizar um template para o aluno validar o trabalho localmente não faz a entrega.
+- Se os resultados forem escritos na base de dados, a API tem de indicar a estrutura dos dados devolvidos. Ver como o PostgreSQL trata o JSON.
+
+*Mockups (DEISI2256)*
+- Os mockups foram mostrados por perfil: aluno, docente e coordenação. A lista com filtros e o botão para mudar o tema de cor estão bem. «É pouco trabalho, mas tem muito impacto.»
+- **Terminologia:**
+  - **proposta:** uma formulação que pode vir a ser um TFC; são os trabalhos que o aluno propõe;
+  - **tema:** uma proposta aceite;
+  - **TFC:** um tema atribuído.
+  - O estado passa por proposta → tema → TFC. A lista que o aluno vê é uma **lista de temas**, não de propostas.
+- **Menu do aluno:** «Propostas» passa a lista de temas, «Candidaturas e grupo» passa a «Candidaturas», e falta um separador para as **propostas do próprio aluno** (temas autopropostos).
+- **Vista do colega:** em vez de uma página à parte, vai para dentro de Candidaturas, **na mesma lista**, com uma etiqueta de outra cor (por exemplo, azul) a dizer «proposta do colega».
+- **Grupos:** um aluno pode fazer parte de mais do que um grupo nas candidaturas. Se o aluno ficar com um tema num grupo, as candidaturas com o outro grupo não ficam pendentes: passam a individuais, com uma nota.
+- Na candidatura em grupo, o campo do colega não deve aparecer quando a candidatura é individual, e deve listar os alunos para escolher.
+- No Codespaces, para ver os mockups, é preciso abrir a porta e indicar o caminho da pasta e o nome do ficheiro, se não for `index.html`.
+
+*Casos de uso*
+- O orientador viu os testes: «faltam lá coisas, mas aquilo está bonito. Está correto, está bem feito.» A IA está a ser usada com bons resultados.
+
+*Modelo de dados e relatório (DEISI2257)*
+- O DEISI2257 já tem o diagrama de classes global e o diagrama entidade-relação completos.
+- A abordagem de fazer um modelo global e depois separá-lo por macro-processo está muito bem feita.
+- **Falta a orquestração:** mostrar como o trabalho passa de classe em classe e onde cada subaplicação encaixa na outra.
+- **Uso da IA para passar do modelo de classes ao E-R:**
+  - o modelo tem mais omissões do que incoerências;
+  - funciona melhor dar-lhe os dois modelos e perguntar se o E-R traduz bem o de classes;
+  - ou criar um agente ou plugin com regras claras: normalização, chaves nas relações N para N, etc.
+- **Planeamento no relatório:** é a última coisa a fazer. Os módulos ficam por ordem de prioridade, cada um com as tabelas de que precisa. Os casos de uso e os requisitos são identificados só pelo número, sem os descrever outra vez. A base de dados pode ser feita aos poucos, módulo a módulo.
+- O trabalho está «muito bem encaminhado».
+
 **Próximos passos**
-1. Fazer os mockups estáticos dos ecrãs principais: lista de propostas, candidatura e grupo do aluno; seleção de candidatos do docente; vista da coordenação com o botão de publicar.
-2. Reorganizar a CSS com variáveis de formatação no início, rever o contraste dos cartões e cumprir pelo menos o nível A de acessibilidade.
-3. Ver a apresentação do Prof. Rui Santos e ajustar a arquitetura aos requisitos de publicação, em particular a base de dados.
-4. DEISI2257: ligar a avaliação à entrega e guardar a informação dos trabalhos no grupo, com os individuais como grupos de um.
-5. Separar as histórias de utilizador dos casos de uso e escrever os critérios de aceitação como casos de teste, antes das pós-condições.
+1. DEISI2258: enviar com urgência o esboço do módulo de verificação, com as interfaces da API.
+2. DEISI2256 e DEISI2257: incluir nos casos de uso as chamadas ao módulo de verificação, quando as interfaces chegarem.
+3. DEISI2256: corrigir os mockups:
+   - usar a terminologia proposta, tema e TFC;
+   - mudar o menu do aluno (lista de temas, candidaturas e propostas do aluno);
+   - pôr as candidaturas dos colegas na mesma lista, com outra etiqueta;
+   - mostrar o colega só nas candidaturas em grupo, com a lista de alunos.
+4. DEISI2257: acrescentar a orquestração ao modelo de classes e rever o E-R face ao modelo de classes.
+5. Escrever o capítulo de planeamento do relatório, com os módulos por prioridade e os casos de uso e requisitos indicados pelo número.
 
 **Decisões**
-- Os mockups desta fase são estáticos e podem ser feitos em HTML.
-- As cores ficam à escolha da equipa, mas a CSS usa variáveis e cumpre as normas de acessibilidade.
-- O orientador ou o proponente seleciona o candidato e a coordenação publica a atribuição.
-- A avaliação passa a estar ligada à entrega.
-- Os trabalhos individuais são tratados como grupos de um.
-- Casos de uso e histórias de utilizador ficam em documentos separados.
+- A lista que o aluno vê é de temas; «proposta» fica para o que é submetido.
+- O estado mostra a fase: proposta, tema ou TFC.
+- A confirmação das candidaturas pelo colega fica na lista de candidaturas, com uma etiqueta própria.
+- Um aluno pode ter candidaturas em mais do que um grupo.
+- O planeamento organiza o trabalho em módulos, por ordem de prioridade.
