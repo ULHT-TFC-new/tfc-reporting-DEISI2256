@@ -252,7 +252,7 @@ O orientador reviu o documento de processos e indicou o que alterar e melhorar.
 - Se os resultados forem escritos na base de dados, a API tem de indicar a estrutura dos dados devolvidos. Ver como o PostgreSQL trata o JSON.
 
 *Mockups (DEISI2256)*
-- Os mockups foram mostrados por perfil: aluno, docente e coordenação. A lista com filtros e o botão para mudar o tema de cor estão bem. «É pouco trabalho, mas tem muito impacto.»
+- Os mockups foram mostrados por perfil: aluno, docente e coordenação. A lista com filtros e o botão para mudar o tema de cor estão bem. 
 - **Terminologia:**
   - **proposta:** uma formulação que pode vir a ser um TFC; são os trabalhos que o aluno propõe;
   - **tema:** uma proposta aceite;
