@@ -233,7 +233,6 @@ O orientador reviu o documento de processos e indicou o que alterar e melhorar.
 - O orientador vai ver com mais atenção os documentos enviados e mandar o feedback.
 
 
-
 ### Reunião 9 — 25/11/2026
 
 **Com:** Prof. Luís Gomes (orientador), o grupo DEISI2257 e o grupo DEISI2258
@@ -241,18 +240,26 @@ O orientador reviu o documento de processos e indicou o que alterar e melhorar.
 **O que foi falado**
 
 *Módulo de verificação dos entregáveis (DEISI2258)*
-- O DEISI2258 tem de enviar com urgência o esboço do módulo, sobretudo as **interfaces (API)**, para se ver como se integra com o frontend e com o backend. Faltam menos de 20 dias para os relatórios da 1.ª entrega.
+- O DEISI2258 está atrasado há cerca de três semanas e tem de enviar com urgência o esboço do módulo, sobretudo as **interfaces (API)**, para se ver como se integra com o frontend e com o backend. Faltam menos de 20 dias para os relatórios da 1.ª entrega.
+- O nome do módulo de verificação ainda não está definido.
 - Nesta fase não é para programar: é para definir a camada de interface, chamada pelo frontend ou pelo backend, e incluí-la nos casos de uso da aplicação.
-- O DEISI2256 e o DEISI2257 vão ter de acrescentar aos casos de uso as chamadas ao módulo de verificação, quando as interfaces forem enviadas.
+- O DEISI2256 e o DEISI2257 já estão a fechar a arquitetura e os fluxos, com os casos de uso, os requisitos e os testes praticamente feitos. Vão ter de acrescentar aos casos de uso as chamadas ao módulo de verificação, quando as interfaces forem enviadas.
+- Fluxo previsto pelo DEISI2258:
+  - o aluno usa um template da organização no GitHub;
+  - o GitHub Actions corre o workflow, com a verificação do PDF com a estrutura e a ligação à API do YouTube;
+  - gera um relatório em JSON com o commit e o resumo das ações.
+  - A plataforma web usaria esse resultado, de forma parecida com o Drop Project.
 - Há duas arquiteturas possíveis, com interfaces diferentes:
-  - **ativa:** o relatório da verificação é pedido quando é preciso e a API devolve um JSON com o resultado;
+  - **ativa:** o relatório da verificação é pedido quando é preciso e a API devolve um JSON com o resultado. Neste caso, só há informação sobre a entrega quando o avaliador a pede. Guardar os resultados para ver a evolução do trabalho é outra decisão, que depende das chamadas que a API permitir.
   - **passiva:** o relatório é feito com a entrega e guardado na base de dados.
 - Se a verificação for feita com a entrega, a entrega tem de passar pela plataforma e não por um *fork*: com um *fork* no repositório, o frontend não sabe que o trabalho foi entregue.
 - **Template e fork são diferentes:** um template é uma cópia independente, sem ligação ao original; um fork mantém o controlo de versões e pode ser atualizado. Disponibilizar um template para o aluno validar o trabalho localmente não faz a entrega.
 - Se os resultados forem escritos na base de dados, a API tem de indicar a estrutura dos dados devolvidos. Ver como o PostgreSQL trata o JSON.
 
 *Mockups (DEISI2256)*
-- Os mockups foram mostrados por perfil: aluno, docente e coordenação. A lista com filtros e o botão para mudar o tema de cor estão bem. 
+- Os mockups foram mostrados por perfil: aluno, docente e coordenação. A lista com filtros e o botão para mudar o tema de cor estão bem.
+- O orientador pediu para mostrar o fluxo completo das propostas: submissão da proposta, lista de temas e seleção. Pediu também para ver as definições do grupo e lembrou a questão de substituir uma candidatura, já falada antes.
+- Na seleção, o orientador pode escolher e confirmar os grupos.
 - **Terminologia:**
   - **proposta:** uma formulação que pode vir a ser um TFC; são os trabalhos que o aluno propõe;
   - **tema:** uma proposta aceite;
@@ -276,7 +283,11 @@ O orientador reviu o documento de processos e indicou o que alterar e melhorar.
   - funciona melhor dar-lhe os dois modelos e perguntar se o E-R traduz bem o de classes;
   - ou criar um agente ou plugin com regras claras: normalização, chaves nas relações N para N, etc.
 - **Planeamento no relatório:** é a última coisa a fazer. Os módulos ficam por ordem de prioridade, cada um com as tabelas de que precisa. Os casos de uso e os requisitos são identificados só pelo número, sem os descrever outra vez. A base de dados pode ser feita aos poucos, módulo a módulo.
-- O trabalho está muito bem encaminhado.
+- O trabalho está «muito bem encaminhado».
+
+*Fecho*
+- O DEISI2258 tem de enviar as interfaces da API ao DEISI2257 e ao DEISI2256, para as incluírem nos casos de uso.
+- O orientador teve de sair para preparar a sessão de TFC.
 
 **Próximos passos**
 1. DEISI2258: enviar com urgência o esboço do módulo de verificação, com as interfaces da API.
@@ -285,7 +296,8 @@ O orientador reviu o documento de processos e indicou o que alterar e melhorar.
    - usar a terminologia proposta, tema e TFC;
    - mudar o menu do aluno (lista de temas, candidaturas e propostas do aluno);
    - pôr as candidaturas dos colegas na mesma lista, com outra etiqueta;
-   - mostrar o colega só nas candidaturas em grupo, com a lista de alunos.
+   - mostrar o colega só nas candidaturas em grupo, com a lista de alunos;
+   - completar o fluxo das propostas, da submissão à seleção.
 4. DEISI2257: acrescentar a orquestração ao modelo de classes e rever o E-R face ao modelo de classes.
 5. Escrever o capítulo de planeamento do relatório, com os módulos por prioridade e os casos de uso e requisitos indicados pelo número.
 
@@ -295,3 +307,4 @@ O orientador reviu o documento de processos e indicou o que alterar e melhorar.
 - A confirmação das candidaturas pelo colega fica na lista de candidaturas, com uma etiqueta própria.
 - Um aluno pode ter candidaturas em mais do que um grupo.
 - O planeamento organiza o trabalho em módulos, por ordem de prioridade.
+
