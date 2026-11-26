@@ -53,10 +53,15 @@
         <fieldset>
           <legend>Modalidade</legend>
           <div class="opcoes">
-            <label><input type="radio" name="a-mod" checked> Individual</label>
-            <label><input type="radio" name="a-mod"> Em grupo, com um colega</label>
+            <label><input type="radio" name="a-mod" value="individual" checked> Individual</label>
+            <label><input type="radio" name="a-mod" value="grupo"> Em grupo, com um colega</label>
           </div>
         </fieldset>
+        <div class="campo campo-colega">
+          <label for="a-colega">Colega</label>
+          <select id="a-colega" aria-describedby="a-colega-ajuda"><option>Escolhe um colega</option><option>a22002 · Tiago Rocha</option><option>a22003 · Rita Gomes</option><option>a22004 · Miguel Sousa</option><option>a22005 · Inês Ribeiro</option><option>a22006 · Luís Neves</option></select>
+          <span id="a-colega-ajuda" class="ajuda">O colega recebe a proposta na lista de candidaturas e tem de a confirmar.</span>
+        </div>
         <div class="filtros">
           <div class="campo"><label for="a-ori">Orientador indicado</label><select id="a-ori" aria-describedby="a-ori-ajuda"><option>Prof.ª Ana Costa</option><option>Prof. Pedro Martins</option><option>Prof.ª Sofia Lopes</option></select><span id="a-ori-ajuda" class="ajuda">O orientador tem de ter dado acordo prévio.</span></div>
           <div class="campo"><label for="a-tec">Tecnologias</label><input id="a-tec" type="text"></div>
